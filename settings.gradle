@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "timeSchedule"
+include ':app'
+include ':Baselibs'
+include ':Module_Main'
+include ':Module_HomePage'
+include ':Module_health'
+include ':Module_news'
+include ':Module_Mine'
+include ':Module_DirectSeeding'
