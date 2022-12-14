@@ -21,7 +21,7 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
         setContentView(R.layout.activity_module_main);
         navigationView = findViewById(R.id.navagation);
         navigationView.setOnNavigationItemSelectedListener(this);
-        navigationView.setSelectedItemId(R.id.home_fragment);
+        navigationView.setSelectedItemId(R.id.homepage);
     }
 
 
