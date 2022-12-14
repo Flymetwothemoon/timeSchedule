@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_news.R;
 
 /**
@@ -15,6 +16,7 @@ import com.example.module_news.R;
  * Use the {@link Module_newsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@Route(path = "/news/news1")
 public class Module_newsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
