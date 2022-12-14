@@ -1,2 +1,2 @@
 # timeSchedule
-day 1: 组件化的完成与从欢迎界面跳转到主界面 day 2: 学会了github的一些用法
+day 1: 组件化的完成与从欢迎界面跳转到主界面 day 2: 学会了github的一些用法，bottomnavigation完成,并且实现了界面的跳转
