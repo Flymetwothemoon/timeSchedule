@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_mine.R;
 
 /**
@@ -15,6 +16,7 @@ import com.example.module_mine.R;
  * Use the {@link Module_MineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@Route(path = "/mine/mine1")
 public class Module_MineFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="首页"
+    android:id="@+id/homepage">
+
+</item>
+    <item android:title="健康"
+        android:id="@+id/health">
+
+    </item>
+    <item android:title="直播"
+        android:id="@+id/directseeding">
+
+    </item>
+    <item android:title="消息"
+        android:id="@+id/news">
+
+    </item>
+    <item android:title="我的"
+        android:id="@+id/mine">
+
+    </item>
+</menu>
