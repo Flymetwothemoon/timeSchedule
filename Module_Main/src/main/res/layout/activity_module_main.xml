@@ -17,6 +17,7 @@
 <LinearLayout
     android:layout_width="405dp"
     android:layout_height="50dp"
+    android:background="#ffffff"
     android:orientation="horizontal">
  <Button
      android:id="@+id/app_navigation_schedule_btn"
