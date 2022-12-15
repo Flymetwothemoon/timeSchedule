@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationBarView;
 
 @Route(path = "/main/main1")
 public class Module_MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -26,15 +27,13 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = (Fragment) ARouter.getInstance().build("/direct/direct1").navigation();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.home_fragment, fragment)
-                        .commit();
+              ARouter.getInstance().build("/direct/direct1").navigation();
+
             }
         });
         navigationView = findViewById(R.id.navagation);
         navigationView.setOnNavigationItemSelectedListener(this);
+
         navigationView.setSelectedItemId(R.id.homepage);
 
     }

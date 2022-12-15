@@ -16,7 +16,7 @@ import com.example.module_directseeding.R;
  * Use the {@link module_directseedingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-@Route(path = "/direct/direct1")
+
 public class module_directseedingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

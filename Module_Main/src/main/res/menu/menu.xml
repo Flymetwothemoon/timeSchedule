@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:title="首页"
+    android:checked="true"
     android:id="@+id/homepage">
 
 </item>
     <item android:title="健康"
-        android:id="@+id/health">
+        android:id="@+id/health"
+        android:checked="true">
 
     </item>
     <item android:title="直播"
+        android:checked="true"
         android:id="@+id/directseeding">
 
     </item>
     <item android:title="消息"
+        android:checked="true"
         android:id="@+id/news">
 
     </item>
     <item android:title="我的"
+        android:checked="true"
         android:id="@+id/mine">
 
     </item>

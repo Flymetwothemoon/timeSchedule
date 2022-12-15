@@ -16,22 +16,21 @@
      android:background="#ffffff" />
 
  <com.google.android.material.bottomnavigation.BottomNavigationView
-     android:background="#F8F8F8"
+     android:background="@color/white"
      android:id="@+id/navagation"
      android:layout_width="378dp"
      android:layout_height="60dp"
-
+     app:labelVisibilityMode="labeled"
      android:clipChildren="false"
-
+    app:itemTextColor="@color/black"
      app:menu="@menu/menu">
   <com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/floating"
       android:layout_width="65dp"
       android:layout_height="65dp"
-      android:layout_marginBottom="15dp"
+      android:layout_marginBottom="5dp"
       android:layout_gravity="center"
       android:clipChildren="false"
-
       android:backgroundTint="#036CE9" />
 
  </com.google.android.material.bottomnavigation.BottomNavigationView>
