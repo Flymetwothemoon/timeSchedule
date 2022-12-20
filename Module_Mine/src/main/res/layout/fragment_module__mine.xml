@@ -15,7 +15,6 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-
             android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -24,6 +23,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
+                android:background="@color/cardview_dark_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
