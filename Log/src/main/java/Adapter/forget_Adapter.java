@@ -6,14 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-
 import java.util.List;
 
-public class Logon_Adapter extends FragmentStateAdapter {
+public class forget_Adapter extends FragmentStateAdapter {
     List<Fragment>mFragments;
-
-    public Logon_Adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,List<Fragment>fragments) {
+    public forget_Adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,List<Fragment>fragments) {
         super(fragmentManager, lifecycle);
         mFragments = fragments;
     }

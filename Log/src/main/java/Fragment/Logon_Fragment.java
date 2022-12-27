@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.log.R;
 
 /**
@@ -15,13 +17,16 @@ import com.example.log.R;
  * Use the {@link Logon_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@Route(path = "/logon/logon1")
 public class Logon_Fragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private View view;
+    private EditText number;
+    private EditText password;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -61,6 +66,14 @@ public class Logon_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logon_, container, false);
+        if(view==null) {
+            view = inflater.inflate(R.layout.fragment_logon_, container, false);
+        }
+        init();
+        return view;
+    }
+    private void init(){
+        number = view.findViewById(R.id.number_edit);
+        password = view.findViewById(R.id.password_edit1);
     }
 }
