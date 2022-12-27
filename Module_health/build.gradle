@@ -19,17 +19,17 @@ android {
             }
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles "consumer-r  sourceSets{\n" +
+                "        main{\n" +
+                "            if(isModule.toBoolean()){\n" +
+                "                manifest.srcFile 'src/main/AndroidManifest.xml'\n" +
+                "            }else{\n" +
+                "                manifest.srcFile 'src/main/module/AndroidManifest.xml'\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }ules.pro"
     }
-    sourceSets{
-        main{
-            if(isModule.toBoolean()){
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }else{
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            }
-        }
-    }
+
     buildTypes {
         release {
             minifyEnabled false
