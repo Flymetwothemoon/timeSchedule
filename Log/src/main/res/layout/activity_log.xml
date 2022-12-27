@@ -6,4 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".LogActivity">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="200dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="账号"
+        android:id="@+id/account"
+        app:boxStrokeColor="#8BDDE6"
+        android:textColorHint="#8BDDE6"
+        app:hintTextColor="#8BDDE6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:textColor="#8BDDE6"
+            android:id="@+id/Account_edit"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="200dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="密码"
+        android:id="@+id/password"
+        app:boxStrokeColor="#8BDDE6"
+        android:textColorHint="#8BDDE6"
+        app:hintTextColor="#8BDDE6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/account">
+
+        <EditText
+            android:id="@+id/password_edit"
+            android:textColor="#8BDDE6"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

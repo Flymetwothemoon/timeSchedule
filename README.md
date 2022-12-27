@@ -5,3 +5,4 @@ day 3: android底部导航,中间凸起底部导航，并稍微改了一下botto
 day 4: 改了一些不合理的地方
 day 5: 随便写了一些
 day 6: mine界面的ui,但有些item不知道写啥
+day 7: 登陆界面完成
