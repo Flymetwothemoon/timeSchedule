@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ARouter.getInstance().build("/main/main1").navigation();
+                ARouter.getInstance().build("/log/log1").navigation();
                 finish();
             }
         },500);
