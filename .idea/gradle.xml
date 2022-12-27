@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Baselibs" />
+            <option value="$PROJECT_DIR$/Log" />
             <option value="$PROJECT_DIR$/Module_DirectSeeding" />
             <option value="$PROJECT_DIR$/Module_HomePage" />
             <option value="$PROJECT_DIR$/Module_Main" />
