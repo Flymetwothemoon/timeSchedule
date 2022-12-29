@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="381dp"
         android:layout_height="match_parent"
-
+        android:fillViewport="true"
         tools:ignore="SpeakableTextPresentCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,12 +30,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="378dp"
-                android:layout_height="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="228dp"
@@ -46,6 +40,16 @@
                 android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/circleImage"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

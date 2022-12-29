@@ -31,6 +31,7 @@ public class LogonActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 ARouter.getInstance().build("/main/main1").navigation();
+                finish();
             }
         });
     }
