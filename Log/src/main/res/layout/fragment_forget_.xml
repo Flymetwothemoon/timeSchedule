@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="Fragment.Logon_Fragment">
+    tools:context="Fragment.Forget_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -35,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="100dp"
-        android:hint="密码"
+        android:hint="新的密码"
         android:textColorHint="#8BDDE6"
         app:boxStrokeColor="#8BDDE6"
         app:hintTextColor="#8BDDE6"
@@ -50,12 +51,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
     <Button
-        android:id="@+id/Log_button"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
+        android:id="@+id/Logon_button"
+        android:layout_width="8dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/button_log"
-        android:text="注册"
+        android:text="修改"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintBottom_toBottomOf="@+id/password" />
 </androidx.constraintlayout.widget.ConstraintLayout>

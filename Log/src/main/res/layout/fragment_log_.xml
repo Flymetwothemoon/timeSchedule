@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
+    android:id="@+id/log"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="Fragment.Log_Fragment">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/framlayout"/>
     <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/frame_1"
+
+        android:layout_height="match_parent"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -52,53 +52,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/text_email"
-        android:layout_width="188dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="10dp"
-        android:clickable="true"
-        android:text="使用短信验证码登录"
-        android:textColor="#000000"
-        android:textSize="15dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/Log_button"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/button_log"
         android:text="登录"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintBottom_toBottomOf="@+id/password"/>
 
-    <TextView
-        android:id="@+id/text_forget"
-        android:layout_width="wrap_content"
-        android:layout_height="68dp"
-        android:layout_marginEnd="10dp"
-        android:layout_weight="1"
-        android:text="忘记密码"
-        android:textColor="#000000"
-        android:textSize="15dp"
 
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/text_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_email" />
 
-    <TextView
-        android:id="@+id/login_text"
-        android:layout_width="76dp"
-        android:layout_height="68dp"
-        android:text="注册"
-        android:textSize="15dp"
-        android:textColor="#000000"
-        android:clickable="true"
-        app:layout_constraintStart_toEndOf="@+id/text_email"
-        app:layout_constraintTop_toTopOf="@+id/text_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
