@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:title="首页"
     android:checked="true"
+    app:showAsAction="always"
+    android:icon="@drawable/first_homepage"
     android:id="@+id/homepage">
 
 </item>
     <item android:title="健康"
+        android:icon="@drawable/health"
         android:id="@+id/health"
+        app:showAsAction="always"
         android:checked="true">
 
     </item>
     <item android:title="直播"
         android:checked="true"
+        android:icon="@drawable/direct"
         android:id="@+id/directseeding">
 
     </item>
     <item android:title="消息"
         android:checked="true"
+        android:icon="@drawable/news"
         android:id="@+id/news">
 
     </item>
     <item android:title="我的"
         android:checked="true"
+        android:icon="@drawable/mine"
         android:id="@+id/mine">
 
     </item>

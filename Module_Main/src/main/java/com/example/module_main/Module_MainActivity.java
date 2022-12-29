@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationBarView;
 @Route(path = "/main/main1")
 public class Module_MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView  navigationView;
-    private FloatingActionButton button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,17 +31,8 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        button = findViewById(R.id.floating);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              ARouter.getInstance().build("/direct/direct1").navigation();
-
-            }
-        });
         navigationView = findViewById(R.id.navagation);
         navigationView.setOnNavigationItemSelectedListener(this);
-
         navigationView.setSelectedItemId(R.id.homepage);
 
     }
@@ -60,11 +51,10 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
             fragmentTransaction.replace(R.id.home_fragment, fragment).commit();
             return true;
         }
-//        if(item.getItemId()==R.id.directseeding){
-//            Fragment fragment1 = (Fragment) ARouter.getInstance().build("/direct/direct1").navigation();
-//            fragmentTransaction.replace(R.id.home_fragment, fragment1).commit();
-//            return true;
-//        }
+        if(item.getItemId()==R.id.directseeding){
+            ARouter.getInstance().build("/direct/direct1").navigation();
+            return true;
+        }
         if(item.getItemId()==R.id.news){
             Fragment fragment = (Fragment) ARouter.getInstance().build("/news/news1").navigation();
             fragmentTransaction.replace(R.id.home_fragment, fragment).commit();

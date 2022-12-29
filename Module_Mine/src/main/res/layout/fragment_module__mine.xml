@@ -8,9 +8,9 @@
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="381dp"
         android:layout_height="match_parent"
-        android:background="@drawable/gradual_color_bg"
+
         tools:ignore="SpeakableTextPresentCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,14 +18,13 @@
             android:layout_height="match_parent">
 
 
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImage"
                 android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="60dp"
-                android:src="@mipmap/hi"
                 android:clickable="true"
+                android:src="@mipmap/touxiang"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,6 +35,17 @@
                 android:layout_height="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="228dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="87dp"
+                android:text="名字"
+                android:textSize="25dp"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@+id/circleImage"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
