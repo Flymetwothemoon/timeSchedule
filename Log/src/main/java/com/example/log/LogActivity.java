@@ -57,5 +57,8 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
             Intent intent = new Intent(LogActivity.this,LogonActivity.class);
             startActivity(intent);
         }
+        if(v.getId()==R.id.text_email){
+            getSupportFragmentManager().beginTransaction().replace(R.id.logactivity,new Note_Fragment()).commit();
+        }
     }
 }

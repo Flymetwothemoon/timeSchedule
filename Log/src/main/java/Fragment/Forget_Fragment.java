@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.log.R;
 
 /**
@@ -30,7 +32,7 @@ public class Forget_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private Button mButton;
     public Forget_Fragment() {
         // Required empty public constructor
     }
@@ -75,5 +77,12 @@ public class Forget_Fragment extends Fragment {
     private void init(){
         number = view.findViewById(R.id.number_edit);
         password = view.findViewById(R.id.password_edit1);
+        mButton = view.findViewById(R.id.Logon_button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/main/main1").navigation();
+            }
+        });
     }
 }

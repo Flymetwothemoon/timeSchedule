@@ -1,16 +1,18 @@
 package com.example.log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-public class LogonActivity extends AppCompatActivity {
-
+public class LogonActivity extends FragmentActivity {
+    private Button mButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,15 @@ public class LogonActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        ARouter.getInstance().build("/main/main1").navigation();
-        finish();
+        init();
+    }
+    private void init(){
+        mButton = findViewById(R.id.Log_button);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/main/main1").navigation();
+            }
+        });
     }
 }
