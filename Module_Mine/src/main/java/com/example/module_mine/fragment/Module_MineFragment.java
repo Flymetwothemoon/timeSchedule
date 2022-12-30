@@ -80,12 +80,14 @@ public class Module_MineFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_module__mine, container, false);
         }
         init();
+
         return view;
     }
     private void init(){
         card_adapter adapter = new card_adapter(mList);
         init_0();
         recyclerView = view.findViewById(R.id.recyclerview);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         recyclerView.setAdapter(adapter);
     }
