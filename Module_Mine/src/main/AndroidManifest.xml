@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:replace="android:theme,android:appComponentFactory">
         <activity
-            android:name=".Module_MineActivity"
+            android:name=".Activity.Module_MineActivity"
             android:persistableMode="persistAcrossReboots"
             android:exported="true">
             <intent-filter>

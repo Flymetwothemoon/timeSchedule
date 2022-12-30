@@ -24,6 +24,7 @@
         android:layout_marginTop="10dp"
         android:text="踏上跑道，是一种选择，离开起点，是一种勇气。 "
         android:textColor="#E96442"
+        android:id="@+id/textview5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

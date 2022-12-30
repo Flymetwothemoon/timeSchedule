@@ -1,8 +1,8 @@
 package com.example.module_mine.fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Bundle;
-
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_mine.R;
@@ -92,6 +93,16 @@ public class Module_MineFragment extends Fragment {
         award = view.findViewById(R.id.award_card);
         mImageView = view.findViewById(R.id.award_image);
         mRecyclerView = view.findViewById(R.id.mine_recycler);
+        TextView textView2 = view.findViewById(R.id.textView2);
+        TextView textView3 = view.findViewById(R.id.textView3);
+        TextView textView4 = view.findViewById(R.id.textview4);
+        TextView textView5 = view.findViewById(R.id.textview5);
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "Alimama_ShuHeiTi_Bold.ttf");
+        Typeface customFont1 = Typeface.createFromAsset(getActivity().getAssets(),"TsangerYuYangT_W01_W01.ttf");
+        textView2.setTypeface(customFont);
+        textView3.setTypeface(customFont);
+        textView4.setTypeface(customFont1);
+        textView5.setTypeface(customFont1);
         mineAdapter adapter = new mineAdapter(mList);
         init_0();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -124,7 +135,6 @@ public class Module_MineFragment extends Fragment {
         mine7.image = R.mipmap.day;
         mList.add(mine7);
         mine mine6 = new mine();
-        mine6.image = R.mipmap.night;
         mine6.something = "黑夜模式";
         mine6.image = R.mipmap.night;
         mList.add(mine6);

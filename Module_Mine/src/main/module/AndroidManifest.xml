@@ -8,7 +8,7 @@
 
         android:allowBackup="true">
 
-        <activity android:name=".Module_MineActivity"></activity>
+        <activity android:name=".Activity.Module_MineActivity"></activity>
 
     </application>
 
