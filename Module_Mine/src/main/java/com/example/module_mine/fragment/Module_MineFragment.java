@@ -94,7 +94,7 @@ public class Module_MineFragment extends Fragment {
     private void init_0(){
         card card_0 = new card();
         card_0.setImage(R.drawable.order);
-        card_0.setTextView("我的订单");
+        card_0.setTextView("我的点赞");
         mList.add(card_0);
         card card_1 = new card();
         card_1.setImage(R.mipmap.record);
@@ -102,7 +102,7 @@ public class Module_MineFragment extends Fragment {
         mList.add(card_1);
         card card_2 = new card();
         card_2.setImage(R.mipmap.pocket) ;
-        card_2.setTextView("我的钱包");
+        card_2.setTextView("我的收藏");
         mList.add(card_2);
     }
 
