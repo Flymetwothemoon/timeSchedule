@@ -1,5 +1,6 @@
 package com.example.module_mine.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -8,19 +9,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.module_mine.Adapter.card;
-import com.example.module_mine.Adapter.card_adapter;
 import com.example.module_mine.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Adapter.mine;
+import Adapter.mineAdapter;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,8 +42,10 @@ public class Module_MineFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View view;
-    RecyclerView recyclerView;
-    public List<card>mList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private ImageView mImageView;
+    private CardView award;
+    private List<mine>mList = new ArrayList<>();
     public Module_MineFragment() {
         // Required empty public constructor
     }
@@ -80,30 +85,58 @@ public class Module_MineFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_module__mine, container, false);
         }
         init();
-
         return view;
     }
-    private void init(){
-        card_adapter adapter = new card_adapter(mList);
-        init_0();
-        recyclerView = view.findViewById(R.id.recyclerview);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        recyclerView.setAdapter(adapter);
+    private void init(){
+        award = view.findViewById(R.id.award_card);
+        mImageView = view.findViewById(R.id.award_image);
+        mRecyclerView = view.findViewById(R.id.mine_recycler);
+        mineAdapter adapter = new mineAdapter(mList);
+        init_0();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(adapter);
+        show();
+    }
+    private void show(){
+        award.setCardBackgroundColor(0xffF6E7CA);
+        mImageView.setImageResource(R.mipmap.bronze);
     }
     private void init_0(){
-        card card_0 = new card();
-        card_0.setImage(R.drawable.order);
-        card_0.setTextView("我的点赞");
-        mList.add(card_0);
-        card card_1 = new card();
-        card_1.setImage(R.mipmap.record);
-        card_1.setTextView("浏览记录" );
-        mList.add(card_1);
-        card card_2 = new card();
-        card_2.setImage(R.mipmap.pocket) ;
-        card_2.setTextView("我的收藏");
-        mList.add(card_2);
+        mine mine = new mine();
+        mine.something = "我的好友";
+        mine.image = R.mipmap.friend;
+        mList.add(mine);
+        mine mine1 = new mine();
+        mine1.something = "一周小结";
+        mine1.image = R.mipmap.sum;
+        mList.add(mine1);
+        mine mine2 = new mine();
+        mine2.image = R.mipmap.activity;
+        mine2.something = "我的活动";
+        mList.add(mine2);
+        mine mine4 = new mine();
+        mine4.image = R.mipmap.nurse;
+        mine4.something = "关怀模式";
+        mList.add(mine4);
+        mine mine7 = new mine();
+        mine7.something = "白天模式";
+        mine7.image = R.mipmap.day;
+        mList.add(mine7);
+        mine mine6 = new mine();
+        mine6.image = R.mipmap.night;
+        mine6.something = "黑夜模式";
+        mine6.image = R.mipmap.night;
+        mList.add(mine6);
+        mine mine5 = new mine();
+        mine5.something = "我的客服";
+        mine5.image = R.mipmap.service;
+        mList.add(mine5);
+        mine mine3 = new mine();
+        mine3.something ="账号管理";
+        mine3.image = R.mipmap.manage;
+        mList.add(mine3);
     }
+
 
 }
