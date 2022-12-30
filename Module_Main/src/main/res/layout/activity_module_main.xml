@@ -18,8 +18,8 @@
  <com.google.android.material.bottomnavigation.BottomNavigationView
      android:background="@color/white"
      android:id="@+id/navagation"
-     android:layout_width="378dp"
-     android:layout_height="60dp"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
      app:labelVisibilityMode="labeled"
      app:itemIconTint="@color/black"
      android:clipChildren="false"

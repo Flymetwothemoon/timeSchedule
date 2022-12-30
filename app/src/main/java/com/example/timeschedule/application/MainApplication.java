@@ -16,7 +16,7 @@ public class MainApplication extends Application {
 
         }
         ARouter.init(this);
-        Log.d("TAG","feng");
+
     }
 
 
