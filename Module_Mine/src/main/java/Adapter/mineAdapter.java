@@ -18,6 +18,13 @@ public class mineAdapter extends RecyclerView.Adapter<mineAdapter.viewHolder> {
         mList = list;
     }
     private List<mine>mList;
+    private OnItemClickListener mOnItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
     @NonNull
     @Override
     public mineAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,6 +35,16 @@ public class mineAdapter extends RecyclerView.Adapter<mineAdapter.viewHolder> {
     public void onBindViewHolder(@NonNull mineAdapter.viewHolder holder, int position) {
         holder.mTextView.setText(mList.get(position).getSomething());
         holder.mImageView.setImageResource(mList.get(position).getImage());
+        if(mOnItemClickListener != null) {
+            //为ItemView设置监听器
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition(); // 1
+                    mOnItemClickListener.onItemClick(holder.itemView, position); // 2
+                }
+            });
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.module_mine.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.module_mine.Activity.Module_MineActivity;
 import com.example.module_mine.R;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.List;
 
 import Adapter.mine;
 import Adapter.mineAdapter;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -32,7 +35,7 @@ import Adapter.mineAdapter;
  * create an instance of this fragment.
  */
 @Route(path = "/mine/mine1")
-public class Module_MineFragment extends Fragment {
+public class Module_MineFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +49,9 @@ public class Module_MineFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private ImageView mImageView;
     private CardView award;
+    private CardView competition;
+    private CircleImageView mCircleImageView;
+    private TextView name;
     private List<mine>mList = new ArrayList<>();
     public Module_MineFragment() {
         // Required empty public constructor
@@ -91,8 +97,11 @@ public class Module_MineFragment extends Fragment {
 
     private void init(){
         award = view.findViewById(R.id.award_card);
-        mImageView = view.findViewById(R.id.award_image);
         mRecyclerView = view.findViewById(R.id.mine_recycler);
+        mCircleImageView = view.findViewById(R.id.circleImage);
+        name = view.findViewById(R.id.name);
+        competition = view.findViewById(R.id.cardView);
+        mImageView = view.findViewById(R.id.award_image);
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
         TextView textView4 = view.findViewById(R.id.textview4);
@@ -105,9 +114,21 @@ public class Module_MineFragment extends Fragment {
         textView5.setTypeface(customFont1);
         mineAdapter adapter = new mineAdapter(mList);
         init_0();
+        adapter.setOnItemClickListener(new mineAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+        });
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(adapter);
         show();
+        mRecyclerView.setOnClickListener(this);
+        name.setOnClickListener(this);
+        award.setOnClickListener(this);
+        competition.setOnClickListener(this);
+
     }
     private void show(){
         award.setCardBackgroundColor(0xffF6E7CA);
@@ -149,4 +170,22 @@ public class Module_MineFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), Module_MineActivity.class);
+        if(v.getId()==R.id.name){
+           String a ="name";
+           intent.putExtra("TAG",a);
+        }
+        if(v.getId()==R.id.award_card){
+            String a = "award";
+            intent.putExtra("TAG",a);
+        }
+        if(v.getId()==R.id.cardView){
+            String a = "competition";
+            intent.putExtra("TAG",a);
+        }
+
+        startActivity(intent);
+    }
 }
