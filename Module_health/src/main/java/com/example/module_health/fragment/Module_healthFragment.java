@@ -3,6 +3,7 @@ package com.example.module_health.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,7 @@ public class Module_healthFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private CardView mCardView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -94,20 +95,43 @@ public class Module_healthFragment extends Fragment {
     }
     private void init_0(){
         Calendar calendar = Calendar.getInstance();
-        Toast.makeText(getActivity(),String.valueOf(calendar.get(Calendar.MONTH)),Toast.LENGTH_SHORT).show();
-
         for (int i =0;i<31;i++){
-//            calendar.add(Calendar.MONTH,i);
             Data data = new Data();
             data.day = String.valueOf(calendar.get(Calendar.DATE));
             data.dayOfWeekend ="星期"+(calendar.get(Calendar.DAY_OF_WEEK)-1);
-            if(data.dayOfWeekend.equals("星期0")){
-                data.dayOfWeekend ="星期"+"天";
+            if(i==0){
+                data.color = 0xff95CBCB;
             }
+            else{
+                data.color = 0xffE6E6FA;
+            }
+            exchange(data);
             mList.add(data);
             calendar.add(Calendar.DATE,1);
         }
-
-
+    }
+    private Data exchange(Data data){
+        if(data.dayOfWeekend.equals("星期0")){
+            data.dayOfWeekend ="星期"+"天";
+        }
+        if(data.dayOfWeekend.equals("星期1")){
+            data.dayOfWeekend ="星期"+"一";
+        }
+        if(data.dayOfWeekend.equals("星期2")){
+            data.dayOfWeekend ="星期"+"二";
+        }
+        if(data.dayOfWeekend.equals("星期3")){
+            data.dayOfWeekend ="星期"+"三";
+        }
+        if(data.dayOfWeekend.equals("星期4")){
+            data.dayOfWeekend ="星期"+"四";
+        }
+        if(data.dayOfWeekend.equals("星期5")){
+            data.dayOfWeekend ="星期"+"五";
+        }
+        if(data.dayOfWeekend.equals("星期6")){
+            data.dayOfWeekend ="星期"+"六";
+        }
+        return data;
     }
 }

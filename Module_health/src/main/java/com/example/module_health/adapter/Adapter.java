@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.module_health.R;
@@ -29,6 +30,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
     public void onBindViewHolder(@NonNull Adapter.viewholder holder, int position) {
         holder.data.setText(mList.get(position).getDay());
         holder.weekend.setText(mList.get(position).getDayOfWeekend());
+        holder.mCardView.setCardBackgroundColor(mList.get(position).getColor());
     }
 
     @Override
@@ -39,10 +41,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
     public class viewholder extends RecyclerView.ViewHolder {
         TextView weekend;
         TextView data;
+        CardView mCardView;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             weekend = itemView.findViewById(R.id.weekend);
             data = itemView.findViewById(R.id.data);
+            mCardView = itemView.findViewById(R.id.textCardView);
         }
     }
 }

@@ -20,4 +20,14 @@ public class Data {
     }
 
     public String dayOfWeekend;
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int color;
 }
