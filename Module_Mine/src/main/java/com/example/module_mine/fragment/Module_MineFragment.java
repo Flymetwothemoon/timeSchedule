@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_mine.Activity.Module_MineActivity;
@@ -117,6 +118,27 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         adapter.setOnItemClickListener(new mineAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(),Module_MineActivity.class);
+                if(position==0){
+                    String a ="friend";
+                    intent.putExtra("TAG",a);
+                    startActivity(intent);
+                }
+                if(position==1){
+                    String a = "sum";
+                    intent.putExtra("TAG",a);
+                    startActivity(intent);
+                }
+                if(position==2){
+                    String a  = "activity";
+                    intent.putExtra("TAG",a);
+                    startActivity(intent);
+                }
+                if(position==7){
+                    String a = "manage";
+                    intent.putExtra("TAG",a);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -128,7 +150,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         name.setOnClickListener(this);
         award.setOnClickListener(this);
         competition.setOnClickListener(this);
-
+        mCircleImageView.setOnClickListener(this);
     }
     private void show(){
         award.setCardBackgroundColor(0xffF6E7CA);
@@ -173,6 +195,10 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(getActivity(), Module_MineActivity.class);
+        if(v.getId()==R.id.circleImage){
+            String a ="circle";
+            intent.putExtra("TAG",a);
+        }
         if(v.getId()==R.id.name){
            String a ="name";
            intent.putExtra("TAG",a);

@@ -9,7 +9,7 @@
 
 
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="ss2">
         <activity
