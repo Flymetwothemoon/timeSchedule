@@ -1,6 +1,7 @@
 package com.example.module_health.fragment;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -22,6 +24,8 @@ import com.example.module_health.bean.Data;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import Utils.util_0;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,33 +109,10 @@ public class Module_healthFragment extends Fragment {
             else{
                 data.color = 0xffE6E6FA;
             }
-            exchange(data);
+            util_0.exchange(data);
             mList.add(data);
             calendar.add(Calendar.DATE,1);
         }
     }
-    private Data exchange(Data data){
-        if(data.dayOfWeekend.equals("星期0")){
-            data.dayOfWeekend ="星期"+"天";
-        }
-        if(data.dayOfWeekend.equals("星期1")){
-            data.dayOfWeekend ="星期"+"一";
-        }
-        if(data.dayOfWeekend.equals("星期2")){
-            data.dayOfWeekend ="星期"+"二";
-        }
-        if(data.dayOfWeekend.equals("星期3")){
-            data.dayOfWeekend ="星期"+"三";
-        }
-        if(data.dayOfWeekend.equals("星期4")){
-            data.dayOfWeekend ="星期"+"四";
-        }
-        if(data.dayOfWeekend.equals("星期5")){
-            data.dayOfWeekend ="星期"+"五";
-        }
-        if(data.dayOfWeekend.equals("星期6")){
-            data.dayOfWeekend ="星期"+"六";
-        }
-        return data;
-    }
+
 }

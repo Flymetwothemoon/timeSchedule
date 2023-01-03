@@ -1,8 +1,10 @@
-package com.example.module_health;
+package com.example.module_health.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.module_health.R;
 
 public class Module_healthActivity extends AppCompatActivity {
 
