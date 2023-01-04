@@ -1,5 +1,7 @@
 package com.example.module_health.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -20,11 +22,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_health.R;
 import com.example.module_health.adapter.Adapter;
 import com.example.module_health.bean.Data;
+import com.example.module_health.service.StepService;
+import com.example.module_health.view.StepArcView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import Utils.SharedPreferencesUtils;
 import Utils.util_0;
 
 /**
@@ -40,6 +45,7 @@ public class Module_healthFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private CardView mCardView;
+    private StepArcView cc;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -91,12 +97,27 @@ public class Module_healthFragment extends Fragment {
     private void init(){
         adapter = new Adapter(mList);
         init_0();
+        cc = (StepArcView) view.findViewById(R.id.cc);
+        initData();
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
+    private void initData(){
+        cc.setCurrentCount(10000,0);
+        startSerice();
+    }
+    private boolean isBind = false;
+    private void startSerice() {
+        Intent intent = new Intent(getActivity(), StepService.class);
+        getActivity().startService(intent);
+    }
+
+
+   
+
     private void init_0(){
         Calendar calendar = Calendar.getInstance();
         for (int i =0;i<31;i++){

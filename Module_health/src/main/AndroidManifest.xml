@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     package="com.example.module_health">
+
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+
     <uses-feature android:name="android.hardware.sensor.accelerometer" />
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
+
     <uses-feature
         android:name="android.hardware.sensor.stepcounter"
         android:required="true" />
     <uses-feature
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
+
     <application
         android:allowBackup="true"
+        android:appComponentFactory="ss2"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
-        tools:replace="android:appComponentFactory"
-        android:appComponentFactory="ss2">
+        tools:replace="android:appComponentFactory">
+        <service
+            android:name=".service.StepService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
-            android:exported="true"
             android:name=".Activity.Module_healthActivity"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

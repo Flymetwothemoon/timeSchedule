@@ -1,5 +1,7 @@
 package com.example.module_health.view;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -85,7 +87,7 @@ public class StepArcView extends View {
     private void drawArcYellow(Canvas canvas, RectF rectF) {
         Paint paint = new Paint();
         /** 默认画笔颜色，黄色 */
-        paint.setColor(getResources().getColor(R.color.yellow));
+        paint.setColor(getResources().getColor(R.color.good_color));
         /** 结合处为圆弧*/
         paint.setStrokeJoin(Paint.Join.ROUND);
         /** 设置画笔的样式 Paint.Cap.Round ,Cap.SQUARE等分别为圆形、方形*/
@@ -95,7 +97,7 @@ public class StepArcView extends View {
         /**抗锯齿功能*/
         paint.setAntiAlias(true);
         /**设置画笔宽度*/
-        paint.setStrokeWidth(borderWidth);
+        paint.setStrokeWidth(20);
 
         /**绘制圆弧的方法
          * drawArc(RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)//画弧，
@@ -132,7 +134,8 @@ public class StepArcView extends View {
         vTextPaint.setAntiAlias(true);//抗锯齿功能
         vTextPaint.setTextSize(numberTextSize);
         Typeface font = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
-        vTextPaint.setTypeface(font);//字体风格
+        Typeface customFont = Typeface.createFromAsset(getContext().getAssets(),"TsangerYuYangT_W04_W04.ttf");
+        vTextPaint.setTypeface(customFont);//字体风格
         vTextPaint.setColor(getResources().getColor(R.color.red));
         Rect bounds_Number = new Rect();
         vTextPaint.getTextBounds(stepNumber, 0, stepNumber.length(), bounds_Number);
