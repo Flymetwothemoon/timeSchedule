@@ -21,7 +21,9 @@ public class stepViewModel extends ViewModel {
     public void insert(step step){
         mStepRepository.insert(step);
     }
-
+    public void updata(step step){
+        mStepRepository.updata(step);
+    }
     LiveData<List<step>>getAllSteps(){
         return mAllStep;
     }

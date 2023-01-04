@@ -9,6 +9,7 @@ import java.util.List;
 public class stepRepository {
     public stepDao mDao;
     public LiveData<List<step>> mAllStep;
+    public LiveData<List<step>>mUpData;
     AppDatabase database;
     stepRepository(Context context){
         database = com.example.module_health.save.AppDatabase.getInstance(context.getApplicationContext());
@@ -18,7 +19,10 @@ public class stepRepository {
     void insert(step step){
         database.databaseWriteExecutor.execute(()-> mDao.insert(step));
     }
-    LiveData<List<step>>getAllWords(){
+    void updata(step step){
+        database.databaseWriteExecutor.execute(()-> mDao.getUpData(step));
+    }
+    LiveData<List<step>>getAllStep(){
         return mAllStep;
     }
 }
