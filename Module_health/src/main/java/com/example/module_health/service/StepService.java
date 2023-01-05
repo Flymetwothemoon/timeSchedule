@@ -1,5 +1,8 @@
 package com.example.module_health.service;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -11,10 +14,20 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+
+import com.example.module_health.R;
+import com.example.module_health.fragment.Module_healthFragment;
+
 public class StepService extends Service implements SensorEventListener {
     /**
      * 传感器管理对象
      */
+    public static int TYPE = -1;
+    /**
+     * 通知管理对象
+     */
+    private NotificationManager mNotificationManager;
     private SensorManager sensorManager;
     private Sensor sensorOrientation;
     /**
@@ -25,13 +38,24 @@ public class StepService extends Service implements SensorEventListener {
      * 当前所走的步数
      */
     private int CURRENT_STEP ;
+    /**
+     * 上一次的步数
+     */
+    private int previousStepCount = 0;
     private UpdateUiCallBack mCallback;
-
+    /**
+     * 系统中获取到的已有的步数
+     */
+    private int hasStepCount = 0;
     /**
      * 注册UI更新监听
      *
      * @param paramICallback
      */
+    /**
+     * 通知构建者
+     */
+    private NotificationCompat.Builder mBuilder;
     public void registerCallback(UpdateUiCallBack paramICallback) {
         this.mCallback = paramICallback;
     }
@@ -91,21 +115,49 @@ public class StepService extends Service implements SensorEventListener {
         //2.获取指定类型的传感器
         //每次用户迈步时，步测器传感器都会触发事件。延迟时间预计将低于 2 秒。
         sensorOrientation = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        Log.d("TAG1","HI");
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Log.d("TAG1","HIHIHI");
         //注册要监听的sensor
-        sensorManager.registerListener( StepService.this, sensorOrientation, SensorManager.SENSOR_DELAY_NORMAL);
+        if(sensorOrientation!=null) {
+            sensorManager.registerListener(StepService.this, sensorOrientation, SensorManager.SENSOR_DELAY_NORMAL);
+            TYPE =  Sensor.TYPE_STEP_DETECTOR;
+        }
+        if(countSensor!=null) {
+            sensorManager.registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            TYPE =  Sensor.TYPE_STEP_COUNTER;
+        }
+        Log.d("TAG1","1"+CURRENT_STEP);
     }
 
     //当有数据到来时会调用onSensorChanged 方法
     @Override
     public void onSensorChanged(SensorEvent event) {
-    CURRENT_STEP++;
-        Log.d("TAG1",String.valueOf(CURRENT_STEP));
-        Toast.makeText(getApplicationContext(),String.valueOf(CURRENT_STEP),Toast.LENGTH_SHORT).show();
-    }
+                CURRENT_STEP++;
+        updateNotification();
+        }
+
     //当精度发生变化的时候做的事情
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+    /**
+     * 更新步数通知
+     */
+    private void updateNotification() {
+        //设置点击跳转
+        Intent hangIntent = new Intent(this, Module_healthFragment.class);
+        PendingIntent hangPendingIntent = PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        Notification notification = mBuilder
+                .setContentText("今日步数" + CURRENT_STEP + " 步")
+                .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
+                .setContentIntent(hangPendingIntent)
+                .build();
+        mNotificationManager.notify(100, notification);
+        if (mCallback != null) {
+            mCallback.updateUi(CURRENT_STEP);
+        }
+        Log.d("TAG1", "updateNotification()");
     }
 }
