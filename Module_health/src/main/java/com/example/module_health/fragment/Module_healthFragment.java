@@ -1,7 +1,9 @@
 package com.example.module_health.fragment;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import com.example.module_health.R;
 import com.example.module_health.adapter.Adapter;
 import com.example.module_health.bean.Data;
 import com.example.module_health.service.StepService;
+import com.example.module_health.service.UpdateUiCallBack;
 import com.example.module_health.view.StepArcView;
 
 import java.util.ArrayList;
@@ -114,6 +118,37 @@ public class Module_healthFragment extends Fragment {
         Intent intent = new Intent(getActivity(), StepService.class);
         getActivity().startService(intent);
     }
+    /**
+     * 用于查询应用服务（application Service）的状态的一种interface，
+     * 更详细的信息可以参考Service 和 context.bindService()中的描述，
+     * 和许多来自系统的回调方式一样，ServiceConnection的方法都是进程的主线程中调用的。
+     */
+    ServiceConnection conn = new ServiceConnection(){
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            StepService stepService = ((StepService.StepBinder) service).getService();
+            cc.setCurrentCount(10000, stepService.getStepCount());
+            //设置步数监听回调
+            stepService.registerCallback(new UpdateUiCallBack() {
+                @Override
+                public void updateUi(int stepCount) {
+                    cc.setCurrentCount(10000, stepCount);
+                }
+            });
+        }
+        /**
+         * 当与Service之间的连接丢失的时候会调用该方法，
+         * 这种情况经常发生在Service所在的进程崩溃或者被Kill的时候调用，
+         * 此方法不会移除与Service的连接，当服务重新启动的时候仍然会调用 onServiceConnected()。
+         * @param name 丢失连接的组件名称
+         */
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+
+    };
 
 
    
