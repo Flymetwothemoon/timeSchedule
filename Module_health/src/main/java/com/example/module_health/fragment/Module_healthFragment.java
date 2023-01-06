@@ -73,7 +73,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private Adapter adapter;
     private TextView mTextView;
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
-    private int mStepDetector = 0; // 累加的步行检测次数
+    private int mStepDetector = -1; // 累加的步行检测次数
     private int mStepCounter = 0; // 计步器统计的步伐数目
 
 
@@ -249,7 +249,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             }
         } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
             mStepCounter = (int) event.values[0]; // 计步器事件
-            mStepDetector++; // 步行检测事件
+            mStepDetector++;
         }
         String desc = String.format("设备检测到您当前走了%d步，总计数为%d步",
                 mStepDetector, mStepCounter);
