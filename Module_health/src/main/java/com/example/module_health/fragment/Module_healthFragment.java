@@ -1,14 +1,26 @@
 package com.example.module_health.fragment;
 
+import static android.content.Context.SENSOR_SERVICE;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +55,9 @@ import Utils.util_0;
  * create an instance of this fragment.
  */
 @Route(path = "/health/health1")
-public class Module_healthFragment extends Fragment {
+
+@SuppressLint("DefaultLocale")
+public class Module_healthFragment extends Fragment implements SensorEventListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,7 +69,14 @@ public class Module_healthFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View view;
+    private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private Adapter adapter;
+    private TextView mTextView;
+    private SensorManager mSensorMgr; // 声明一个传感管理器对象
+    private int mStepDetector = 0; // 累加的步行检测次数
+    private int mStepCounter = 0; // 计步器统计的步伐数目
+
+
     private List<Data>mList = new ArrayList<>();
     public Module_healthFragment() {
         // Required empty public constructor
@@ -96,10 +117,20 @@ public class Module_healthFragment extends Fragment {
         if(view==null){
             view = inflater.inflate(R.layout.fragment_module_health, container, false);
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // 检查该权限是否已经获取
+            int get = ContextCompat.checkSelfPermission(getActivity(), permissions[0]);
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (get != PackageManager.PERMISSION_GRANTED) {
+                // 如果没有授予该权限，就去提示用户请求自动开启权限
+                ActivityCompat.requestPermissions(getActivity(), permissions, 321);
+            }
+        }
         init();
         return view;
     }
     private void init(){
+
         adapter = new Adapter(mList);
         init_0();
         cc = (StepArcView) view.findViewById(R.id.cc);
@@ -112,44 +143,74 @@ public class Module_healthFragment extends Fragment {
     }
     private void initData(){
         cc.setCurrentCount(10000,0);
-        startSerice();
+        initStepSensor();
+        mTextView = view.findViewById(R.id.text1111);
+//        startSerice();
     }
-    private boolean isBind = false;
-    private void startSerice() {
-        Intent intent = new Intent(getActivity(), StepService.class);
-        getActivity().startService(intent);
+
+    private void initStepSensor() {
+        mSensorMgr = (SensorManager) this.getActivity().getSystemService(Context.SENSOR_SERVICE);
+        int suitable = 0;
+        // 获取当前设备支持的传感器列表
+        List<Sensor> sensorList = mSensorMgr.getSensorList(Sensor.TYPE_ALL);
+        for (Sensor sensor : sensorList) {
+            if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 找到步行检测传感器
+                suitable += 1;
+                // 给步行检测传感器注册传感监听器
+                mSensorMgr.registerListener(this,
+                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
+                        SensorManager.SENSOR_DELAY_NORMAL);
+            } else if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 找到计步器
+                suitable += 10;
+                // 给计步器注册传感监听器
+                mSensorMgr.registerListener(this,
+                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
+                        SensorManager.SENSOR_DELAY_NORMAL);
+            }
+        }
+        Log.d("TAG1","fangq"+suitable);
+        if (suitable == 0) {
+            mTextView.setText("当前设备不支持计步器，请检查是否存在步行检测传感器和计步器");
+        }
+
+
     }
+//    private boolean isBind = false;
+//    private void startSerice() {
+//        Intent intent = new Intent(getActivity(), StepService.class);
+//        getActivity().startService(intent);
+//    }
     /**
      * 用于查询应用服务（application Service）的状态的一种interface，
      * 更详细的信息可以参考Service 和 context.bindService()中的描述，
      * 和许多来自系统的回调方式一样，ServiceConnection的方法都是进程的主线程中调用的。
      */
-    ServiceConnection conn = new ServiceConnection(){
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            StepService stepService = ((StepService.StepBinder) service).getService();
-            cc.setCurrentCount(10000, stepService.getStepCount());
-            //设置步数监听回调
-            stepService.registerCallback(new UpdateUiCallBack() {
-                @Override
-                public void updateUi(int stepCount) {
-                    cc.setCurrentCount(10000, stepCount);
-                }
-            });
-        }
-        /**
-         * 当与Service之间的连接丢失的时候会调用该方法，
-         * 这种情况经常发生在Service所在的进程崩溃或者被Kill的时候调用，
-         * 此方法不会移除与Service的连接，当服务重新启动的时候仍然会调用 onServiceConnected()。
-         * @param name 丢失连接的组件名称
-         */
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-
-    };
+//    ServiceConnection conn = new ServiceConnection(){
+//
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            StepService stepService = ((StepService.StepBinder) service).getService();
+//            cc.setCurrentCount(10000, stepService.getStepCount());
+//            //设置步数监听回调
+//            stepService.registerCallback(new UpdateUiCallBack() {
+//                @Override
+//                public void updateUi(int stepCount) {
+//                    cc.setCurrentCount(10000, stepCount);
+//                }
+//            });
+//        }
+//        /**
+//         * 当与Service之间的连接丢失的时候会调用该方法，
+//         * 这种情况经常发生在Service所在的进程崩溃或者被Kill的时候调用，
+//         * 此方法不会移除与Service的连接，当服务重新启动的时候仍然会调用 onServiceConnected()。
+//         * @param name 丢失连接的组件名称
+//         */
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//
+//        }
+//
+//    };
 
 
    
@@ -172,4 +233,31 @@ public class Module_healthFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        Log.d("TAG1","启动了");
+        if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
+            if (event.values[0] == 1.0f) {
+                mStepDetector++; // 步行检测事件
+            }
+        } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
+            mStepCounter = (int) event.values[0]; // 计步器事件
+        }
+        String desc = String.format("设备检测到您当前走了%d步，总计数为%d步",
+                mStepDetector, mStepCounter);
+        mTextView.setText(desc);
+        cc.setCurrentCount(10000,mStepCounter);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mSensorMgr.unregisterListener(this);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }

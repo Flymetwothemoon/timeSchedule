@@ -126,14 +126,13 @@ public class StepService extends Service implements SensorEventListener {
             sensorManager.registerListener(StepService.this, countSensor, SensorManager.SENSOR_DELAY_NORMAL);
             TYPE =  Sensor.TYPE_STEP_COUNTER;
         }
-        Log.d("TAG1","1"+CURRENT_STEP);
     }
 
     //当有数据到来时会调用onSensorChanged 方法
     @Override
     public void onSensorChanged(SensorEvent event) {
                 CURRENT_STEP++;
-        updateNotification();
+                Log.d("TAG1","FANG");
         }
 
     //当精度发生变化的时候做的事情
@@ -141,23 +140,10 @@ public class StepService extends Service implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-    /**
-     * 更新步数通知
-     */
-    private void updateNotification() {
-        //设置点击跳转
-        Intent hangIntent = new Intent(this, Module_healthFragment.class);
-        PendingIntent hangPendingIntent = PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Notification notification = mBuilder
-                .setContentText("今日步数" + CURRENT_STEP + " 步")
-                .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
-                .setContentIntent(hangPendingIntent)
-                .build();
-        mNotificationManager.notify(100, notification);
-        if (mCallback != null) {
-            mCallback.updateUi(CURRENT_STEP);
-        }
-        Log.d("TAG1", "updateNotification()");
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        sensorManager.unregisterListener(StepService.this);
     }
 }
