@@ -154,8 +154,10 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         // 获取当前设备支持的传感器列表
         List<Sensor> sensorList = mSensorMgr.getSensorList(Sensor.TYPE_ALL);
         for (Sensor sensor : sensorList) {
+            Log.d("TAG1",String.valueOf(sensor.getType()));
             if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 找到步行检测传感器
                 suitable += 1;
+                Log.d("TAG1","启动3");
                 // 给步行检测传感器注册传感监听器
                 mSensorMgr.registerListener(this,
                         mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
@@ -163,15 +165,16 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             } else if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 找到计步器
                 suitable += 10;
                 // 给计步器注册传感监听器
+                Log.d("TAG1","启动4");
                 mSensorMgr.registerListener(this,
                         mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
                         SensorManager.SENSOR_DELAY_NORMAL);
             }
         }
         Log.d("TAG1","fangq"+suitable);
-        if (suitable == 0) {
-            mTextView.setText("当前设备不支持计步器，请检查是否存在步行检测传感器和计步器");
-        }
+//        if (suitable == 0) {
+//            mTextView.setText("当前设备不支持计步器，请检查是否存在步行检测传感器和计步器");
+//        }
 
 
     }
@@ -237,6 +240,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
         Log.d("TAG1","启动了");
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
+            Log.d("TAG1","启动1");
             if (event.values[0] == 1.0f) {
                 mStepDetector++; // 步行检测事件
             }
