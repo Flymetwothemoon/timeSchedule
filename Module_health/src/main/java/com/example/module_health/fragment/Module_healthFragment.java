@@ -38,8 +38,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_health.R;
 import com.example.module_health.adapter.Adapter;
 import com.example.module_health.bean.Data;
-import com.example.module_health.service.StepService;
-import com.example.module_health.service.UpdateUiCallBack;
+
 import com.example.module_health.view.StepArcView;
 
 import java.util.ArrayList;
