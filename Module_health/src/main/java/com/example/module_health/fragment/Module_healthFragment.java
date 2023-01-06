@@ -169,6 +169,9 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
                 mSensorMgr.registerListener(this,
                         mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
                         SensorManager.SENSOR_DELAY_NORMAL);
+                mSensorMgr.registerListener(this,
+                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
+                        SensorManager.SENSOR_DELAY_NORMAL);
             }
         }
         Log.d("TAG1","fangq"+suitable);
@@ -246,11 +249,12 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             }
         } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
             mStepCounter = (int) event.values[0]; // 计步器事件
+            mStepDetector++; // 步行检测事件
         }
         String desc = String.format("设备检测到您当前走了%d步，总计数为%d步",
                 mStepDetector, mStepCounter);
         mTextView.setText(desc);
-        cc.setCurrentCount(10000,mStepCounter);
+        cc.setCurrentCount(10000,mStepDetector);
 
     }
 
