@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,13 +94,13 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if(view ==null){
+        if(view ==null) {
             view = inflater.inflate(R.layout.fragment_module__mine, container, false);
         }
         init();
+        save();
         return view;
     }
-
     private void init(){
         award = view.findViewById(R.id.award_card);
         mRecyclerView = view.findViewById(R.id.mine_recycler);
@@ -107,6 +108,10 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         name = view.findViewById(R.id.name);
         competition = view.findViewById(R.id.cardView);
         mImageView = view.findViewById(R.id.award_image);
+        if(name.getText().toString()=="") {
+            mCircleImageView.setImageResource(R.mipmap.touxiang);
+            name.setText("名字");
+        }
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
         TextView textView4 = view.findViewById(R.id.textview4);
@@ -124,9 +129,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(),Module_MineActivity.class);
                 if(position==0){
-                    String a ="friend";
-                    intent.putExtra("TAG",a);
-                    startActivity(intent);
+                    Toast.makeText(getActivity(),"我们目前未开通我的好友服务",Toast.LENGTH_SHORT).show();
                 }
                 if(position==1){
                     String a = "sum";
@@ -229,7 +232,11 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
             intent.putExtra("TAG",a);
             startActivity(intent);
         }
-
-
+    }
+    private void save(){
+        int image = mCircleImageView.getImageAlpha();
+        Log.d("TAG5",String.valueOf(image));
+        String recordName = name.getText().toString();
+        Log.d("TAG5",String.valueOf(recordName));
     }
 }

@@ -22,7 +22,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="60dp"
                 android:clickable="true"
-                android:src="@mipmap/touxiang"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -31,7 +31,6 @@
                 android:layout_width="228dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="87dp"
-                android:text="名字"
                 android:typeface="sans"
                 android:textColor="#000000"
                 android:textSize="25dp"

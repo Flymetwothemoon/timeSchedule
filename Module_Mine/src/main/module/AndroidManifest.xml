@@ -3,13 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.module_mine">
 
-    <application
-
-        android:allowBackup="true">
-
-        <activity android:name=".Activity.Module_MineActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" ></activity>
-
+    <application android:allowBackup="true">
+        <activity
+            android:name=".Activity.Rule_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.Module_MineActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
     </application>
 
 </manifest>

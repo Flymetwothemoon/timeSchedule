@@ -12,6 +12,4 @@ public class record_step {
     public int image;//保存头像的
     @ColumnInfo
     public String name;//保存名字的
-    @ColumnInfo
-    public String step;//保存步数的
 }

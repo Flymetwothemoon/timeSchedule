@@ -1,15 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradual_color_bg"
     tools:context=".fragment.achievementFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="活动"
-        android:textSize="20dp"/>
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/achievement"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="45dp"
+            android:text="成就"
+            android:gravity="left"
+            android:textSize="50dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/achievement">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/award_0"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/bronze"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:id="@+id/award_0_text"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="铜牌"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_0" />
+
+            <ImageView
+                android:id="@+id/award_1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:background="@mipmap/siliver"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_0_text" />
+
+            <TextView
+                android:id="@+id/award_1_text"
+                android:text="银牌"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_1" />
+
+            <ImageView
+                android:id="@+id/award_2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:background="@mipmap/gold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_1_text" />
+
+            <TextView
+                android:id="@+id/award_2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="金牌"
+                android:textColor="#000000"
+                android:textSize="30dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/rule"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="20dp"
+            android:text="规则"
+            android:clickable="true"
+            android:textSize="25dp"
+            android:gravity="right"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/achievement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/achievement" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
