@@ -1,9 +1,13 @@
 package com.example.module_mine.fragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -194,6 +198,13 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         mList.add(mine3);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&&resultCode==RESULT_OK){
+            name.setText(data.getStringExtra("reply"));
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -201,20 +212,24 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         if(v.getId()==R.id.circleImage){
             String a ="circle";
             intent.putExtra("TAG",a);
+            startActivity(intent);
         }
         if(v.getId()==R.id.name){
            String a ="name";
            intent.putExtra("TAG",a);
+           startActivityForResult(intent,1);
         }
         if(v.getId()==R.id.award_card){
             String a = "award";
             intent.putExtra("TAG",a);
+            startActivity(intent);
         }
         if(v.getId()==R.id.cardView){
             String a = "competition";
             intent.putExtra("TAG",a);
+            startActivity(intent);
         }
 
-        startActivity(intent);
+
     }
 }

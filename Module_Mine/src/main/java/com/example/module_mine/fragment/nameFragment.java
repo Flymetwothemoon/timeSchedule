@@ -1,9 +1,15 @@
 package com.example.module_mine.fragment;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +35,7 @@ public class nameFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
     private View view;
+    public String name;
     private EditText name_text;
     private Button button;
     public nameFragment() {
@@ -81,7 +88,20 @@ public class nameFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
-        getActivity().finish();
+        Log.d("TAG1","a");
+        Intent replyIntent = new Intent();
+        if(TextUtils.isEmpty(name_text.getText().toString())){
+            getActivity().setResult(RESULT_CANCELED, replyIntent);
+            Toast.makeText(getActivity(),"你什么都没有输入",Toast.LENGTH_SHORT).show();
+        }//如果啥都没输入,那就什么也不传递
+        else {
+            name = name_text.getText().toString();
+            replyIntent.putExtra("reply",name);
+            getActivity().setResult(RESULT_OK, replyIntent);
+            Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
+            getActivity().finish();
+        }//如果有输入的话
+
     }
+
 }
