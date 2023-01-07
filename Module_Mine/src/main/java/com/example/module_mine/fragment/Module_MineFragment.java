@@ -134,6 +134,9 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                     intent.putExtra("TAG",a);
                     startActivity(intent);
                 }
+                if(position==6){
+                    Toast.makeText(getActivity(),"我们目前未开通客服服务",Toast.LENGTH_SHORT).show();
+                }
                 if(position==7){
                     String a = "manage";
                     intent.putExtra("TAG",a);
