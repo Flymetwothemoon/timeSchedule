@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Rule_Activity">
 
+    <TextView
+        android:id="@+id/textview"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
