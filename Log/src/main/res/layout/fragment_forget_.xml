@@ -52,7 +52,6 @@
         android:id="@+id/Logon_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="38dp"
         android:background="@drawable/button_log"
         android:text="修改"
         app:layout_constraintBottom_toBottomOf="@+id/password"

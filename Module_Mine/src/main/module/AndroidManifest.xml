@@ -4,11 +4,11 @@
     package="com.example.module_mine">
 
     <application
-        android:theme="@style/Theme.Design.Light.NoActionBar"
 
         android:allowBackup="true">
 
-        <activity android:name=".Activity.Module_MineActivity"></activity>
+        <activity android:name=".Activity.Module_MineActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" ></activity>
 
     </application>
 

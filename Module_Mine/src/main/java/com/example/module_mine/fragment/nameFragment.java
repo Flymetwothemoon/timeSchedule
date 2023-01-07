@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.module_mine.R;
 
@@ -15,7 +18,7 @@ import com.example.module_mine.R;
  * Use the {@link nameFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class nameFragment extends Fragment {
+public class nameFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +28,9 @@ public class nameFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
+    private EditText name_text;
+    private Button button;
     public nameFragment() {
         // Required empty public constructor
     }
@@ -61,6 +66,22 @@ public class nameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_name, container, false);
+        if(view==null) {
+            view = inflater.inflate(R.layout.fragment_name, container, false);
+        }
+        init();
+
+        return view;
+    }
+    private void init(){
+        name_text = view.findViewById(R.id.name_text);
+        button = view.findViewById(R.id.button);
+        button.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 }

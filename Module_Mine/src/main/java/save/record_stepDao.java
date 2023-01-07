@@ -13,4 +13,6 @@ public interface record_stepDao {
     public void insert(record_step record_step);
     @Update
     public void updata(record_step record_step);
+    @Query("select * from record_step where name = :name")
+    public record_step getNameId(String name);
 }

@@ -8,9 +8,8 @@
 
         android:appComponentFactory="ss111"
 
-
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:replace="android:theme,android:appComponentFactory">
         <activity
             android:name=".Activity.Module_MineActivity"
