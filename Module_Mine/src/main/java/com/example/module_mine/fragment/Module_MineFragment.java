@@ -6,10 +6,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_mine.Activity.Module_MineActivity;
 import com.example.module_mine.R;
-
+import save.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,7 +99,6 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
             view = inflater.inflate(R.layout.fragment_module__mine, container, false);
         }
         init();
-        save();
         return view;
     }
     private void init(){
@@ -206,6 +206,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&&resultCode==RESULT_OK){
             name.setText(data.getStringExtra("reply"));
+            save();
         }
     }
 
@@ -234,9 +235,19 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         }
     }
     private void save(){
-        int image = mCircleImageView.getImageAlpha();
-        Log.d("TAG5",String.valueOf(image));
         String recordName = name.getText().toString();
         Log.d("TAG5",String.valueOf(recordName));
+        record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
+        record_step step = new record_step();
+        step.name = recordName;
+
+            viewModel.insert(step);
+
+//        if(step.key!=1) {
+//            viewModel.updata(step);
+//        }
+//        getNameId(viewModel,recordName);
     }
+
+
 }

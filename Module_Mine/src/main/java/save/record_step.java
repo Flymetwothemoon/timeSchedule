@@ -9,7 +9,5 @@ public class record_step {
     @PrimaryKey(autoGenerate = true)
     public int key;
     @ColumnInfo
-    public int image;//保存头像的
-    @ColumnInfo
     public String name;//保存名字的
 }
