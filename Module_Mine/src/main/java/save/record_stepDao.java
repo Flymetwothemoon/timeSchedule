@@ -16,4 +16,6 @@ public interface record_stepDao {
     public void updata(record_step record_step);
     @Query("select * from record_step where name = :name")
     public record_step getNameId(String name);
+    @Query("select * from record_step where num = :key")
+    public record_step getKeyId(int key);
 }

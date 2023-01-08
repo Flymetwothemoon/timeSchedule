@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {record_step.class},version = 7,exportSchema = true)
+@Database(entities = {record_step.class},version = 8,exportSchema = true)
 public abstract class database extends RoomDatabase {
     public static database instance;
     static final ExecutorService databaseWriteExecutor =
@@ -17,7 +17,7 @@ public abstract class database extends RoomDatabase {
         if(instance ==null){
             synchronized (database.class){
                 if(instance==null){
-                    instance = Room.databaseBuilder(context.getApplicationContext(),database.class,"data1").allowMainThreadQueries().build();
+                    instance = Room.databaseBuilder(context.getApplicationContext(),database.class,"data1") .fallbackToDestructiveMigration().allowMainThreadQueries().build();
                 }
             }
         }

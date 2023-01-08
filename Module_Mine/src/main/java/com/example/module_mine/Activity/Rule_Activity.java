@@ -37,8 +37,8 @@ public class Rule_Activity extends AppCompatActivity {
     }
 
     private void writeTextView(){
-        mTextView.setText("当累计步数在0-40000之间时为铜牌\n当累计步数在40000-120000之间时为银牌\n" +
-                "当累计步数超过120000时为金牌\n每次我的成就会选择优先级最高的\n" +
+        mTextView.setText("当累计步数在0-100000之间时为铜牌\n当累计步数在100000-300000之间时为银牌\n" +
+                "当累计步数超过300000时为金牌\n每次我的成就会选择优先级最高的\n" +
                 "获奖优先级:金牌>银牌>铜牌");
     }
 }

@@ -21,4 +21,8 @@ public class record_name_Reposity {
          mStep = mDao.getNameId(name);
          return mStep;
     }
+    record_step getKeyId(int key){
+        mStep = mDao.getKeyId(key);
+        return mStep;
+    }
 }

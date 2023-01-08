@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class record_step {
     @PrimaryKey(autoGenerate = true)
-    public int key;
+    public int num;
     @ColumnInfo
     public String name;//保存名字的
 }

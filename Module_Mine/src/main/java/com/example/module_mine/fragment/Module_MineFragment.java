@@ -63,7 +63,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     private String pre_name;
     record_step step = new record_step();
     private List<mine>mList = new ArrayList<>();
-
+    record_step_ViewModel viewModel;
     public Module_MineFragment() {
         // Required empty public constructor
     }
@@ -112,10 +112,21 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         name = view.findViewById(R.id.name);
         competition = view.findViewById(R.id.cardView);
         mImageView = view.findViewById(R.id.award_image);
-        if(name.getText().toString()=="") {
+        viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
+
+        if(viewModel.getKeyId(step.num)==null) {
             mCircleImageView.setImageResource(R.mipmap.touxiang);
+            Log.d("TAG7",""+step.num);
             name.setText("名字");
-        } pre_name = "名字";
+            pre_name = "名字";
+        }
+        else{
+            Log.d("TAG7",""+step.num);
+            Log.d("TAG7","hao");
+            step = viewModel.getKeyId(step.num);
+            mCircleImageView.setImageResource(R.mipmap.touxiang);
+            name.setText(step.name);
+        }
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
         TextView textView4 = view.findViewById(R.id.textview4);
@@ -239,9 +250,9 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         }
     }
     private void save(){
-        record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
+
         String recordName = name.getText().toString();
-        Log.d("TAG5",String.valueOf(recordName));
+        Log.d("TAG6","id"+step.num);
         Log.d("TAG6",pre_name);
         step.name = recordName;
         getActivity().runOnUiThread(new Runnable() {
@@ -251,6 +262,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                     Log.d("TAG6","进行");
                     viewModel.insert(step);
                     pre_name = step.name;
+                    Log.d("TAG6","pre_name"+pre_name);
                 }
                 else {
                     Log.d("TAG6","进行这个");
@@ -261,7 +273,8 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
-
+        step = viewModel.getKeyId(step.num);
+//        name.setText(step.name);
 //        getNameId(viewModel,recordName);
     }
 

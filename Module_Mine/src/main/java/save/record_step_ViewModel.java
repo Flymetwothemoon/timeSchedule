@@ -23,4 +23,8 @@ public class record_step_ViewModel extends AndroidViewModel {
         record_step step = reposity.getNameId(name);
         return step;
     }
+    public record_step getKeyId(int key){
+        record_step step = reposity.getKeyId(key);
+        return step;
+    }
 }
