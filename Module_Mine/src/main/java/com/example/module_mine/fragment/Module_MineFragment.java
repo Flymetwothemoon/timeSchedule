@@ -42,7 +42,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Use the {@link Module_MineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-@Route(path = "/mine/mine1")
+@Route(path = "/mine1/mine2")
 public class Module_MineFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -63,7 +63,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     private String pre_name;
     record_step step = new record_step();
     private List<mine>mList = new ArrayList<>();
-    record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
+
     public Module_MineFragment() {
         // Required empty public constructor
     }
@@ -115,8 +115,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         if(name.getText().toString()=="") {
             mCircleImageView.setImageResource(R.mipmap.touxiang);
             name.setText("名字");
-            pre_name = "名字";
-        }
+        } pre_name = "名字";
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
         TextView textView4 = view.findViewById(R.id.textview4);
@@ -240,7 +239,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         }
     }
     private void save(){
-
+        record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
         String recordName = name.getText().toString();
         Log.d("TAG5",String.valueOf(recordName));
         Log.d("TAG6",pre_name);

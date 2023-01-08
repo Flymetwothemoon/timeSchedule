@@ -61,7 +61,7 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
             return true;
         }
         if(item.getItemId()==R.id.mine){
-            Fragment fragment = (Fragment) ARouter.getInstance().build("/mine/mine1").navigation();
+            Fragment fragment = (Fragment) ARouter.getInstance().build("/mine1/mine2").navigation();
             fragmentTransaction.replace(R.id.home_fragment, fragment).commit();
             return true;
         }
