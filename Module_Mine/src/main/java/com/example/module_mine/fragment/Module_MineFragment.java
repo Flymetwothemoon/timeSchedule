@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -59,7 +60,10 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     private CardView competition;
     private CircleImageView mCircleImageView;
     private TextView name;
+    private String pre_name;
+    record_step step = new record_step();
     private List<mine>mList = new ArrayList<>();
+    record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
     public Module_MineFragment() {
         // Required empty public constructor
     }
@@ -111,6 +115,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         if(name.getText().toString()=="") {
             mCircleImageView.setImageResource(R.mipmap.touxiang);
             name.setText("名字");
+            pre_name = "名字";
         }
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
@@ -235,17 +240,29 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         }
     }
     private void save(){
+
         String recordName = name.getText().toString();
         Log.d("TAG5",String.valueOf(recordName));
-        record_step_ViewModel viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
-        record_step step = new record_step();
+        Log.d("TAG6",pre_name);
         step.name = recordName;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(pre_name=="名字") {
+                    Log.d("TAG6","进行");
+                    viewModel.insert(step);
+                    pre_name = step.name;
+                }
+                else {
+                    Log.d("TAG6","进行这个");
+                    record_step record_step = viewModel.getNameId(pre_name);
+                    record_step.name = step.name;
+                    viewModel.updata(record_step);
+                    pre_name = step.name;
+                }
+            }
+        });
 
-            viewModel.insert(step);
-
-//        if(step.key!=1) {
-//            viewModel.updata(step);
-//        }
 //        getNameId(viewModel,recordName);
     }
 
