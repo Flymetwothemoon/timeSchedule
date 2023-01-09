@@ -11,6 +11,15 @@ public class competition {
 
     public String title;
 
+    public String getEasy() {
+        return easy;
+    }
+
+    public void setEasy(String easy) {
+        this.easy = easy;
+    }
+
+    public String easy;
     public int getImage() {
         return image;
     }

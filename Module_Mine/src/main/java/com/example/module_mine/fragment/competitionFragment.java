@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.module_mine.R;
 
@@ -80,8 +82,14 @@ public class competitionFragment extends Fragment {
     }
     private void init(){
         mRecyclerView = view.findViewById(R.id.competition_recycler);
-        competitionAdapter adapter = new competitionAdapter(mList);
+        competitionAdapter adapter = new competitionAdapter(mList,getContext());
         init_0();
+        adapter.setOnItemClickListener(new mineAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getActivity(),"这是第"+position+"个",Toast.LENGTH_SHORT).show();
+            }
+        });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(adapter);
     }
@@ -90,31 +98,37 @@ public class competitionFragment extends Fragment {
         competition.title = "7日1000步运动";
         competition.intro ="连续7日每天都能运动1000步则能取得胜利";
         competition.image = R.mipmap.one;
+        competition.easy = "毅力挑战";
         mList.add(competition);
         competition competition1 = new competition();
         competition1.title = "7日1500步运动";
         competition1.intro = "连续7日每天都能运动1500步则能取得胜利";
         competition1.image = R.mipmap.two;
+        competition1.easy = "毅力挑战";
         mList.add(competition1);
         competition competition2 = new competition();
         competition2.title = "7日3000步运动";
         competition2.intro = "连续7日每日都能运动3000步则能取得胜利";
         competition2.image = R.mipmap.three;
+        competition2.easy = "毅力挑战";
         mList.add(competition2);
         competition competition3 = new competition();
         competition3.title = "7日5000步运动";
         competition3.intro = "连续7日每日都能运动5000步则能取得胜利";
         competition3.image = R.mipmap.four;
+        competition3.easy = "毅力挑战";
         mList.add(competition3);
         competition competition4 = new competition();
         competition4.intro = "连续7日每日都能运动7500步则能取得胜利";
         competition4.title  ="7日7500步运动";
         competition4.image = R.mipmap.five;
+        competition4.easy = "毅力挑战";
         mList.add(competition4);
         competition competition5 = new competition();
         competition5.image  =R.mipmap.six;
         competition5.intro = "连续7日每日都能运动10000步则能取得胜利";
         competition5.title = "7日10000步运动";
+        competition5.easy = "毅力挑战";
         mList.add(competition5);
 
     }
