@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.module_mine.R;
 
@@ -25,7 +26,7 @@ public class Three_Fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
     public Three_Fragment() {
         // Required empty public constructor
     }
@@ -61,6 +62,16 @@ public class Three_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_three_, container, false);
+        if (view == null) {
+            view =  inflater.inflate(R.layout.fragment_three_, container, false);
+        }
+        init();
+        return view;
+    }
+    private void init(){
+        TextView title = view.findViewById(R.id.title);
+        TextView easy = view.findViewById(R.id.easy);
+        Utils.style.changeStyle_1(view.getContext(),title);
+        Utils.style.changeStyle_2(view.getContext(),easy);
     }
 }
