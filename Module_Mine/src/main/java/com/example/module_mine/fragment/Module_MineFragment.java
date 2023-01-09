@@ -61,7 +61,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     private CircleImageView mCircleImageView;
     private TextView name;
     private String pre_name;
-    record_step step = new record_step();
+//    record_step step = new record_step();
     private List<mine>mList = new ArrayList<>();
     record_step_ViewModel viewModel;
     public Module_MineFragment() {
@@ -112,21 +112,20 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         name = view.findViewById(R.id.name);
         competition = view.findViewById(R.id.cardView);
         mImageView = view.findViewById(R.id.award_image);
-        viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
+//        viewModel = new ViewModelProvider(this).get(record_step_ViewModel.class);
 
-        if(viewModel.getKeyId(step.num)==null) {
             mCircleImageView.setImageResource(R.mipmap.touxiang);
-            Log.d("TAG7",""+step.num);
+//            Log.d("TAG7",""+step.num);
             name.setText("名字");
             pre_name = "名字";
-        }
-        else{
-            Log.d("TAG7",""+step.num);
-            Log.d("TAG7","hao");
-            step = viewModel.getKeyId(step.num);
-            mCircleImageView.setImageResource(R.mipmap.touxiang);
-            name.setText(step.name);
-        }
+
+//        else{
+//            Log.d("TAG7",""+step.num);
+//            Log.d("TAG7","hao");
+//            step = viewModel.getKeyId(step.num);
+//            mCircleImageView.setImageResource(R.mipmap.touxiang);
+//            name.setText(step.name);
+//        }
         TextView textView2 = view.findViewById(R.id.textView2);
         TextView textView3 = view.findViewById(R.id.textView3);
         TextView textView4 = view.findViewById(R.id.textview4);
@@ -156,10 +155,10 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                     intent.putExtra("TAG",a);
                     startActivity(intent);
                 }
-                if(position==6){
+                if(position==3){
                     Toast.makeText(getActivity(),"我们目前未开通客服服务",Toast.LENGTH_SHORT).show();
                 }
-                if(position==7){
+                if(position==4){
                     String a = "manage";
                     intent.putExtra("TAG",a);
                     startActivity(intent);
@@ -194,18 +193,18 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         mine2.image = R.mipmap.activity;
         mine2.something = "我的活动";
         mList.add(mine2);
-        mine mine4 = new mine();
-        mine4.image = R.mipmap.nurse;
-        mine4.something = "关怀模式";
-        mList.add(mine4);
-        mine mine7 = new mine();
-        mine7.something = "白天模式";
-        mine7.image = R.mipmap.day;
-        mList.add(mine7);
-        mine mine6 = new mine();
-        mine6.something = "黑夜模式";
-        mine6.image = R.mipmap.night;
-        mList.add(mine6);
+//        mine mine4 = new mine();
+//        mine4.image = R.mipmap.nurse;
+//        mine4.something = "关怀模式";
+//        mList.add(mine4);
+//        mine mine7 = new mine();
+//        mine7.something = "白天模式";
+//        mine7.image = R.mipmap.day;
+//        mList.add(mine7);
+//        mine mine6 = new mine();
+//        mine6.something = "黑夜模式";
+//        mine6.image = R.mipmap.night;
+//        mList.add(mine6);
         mine mine5 = new mine();
         mine5.something = "我的客服";
         mine5.image = R.mipmap.service;
@@ -251,29 +250,29 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     }
     private void save(){
 
-        String recordName = name.getText().toString();
-        Log.d("TAG6","id"+step.num);
-        Log.d("TAG6",pre_name);
-        step.name = recordName;
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if(pre_name=="名字") {
-                    Log.d("TAG6","进行");
-                    viewModel.insert(step);
-                    pre_name = step.name;
-                    Log.d("TAG6","pre_name"+pre_name);
-                }
-                else {
-                    Log.d("TAG6","进行这个");
-                    record_step record_step = viewModel.getNameId(pre_name);
-                    record_step.name = step.name;
-                    viewModel.updata(record_step);
-                    pre_name = step.name;
-                }
-            }
-        });
-        step = viewModel.getKeyId(step.num);
+//        String recordName = name.getText().toString();
+//        Log.d("TAG6","id"+step.num);
+//        Log.d("TAG6",pre_name);
+//        step.name = recordName;
+//        getActivity().runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                if(pre_name=="名字") {
+//                    Log.d("TAG6","进行");
+//                    viewModel.insert(step);
+//                    pre_name = step.name;
+//                    Log.d("TAG6","pre_name"+pre_name);
+//                }
+//                else {
+//                    Log.d("TAG6","进行这个");
+//                    record_step record_step = viewModel.getNameId(pre_name);
+//                    record_step.name = step.name;
+//                    viewModel.updata(record_step);
+//                    pre_name = step.name;
+//                }
+//            }
+//        });
+//        step = viewModel.getKeyId(step.num);
 //        name.setText(step.name);
 //        getNameId(viewModel,recordName);
     }
