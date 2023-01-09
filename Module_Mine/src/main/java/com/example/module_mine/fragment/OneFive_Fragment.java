@@ -1,5 +1,8 @@
 package com.example.module_mine.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.module_mine.R;
 
@@ -16,13 +21,13 @@ import com.example.module_mine.R;
  * Use the {@link OneFive_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OneFive_Fragment extends Fragment {
+public class OneFive_Fragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private TextView judge_0;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -71,7 +76,29 @@ public class OneFive_Fragment extends Fragment {
     private void init(){
         TextView title = view.findViewById(R.id.title);
         TextView easy = view.findViewById(R.id.easy);
+        Button button = view.findViewById(R.id.button);
+        judge_0 = view.findViewById(R.id.judge);
         Utils.style.changeStyle_1(view.getContext(),title);
         Utils.style.changeStyle_2(view.getContext(),easy);
+
+        button.setOnClickListener(this);
+        judge();
+        Utils.style.changeStyle_0(view.getContext(),judge_0);
+    }
+    @Override
+    public void onClick(View v) {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+        editor.putInt("competition_1",0);
+        editor.commit();
+        Toast.makeText(getActivity(),"接受挑战",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
+    }
+    private void judge(){
+        String a ="1500";
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+        if(sharedPreferences.getInt("competition_1",1)==0){
+            judge_0.setText("你已接受了此挑战");
+        }
+
     }
 }

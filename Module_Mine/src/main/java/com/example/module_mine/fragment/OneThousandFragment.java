@@ -34,6 +34,7 @@ public class OneThousandFragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
     private View view;
+    private TextView judge_0;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -73,23 +74,35 @@ public class OneThousandFragment extends Fragment implements View.OnClickListene
             view = inflater.inflate(R.layout.fragment_one_thousand, container, false);
         }
         init();
+
         return view;
     }
     private void init(){
         TextView title = view.findViewById(R.id.title);
         TextView easy = view.findViewById(R.id.easy);
         Button button = view.findViewById(R.id.button);
+        judge_0 = view.findViewById(R.id.judge);
         Utils.style.changeStyle_1(view.getContext(),title);
         Utils.style.changeStyle_2(view.getContext(),easy);
+        judge();
         button.setOnClickListener(this);
+        judge();
+        Utils.style.changeStyle_0(view.getContext(),judge_0);
     }
 
     @Override
     public void onClick(View v) {
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("data_0",MODE_PRIVATE).edit();
-        editor.putString("competition","1000");
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+        editor.putInt("competition",1);
         editor.commit();
         Toast.makeText(getActivity(),"接受挑战",Toast.LENGTH_SHORT).show();
         getActivity().finish();
+    }
+    private void judge(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+        if(sharedPreferences.getInt("competition",0)==1){
+            judge_0.setText("你已接受了此挑战");
+        }
+
     }
 }

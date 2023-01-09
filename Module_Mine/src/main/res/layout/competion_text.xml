@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:text="活力竞赛"
+        android:text="我的竞赛"
         android:textColor="#E96442"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"

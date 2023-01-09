@@ -75,7 +75,7 @@ public class myactivityFragment extends Fragment {
     }
     private void init(){
         SharedPreferences pre = getActivity().getSharedPreferences("data_0",MODE_PRIVATE);
-        if(pre.getString("competition",null).equals("1000")){
+        if(pre.getInt("competition",0)==1){
             Toast.makeText(getActivity(),"要跑10000",Toast.LENGTH_SHORT).show();
         }
     }
