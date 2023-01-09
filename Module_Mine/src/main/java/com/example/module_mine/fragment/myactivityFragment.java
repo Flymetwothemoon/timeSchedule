@@ -1,5 +1,8 @@
 package com.example.module_mine.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_mine.R;
@@ -27,7 +31,7 @@ public class myactivityFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
     public myactivityFragment() {
         // Required empty public constructor
     }
@@ -63,6 +67,16 @@ public class myactivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_myactivity, container, false);
+        if(view ==null){
+            view =inflater.inflate(R.layout.fragment_myactivity, container, false);
+        }
+        init();
+        return view;
+    }
+    private void init(){
+        SharedPreferences pre = getActivity().getSharedPreferences("data_0",MODE_PRIVATE);
+        if(pre.getString("competition",null).equals("1000")){
+            Toast.makeText(getActivity(),"要跑10000",Toast.LENGTH_SHORT).show();
+        }
     }
 }

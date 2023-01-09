@@ -1,11 +1,16 @@
 package com.example.module_mine.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
 import com.example.module_mine.R;
@@ -18,7 +23,7 @@ import Utils.style;
  * create an instance of this fragment.
  *
  */
-public class OneThousandFragment extends Fragment {
+public class OneThousandFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,7 +78,18 @@ public class OneThousandFragment extends Fragment {
     private void init(){
         TextView title = view.findViewById(R.id.title);
         TextView easy = view.findViewById(R.id.easy);
+        Button button = view.findViewById(R.id.button);
         Utils.style.changeStyle_1(view.getContext(),title);
         Utils.style.changeStyle_2(view.getContext(),easy);
+        button.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("data_0",MODE_PRIVATE).edit();
+        editor.putString("competition","1000");
+        editor.commit();
+        Toast.makeText(getActivity(),"接受挑战",Toast.LENGTH_SHORT).show();
+        getActivity().finish();
     }
 }
