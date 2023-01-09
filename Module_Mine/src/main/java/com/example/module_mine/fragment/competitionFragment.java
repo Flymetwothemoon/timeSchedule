@@ -1,5 +1,6 @@
 package com.example.module_mine.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.module_mine.Activity.Competition_Activity;
 import com.example.module_mine.R;
 
 import java.util.ArrayList;
@@ -87,7 +89,33 @@ public class competitionFragment extends Fragment {
         adapter.setOnItemClickListener(new mineAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(),"这是第"+position+"个",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), Competition_Activity.class);
+                String a;
+                if(position==0){
+                   a = "1000";
+                  intent.putExtra("fang",a);
+              }
+              else if(position==1){
+                     a = "1500";
+                     intent.putExtra("fang",a);
+              }
+              else if(position==2){
+                    a = "3000";
+                    intent.putExtra("fang",a);
+                }
+              else if(position ==3){
+                  a = "5000";
+                  intent.putExtra("fang",a);
+                }
+              else if(position ==4){
+                  a = "7500";
+                  intent.putExtra("fang",a);
+                }
+              else{
+                  a = "10000";
+                  intent.putExtra("fang",a);
+                }
+              startActivity(intent);
             }
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
