@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -70,13 +71,16 @@ public class myactivityFragment extends Fragment {
         if(view ==null){
             view =inflater.inflate(R.layout.fragment_myactivity, container, false);
         }
+        TextView activity_title = view.findViewById(R.id.activity_title);
+        Utils.style.changeStyle_1(getActivity(),activity_title);
         init();
+
         return view;
     }
     private void init(){
-        SharedPreferences pre = getActivity().getSharedPreferences("data_0",MODE_PRIVATE);
+        SharedPreferences pre = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         if(pre.getInt("competition",0)==1){
-            Toast.makeText(getActivity(),"要跑10000",Toast.LENGTH_SHORT).show();
+
         }
     }
 }
