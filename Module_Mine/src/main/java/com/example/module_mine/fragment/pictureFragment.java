@@ -1,13 +1,22 @@
 package com.example.module_mine.fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.module_mine.R;
 
@@ -78,10 +87,40 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.open_album){
-
+            openalbum();
         }
         if(v.getId()==R.id.alum_save){
             
         }
+    }
+    //提供权限
+    private void openalbum(){
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            //如果没有权限,先打开权限,然后再打开系统相册,进行跳转
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            openAlbum();
+        }
+        else{
+            //如果有权限直接进行跳转
+            openAlbum();
+        }
+    }
+//进行回调
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //后面的操作是把挑选结果返回给activity
+    }
+
+    /**
+     * 打开系统相册
+     * 定义Intent跳转到特定图库的Uri下挑选，然后将挑选结果返回给Activity
+     * */
+    public static int ALBUM_RESULT_CODE = 0x999 ;
+    private void openAlbum(){
+        Intent albumIntent = new Intent(Intent.ACTION_PICK);
+        albumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(albumIntent, ALBUM_RESULT_CODE);
+        //这一步是为了下一步的回调
     }
 }
