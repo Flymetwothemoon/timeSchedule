@@ -84,9 +84,20 @@ public class OneThousandFragment extends Fragment implements View.OnClickListene
         judge_0 = view.findViewById(R.id.judge);
         Utils.style.changeStyle_1(view.getContext(),title);
         Utils.style.changeStyle_2(view.getContext(),easy);
-        judge();
-        button.setOnClickListener(this);
-        judge();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+        if(sharedPreferences.getInt("competition",0)==1){
+            judge_0.setText("你已接受了此挑战");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(),"你已经接受了此挑战",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else {
+            button.setOnClickListener(this);
+            judge();
+        }
         Utils.style.changeStyle_0(view.getContext(),judge_0);
     }
 

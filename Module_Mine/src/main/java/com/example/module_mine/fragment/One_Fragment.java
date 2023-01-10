@@ -82,9 +82,14 @@ public class One_Fragment extends Fragment implements View.OnClickListener {
         judge_0 = view.findViewById(R.id.judge);
         Utils.style.changeStyle_1(view.getContext(),title);
         Utils.style.changeStyle_2(view.getContext(),easy);
-
-        button.setOnClickListener(this);
-        judge();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        if(sharedPreferences.getInt("competition_5",0)==1){
+            judge_0.setText("你已接受了此挑战");
+        }
+        else {
+            button.setOnClickListener(this);
+            judge();
+        }
         Utils.style.changeStyle_0(view.getContext(),judge_0);
     }
     private void judge(){
