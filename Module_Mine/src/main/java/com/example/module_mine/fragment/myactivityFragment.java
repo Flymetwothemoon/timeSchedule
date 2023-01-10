@@ -2,9 +2,12 @@ package com.example.module_mine.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,7 +26,7 @@ import com.example.module_mine.R;
  * create an instance of this fragment.
  */
 
-public class myactivityFragment extends Fragment {
+public class myactivityFragment extends Fragment implements View.OnLongClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,6 +37,7 @@ public class myactivityFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View view;
+    private ConstraintLayout constraintLayout_0;
     public myactivityFragment() {
         // Required empty public constructor
     }
@@ -75,7 +79,7 @@ public class myactivityFragment extends Fragment {
         TextView activity_title = view.findViewById(R.id.activity_title);
         Utils.style.changeStyle_1(getActivity(),activity_title);
         init();
-
+        remove();
         return view;
     }
     private void init(){
@@ -140,5 +144,121 @@ public class myactivityFragment extends Fragment {
             activity_six_image.setImageResource(R.mipmap.six);
             Utils.style.changeStyle_1(getActivity(),activity_six);
         }
+    }
+    private void remove(){
+        constraintLayout_0= view.findViewById(R.id.constraint_0);
+        ConstraintLayout constraintLayout_1 = view.findViewById(R.id.constraint_1);
+        ConstraintLayout constraintLayout_2 = view.findViewById(R.id.constraint_2);
+        ConstraintLayout constraintLayout_3 = view.findViewById(R.id.constraint_3);
+        ConstraintLayout constraintLayout_4 = view.findViewById(R.id.constraint_4);
+        ConstraintLayout constraintLayout_5 = view.findViewById(R.id.constraint_5);
+        constraintLayout_0.setOnLongClickListener(this);
+        constraintLayout_1.setOnLongClickListener(this);
+        constraintLayout_2.setOnLongClickListener(this);
+        constraintLayout_3.setOnLongClickListener(this);
+        constraintLayout_4.setOnLongClickListener(this);
+        constraintLayout_5.setOnLongClickListener(this);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if(v.getId()==R.id.constraint_0){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition",0);
+                    editor.commit();
+                    TextView activity_one = view.findViewById(R.id.activity_one);
+                    ImageView activity_one_image = view.findViewById(R.id.activity_one_image);
+                    TextView text_0 = view.findViewById(R.id.text_0);
+                    activity_one.setText("");
+                    text_0.setText("");
+                    activity_one_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+
+        }
+        if(v.getId()==R.id.constraint_1){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition_1",1);
+                    editor.commit();
+                    TextView activity_two = view.findViewById(R.id.activity_two);
+                    ImageView activity_two_image = view.findViewById(R.id.activity_two_image);
+                    TextView text_1 = view.findViewById(R.id.text_1);
+                    activity_two.setText("");
+                    text_1.setText("");
+                    activity_two_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+        }
+        if(v.getId()==R.id.constraint_2){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition_2",0);
+                    editor.commit();
+                    TextView activity_three = view.findViewById(R.id.activity_three);
+                    ImageView activity_three_image = view.findViewById(R.id.activity_three_image);
+                    TextView text_2 = view.findViewById(R.id.text_2);
+                    activity_three.setText("");
+                    text_2.setText("");
+                    activity_three_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+        }
+        if(v.getId()==R.id.constraint_3){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition_3",0);
+                    editor.commit();
+                    TextView activity_four = view.findViewById(R.id.activity_four);
+                    ImageView activity_four_image = view.findViewById(R.id.activity_four_image);
+                    TextView text_3 = view.findViewById(R.id.text_3);
+                    activity_four.setText("");
+                    text_3.setText("");
+                    activity_four_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+        }
+        if(v.getId()==R.id.constraint_4){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition_4",0);
+                    editor.commit();
+                    TextView activity_five = view.findViewById(R.id.activity_five);
+                    ImageView activity_five_image = view.findViewById(R.id.activity_five_image);
+                    TextView text_4 = view.findViewById(R.id.text_4);
+                    activity_five.setText("");
+                    text_4.setText("");
+                    activity_five_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+        }
+        if(v.getId()==R.id.constraint_5){
+            new AlertDialog.Builder(getActivity()).setTitle("确定取消吗?").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("data",MODE_PRIVATE).edit();
+                    editor.putInt("competition_5",0);
+                    editor.commit();
+                    TextView activity_five = view.findViewById(R.id.activity_six);
+                    ImageView activity_six_image = view.findViewById(R.id.activity_six_image);
+                    TextView text_5 = view.findViewById(R.id.text_5);
+                    activity_five.setText("");
+                    text_5.setText("");
+                    activity_six_image.setImageResource(R.mipmap.white);
+                }
+            }).setNegativeButton("否",null).show();
+        }
+        return true;
     }
 }
