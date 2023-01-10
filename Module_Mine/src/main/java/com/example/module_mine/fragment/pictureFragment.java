@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.module_mine.R;
 
@@ -15,7 +16,7 @@ import com.example.module_mine.R;
  * Use the {@link pictureFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class pictureFragment extends Fragment {
+public class pictureFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +26,7 @@ public class pictureFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
     public pictureFragment() {
         // Required empty public constructor
     }
@@ -61,6 +62,26 @@ public class pictureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_picture, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_picture, container, false);
+        }
+        init();
+        return view;
+    }
+    private void init(){
+        Button button_0 = view.findViewById(R.id.open_album);
+        Button button_1 = view.findViewById(R.id.alum_save);
+        button_0.setOnClickListener(this);
+        button_1.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.open_album){
+
+        }
+        if(v.getId()==R.id.alum_save){
+            
+        }
     }
 }

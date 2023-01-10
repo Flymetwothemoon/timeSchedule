@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradual_color_bg"
     tools:context=".fragment.pictureFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,6 +12,34 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent">
 
+     <ImageView
+         android:id="@+id/picture_image"
+         android:layout_width="150dp"
+         android:layout_height="150dp"
+         android:layout_marginTop="100dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+
+     <Button
+         android:id="@+id/open_album"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="150dp"
+         android:text="点击我打开相册"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/picture_image" />
+
+     <Button
+         android:id="@+id/alum_save"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="58dp"
+         android:text="点击我进行头像的替换"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/open_album" />
  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.module_mine.R;
 
@@ -25,7 +26,7 @@ public class sumFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
     public sumFragment() {
         // Required empty public constructor
     }
@@ -61,6 +62,33 @@ public class sumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sum, container, false);
+        if(view==null){
+            view = inflater.inflate(R.layout.fragment_sum, container, false);
+        }
+        init();
+        return view;
+    }
+    private void init(){
+        TextView show = view.findViewById(R.id.show);
+        TextView title = view.findViewById(R.id.text0);
+        title.setText("一周小结");
+        Utils.style.changeStyle_1(getActivity(),title);
+        String a = sumStep();
+        int b = sumCompetition();
+        int c = sumSuccessfulCompetition();
+        show.setText("本周共行走了"+a+"步"+"\n"+"报名了"+b+"个比赛项目\n"+"成功完成了"+c+"个比赛项目\n");
+
+    }
+    private String sumStep(){
+        String a = "0";
+        return a;
+    }
+    private int sumCompetition(){
+        int b = 0;
+        return b;
+    }
+    private int sumSuccessfulCompetition(){
+        int c = 0;
+        return c;
     }
 }

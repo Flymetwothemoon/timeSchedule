@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bumptech.glide.util.Util;
+import com.example.module_mine.Activity.Rule_0Activity;
 import com.example.module_mine.R;
 
 /**
@@ -26,7 +29,7 @@ import com.example.module_mine.R;
  * create an instance of this fragment.
  */
 
-public class myactivityFragment extends Fragment implements View.OnLongClickListener {
+public class myactivityFragment extends Fragment implements View.OnLongClickListener, View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,7 +80,10 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
             view =inflater.inflate(R.layout.fragment_myactivity, container, false);
         }
         TextView activity_title = view.findViewById(R.id.activity_title);
+        TextView rule_0 = view.findViewById(R.id.rule_0);
+        Utils.style.changeStyle_1(getActivity(),rule_0);
         Utils.style.changeStyle_1(getActivity(),activity_title);
+        rule_0.setOnClickListener(this);
         init();
         remove();
         return view;
@@ -175,6 +181,7 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_one.setText("");
                     text_0.setText("");
                     activity_one_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
 
@@ -192,6 +199,7 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_two.setText("");
                     text_1.setText("");
                     activity_two_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
         }
@@ -208,6 +216,7 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_three.setText("");
                     text_2.setText("");
                     activity_three_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
         }
@@ -224,6 +233,7 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_four.setText("");
                     text_3.setText("");
                     activity_four_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
         }
@@ -240,6 +250,7 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_five.setText("");
                     text_4.setText("");
                     activity_five_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
         }
@@ -256,9 +267,16 @@ public class myactivityFragment extends Fragment implements View.OnLongClickList
                     activity_five.setText("");
                     text_5.setText("");
                     activity_six_image.setImageResource(R.mipmap.white);
+                    Toast.makeText(getActivity(),"取消成功",Toast.LENGTH_SHORT).show();
                 }
             }).setNegativeButton("否",null).show();
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), Rule_0Activity.class);
+        getActivity().startActivity(intent);
     }
 }
