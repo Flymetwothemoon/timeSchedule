@@ -85,6 +85,12 @@ public class One_Fragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         if(sharedPreferences.getInt("competition_5",0)==1){
             judge_0.setText("你已接受了此挑战");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(),"你已经接受了此挑战",Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         else {
             button.setOnClickListener(this);

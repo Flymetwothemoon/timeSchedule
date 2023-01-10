@@ -83,14 +83,20 @@ public class myactivityFragment extends Fragment {
         if(pre.getInt("competition",0)==1){
             TextView activity_one = view.findViewById(R.id.activity_one);
             ImageView activity_one_image = view.findViewById(R.id.activity_one_image);
+            TextView text_0 = view.findViewById(R.id.text_0);
             activity_one.setText("7日1000步挑战");
+            text_0.setText("你未完成此挑战");
             activity_one_image.setImageResource(R.mipmap.one);
+            Utils.style.changeStyle_0(getActivity(),text_0);
             Utils.style.changeStyle_1(getActivity(),activity_one);
         }
         if(pre.getInt("competition_1",1)==0){
             TextView activity_two = view.findViewById(R.id.activity_two);
             ImageView activity_two_image = view.findViewById(R.id.activity_two_image);
             activity_two.setText("7日1500步挑战");
+            TextView text_1 = view.findViewById(R.id.text_1);
+            text_1.setText("你未完成此挑战");
+            Utils.style.changeStyle_0(getActivity(),text_1);
             activity_two_image.setImageResource(R.mipmap.two);
             Utils.style.changeStyle_1(getActivity(),activity_two);
         }
@@ -98,6 +104,9 @@ public class myactivityFragment extends Fragment {
             TextView activity_three = view.findViewById(R.id.activity_three);
             ImageView activity_three_image = view.findViewById(R.id.activity_three_image);
             activity_three.setText("7日3000步挑战");
+            TextView text_2 = view.findViewById(R.id.text_2);
+            text_2.setText("你未完成此挑战");
+            Utils.style.changeStyle_0(getActivity(),text_2);
             activity_three_image.setImageResource(R.mipmap.three);
             Utils.style.changeStyle_1(getActivity(),activity_three);
         }
@@ -105,6 +114,9 @@ public class myactivityFragment extends Fragment {
             TextView activity_four = view.findViewById(R.id.activity_four);
             ImageView activity_four_image = view.findViewById(R.id.activity_four_image);
             activity_four.setText("7日5000步挑战");
+            TextView text_3 = view.findViewById(R.id.text_3);
+            text_3.setText("你未完成此挑战");
+            Utils.style.changeStyle_0(getActivity(),text_3);
             activity_four_image.setImageResource(R.mipmap.four);
             Utils.style.changeStyle_1(getActivity(),activity_four);
         }
@@ -112,6 +124,9 @@ public class myactivityFragment extends Fragment {
             TextView activity_five = view.findViewById(R.id.activity_five);
             ImageView activity_five_image = view.findViewById(R.id.activity_five_image);
             activity_five.setText("7日7500步挑战");
+            TextView text_4 = view.findViewById(R.id.text_4);
+            text_4.setText("你未完成此挑战");
+            Utils.style.changeStyle_0(getActivity(),text_4);
             activity_five_image.setImageResource(R.mipmap.five);
             Utils.style.changeStyle_1(getActivity(),activity_five);
         }
@@ -119,6 +134,9 @@ public class myactivityFragment extends Fragment {
             TextView activity_six = view.findViewById(R.id.activity_six);
             ImageView activity_six_image = view.findViewById(R.id.activity_six_image);
             activity_six.setText("7日10000步挑战");
+            TextView text_5 = view.findViewById(R.id.text_5);
+            text_5.setText("你未完成此挑战");
+            Utils.style.changeStyle_0(getActivity(),text_5);
             activity_six_image.setImageResource(R.mipmap.six);
             Utils.style.changeStyle_1(getActivity(),activity_six);
         }
