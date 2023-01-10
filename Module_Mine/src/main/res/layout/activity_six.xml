@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/activity_one"
+        android:id="@+id/activity_six"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -16,10 +16,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/activity_one_image"
+        android:id="@+id/activity_six_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="70dp"
-        app:layout_constraintStart_toEndOf="@+id/activity_one"
+        app:layout_constraintStart_toEndOf="@+id/activity_six"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

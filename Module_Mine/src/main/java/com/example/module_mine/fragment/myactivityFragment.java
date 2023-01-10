@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +81,46 @@ public class myactivityFragment extends Fragment {
     private void init(){
         SharedPreferences pre = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         if(pre.getInt("competition",0)==1){
-
+            TextView activity_one = view.findViewById(R.id.activity_one);
+            ImageView activity_one_image = view.findViewById(R.id.activity_one_image);
+            activity_one.setText("7日1000步挑战");
+            activity_one_image.setImageResource(R.mipmap.one);
+            Utils.style.changeStyle_1(getActivity(),activity_one);
+        }
+        if(pre.getInt("competition_1",1)==0){
+            TextView activity_two = view.findViewById(R.id.activity_two);
+            ImageView activity_two_image = view.findViewById(R.id.activity_two_image);
+            activity_two.setText("7日1500步挑战");
+            activity_two_image.setImageResource(R.mipmap.two);
+            Utils.style.changeStyle_1(getActivity(),activity_two);
+        }
+        if(pre.getInt("competition_2",0)==1){
+            TextView activity_three = view.findViewById(R.id.activity_three);
+            ImageView activity_three_image = view.findViewById(R.id.activity_three_image);
+            activity_three.setText("7日3000步挑战");
+            activity_three_image.setImageResource(R.mipmap.three);
+            Utils.style.changeStyle_1(getActivity(),activity_three);
+        }
+        if(pre.getInt("competition_3",0)==1){
+            TextView activity_four = view.findViewById(R.id.activity_four);
+            ImageView activity_four_image = view.findViewById(R.id.activity_four_image);
+            activity_four.setText("7日5000步挑战");
+            activity_four_image.setImageResource(R.mipmap.four);
+            Utils.style.changeStyle_1(getActivity(),activity_four);
+        }
+        if(pre.getInt("competition_4",0)==1){
+            TextView activity_five = view.findViewById(R.id.activity_five);
+            ImageView activity_five_image = view.findViewById(R.id.activity_five_image);
+            activity_five.setText("7日7500步挑战");
+            activity_five_image.setImageResource(R.mipmap.five);
+            Utils.style.changeStyle_1(getActivity(),activity_five);
+        }
+        if(pre.getInt("competition_5",0)==1){
+            TextView activity_six = view.findViewById(R.id.activity_six);
+            ImageView activity_six_image = view.findViewById(R.id.activity_six_image);
+            activity_six.setText("7日10000步挑战");
+            activity_six_image.setImageResource(R.mipmap.six);
+            Utils.style.changeStyle_1(getActivity(),activity_six);
         }
     }
 }
