@@ -137,7 +137,7 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
         startActivityForResult(albumIntent, ALBUM_RESULT_CODE);
         //这一步是为了下一步的回调
     }
-    @TargetApi(value = 19)
+
     private void handleImageOnKitKat(Intent data) {
         String imagePath = null;
         Uri uri = data.getData();

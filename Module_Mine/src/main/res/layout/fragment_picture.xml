@@ -20,14 +20,15 @@
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintTop_toTopOf="parent" />
+
      <Button
          android:id="@+id/open_album"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_marginTop="150dp"
-         android:text="点击我打开相册"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toStartOf="parent"
+         android:text="点击我打开相册"
          app:layout_constraintTop_toBottomOf="@+id/picture_image" />
 
      <Button
