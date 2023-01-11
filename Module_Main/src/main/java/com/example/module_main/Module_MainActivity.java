@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.baselibs.ServiceFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,12 +33,20 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        init();
         navigationView = findViewById(R.id.navagation);
         navigationView.setOnNavigationItemSelectedListener(this);
         navigationView.setSelectedItemId(R.id.homepage);
 
     }
-
+    private void init(){
+//        if(ServiceFactory.getInstance().getLogService().press()){
+//            Log.d("TAG0","这边"+String.valueOf(ServiceFactory.getInstance().getLogService().press()));
+//            Log.d("TAG0","执行这一步");
+//            finish();
+//
+//        }
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

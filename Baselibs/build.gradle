@@ -31,7 +31,6 @@ android {
 }
 
 dependencies {
-
     api rootProject.ext.androidxLibs
     api rootProject.ext.commonLibs
     api rootProject.ext.annotationLibs

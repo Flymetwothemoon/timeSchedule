@@ -13,6 +13,7 @@
         </activity>
         <activity
             android:name=".LogActivity"
+
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
     </application>
 

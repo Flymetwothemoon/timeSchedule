@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.baselibs.ServiceFactory;
 import com.example.module_mine.Activity.Module_MineActivity;
 import com.example.module_mine.R;
 import save.*;
@@ -160,8 +162,10 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                 }
                 if(position==4){
                     String a = "manage";
-                    intent.putExtra("TAG",a);
-                    startActivity(intent);
+                    ARouter.getInstance().build("/log/log1").navigation();
+                    getActivity().finish();
+//                    intent.putExtra("TAG",a);
+//                    startActivity(intent);
                 }
 
             }
@@ -175,6 +179,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         award.setOnClickListener(this);
         competition.setOnClickListener(this);
         mCircleImageView.setOnClickListener(this);
+        Log.d("TAG0",String.valueOf(ServiceFactory.getInstance().getLogService().press()));
     }
     private void show(){
         award.setCardBackgroundColor(0xffF6E7CA);
@@ -210,7 +215,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
         mine5.image = R.mipmap.service;
         mList.add(mine5);
         mine mine3 = new mine();
-        mine3.something ="账号管理";
+        mine3.something ="账号退出";
         mine3.image = R.mipmap.manage;
         mList.add(mine3);
     }

@@ -90,7 +90,6 @@ public class Log_Fragment extends Fragment implements View.OnClickListener {
         }
          current = getChildFragmentManager().findFragmentById(R.id.logactivity);
         init();
-
         log.setOnClickListener(this);
 
         return view;
@@ -99,7 +98,6 @@ public class Log_Fragment extends Fragment implements View.OnClickListener {
         account = view.findViewById(R.id.Account_edit);
         password = view.findViewById(R.id.password_edit);
         log = view.findViewById(R.id.Log_button);
-
     }
 
 
@@ -107,6 +105,7 @@ public class Log_Fragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if(v.getId()==R.id.Log_button){
             ARouter.getInstance().build("/main/main1").navigation();
+            getActivity().finish();
         }
     }
     }

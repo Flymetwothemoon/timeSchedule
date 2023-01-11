@@ -4,11 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.baselibs.LogService;
+import com.example.baselibs.ServiceFactory;
+import com.example.module_mine.Activity.Module_MineActivity;
 import com.example.module_mine.R;
+
+import Service.EnterService;
+import Service.ServiceUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +33,7 @@ public class manageFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private View view;
     public manageFragment() {
         // Required empty public constructor
     }
@@ -61,6 +69,19 @@ public class manageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_manage, container, false);
+        if(view ==null) {
+            view = inflater.inflate(R.layout.fragment_manage, container, false);
+        }
+        init();
+
+        return view;
+    }
+    private void init(){
+        ServiceUtil.press = true;
+        ServiceFactory.getInstance().setLogService(new EnterService(ServiceUtil.press));
+        ARouter.getInstance().build("/log/log1").navigation();
+        Log.d("TAG0","这里的"+String.valueOf(ServiceFactory.getInstance().getLogService().press()));
+        getActivity().finish();
+
     }
 }
