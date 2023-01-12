@@ -174,70 +174,25 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             }
         }
         Log.d("TAG1","fangq"+suitable);
-//        if (suitable == 0) {
-//            mTextView.setText("当前设备不支持计步器，请检查是否存在步行检测传感器和计步器");
-//        }
-
-
     }
-//    private boolean isBind = false;
-//    private void startSerice() {
-//        Intent intent = new Intent(getActivity(), StepService.class);
-//        getActivity().startService(intent);
-//    }
-    /**
-     * 用于查询应用服务（application Service）的状态的一种interface，
-     * 更详细的信息可以参考Service 和 context.bindService()中的描述，
-     * 和许多来自系统的回调方式一样，ServiceConnection的方法都是进程的主线程中调用的。
-     */
-//    ServiceConnection conn = new ServiceConnection(){
-//
-//        @Override
-//        public void onServiceConnected(ComponentName name, IBinder service) {
-//            StepService stepService = ((StepService.StepBinder) service).getService();
-//            cc.setCurrentCount(10000, stepService.getStepCount());
-//            //设置步数监听回调
-//            stepService.registerCallback(new UpdateUiCallBack() {
-//                @Override
-//                public void updateUi(int stepCount) {
-//                    cc.setCurrentCount(10000, stepCount);
-//                }
-//            });
-//        }
-//        /**
-//         * 当与Service之间的连接丢失的时候会调用该方法，
-//         * 这种情况经常发生在Service所在的进程崩溃或者被Kill的时候调用，
-//         * 此方法不会移除与Service的连接，当服务重新启动的时候仍然会调用 onServiceConnected()。
-//         * @param name 丢失连接的组件名称
-//         */
-//        @Override
-//        public void onServiceDisconnected(ComponentName name) {
-//
-//        }
-//
-//    };
-
-
-   
-
+    //日历
     private void init_0(){
         Calendar calendar = Calendar.getInstance();
-        for (int i =0;i<31;i++){
+        for (int i =-7;i<31;i++){
             Data data = new Data();
             data.day = String.valueOf(calendar.get(Calendar.DATE));
             data.dayOfWeekend ="星期"+(calendar.get(Calendar.DAY_OF_WEEK)-1);
             if(i==0){
-                data.color = 0xff95CBCB;
+                data.color = 0xff95CBCB;//今日的设置为一个颜色
             }
             else{
-                data.color = 0xffE6E6FA;
+                data.color = 0xffE6E6FA;//其他时间设置另一个颜色
             }
             util_0.exchange(data);
             mList.add(data);
-            calendar.add(Calendar.DATE,1);
+            calendar.add(Calendar.DATE,1);//往后增加
         }
     }
-
     @Override
     public void onSensorChanged(SensorEvent event) {
         Log.d("TAG1","启动了");
