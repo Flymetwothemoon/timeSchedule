@@ -30,7 +30,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.baselibs.ServiceFactory;
 import com.example.module_mine.Activity.Module_MineActivity;
 import com.example.module_mine.R;
-import save.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
     private String pre_name;
 //    record_step step = new record_step();
     private List<mine>mList = new ArrayList<>();
-    record_step_ViewModel viewModel;
+
     public Module_MineFragment() {
         // Required empty public constructor
     }

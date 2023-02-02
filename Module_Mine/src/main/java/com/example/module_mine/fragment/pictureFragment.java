@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,6 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
         button_0.setOnClickListener(this);
         button_1.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.open_album){
@@ -112,7 +112,8 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
             //如果没有权限,先打开权限,然后再打开系统相册,进行跳转
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
             openAlbum();
-        }
+
+            }
         else{
             //如果有权限直接进行跳转
             openAlbum();
@@ -123,69 +124,21 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //后面的操作是把挑选结果返回给activity
-        handleImageOnKitKat(data);
+        if (requestCode == 2) {
+            // 从相册返回的数据
+            Log.e(this.getClass().getName(), "Result:" + data.toString());
+            if (data != null) {
+                // 得到图片的全路径
+                Uri uri = data.getData();
+                picture_image.setImageURI(uri);
+                Log.e(this.getClass().getName(), "Uri:" + String.valueOf(uri));
+            }
+        }
     }
-
-    /**
-     * 打开系统相册
-     * 定义Intent跳转到特定图库的Uri下挑选，然后将挑选结果返回给Activity
-     * */
-    public static int ALBUM_RESULT_CODE = 0x999 ;
     private void openAlbum(){
-        Intent albumIntent = new Intent(Intent.ACTION_PICK);
-        albumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        startActivityForResult(albumIntent, ALBUM_RESULT_CODE);
+        Intent intent = new Intent(Intent.ACTION_PICK, null);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, 2);
         //这一步是为了下一步的回调
     }
-
-    private void handleImageOnKitKat(Intent data) {
-        String imagePath = null;
-        Uri uri = data.getData();
-        if (DocumentsContract.isDocumentUri(getActivity(), uri)) {
-            // 如果是document类型的Uri，则通过document id处理
-            String docId = DocumentsContract.getDocumentId(uri);
-            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
-                String id = docId.split(":")[1];
-                // 解析出数字格式的id
-                String selection = MediaStore.Images.Media._ID + "=" + id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
-            } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content: //downloads/public_downloads"), Long.valueOf(docId));
-                imagePath = getImagePath(contentUri, null);
-            }
-        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
-            // 如果是content类型的Uri，则使用普通方式处理
-            imagePath = getImagePath(uri, null);
-        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            // 如果是file类型的Uri，直接获取图片路径即可
-            imagePath = uri.getPath();
-        }
-        // 根据图片路径显示图片
-        displayImage(imagePath);
-        System.out.println(imagePath);
-    }
-
-    /**获取图片的路径*/
-    @SuppressLint("Range")
-    private String getImagePath(Uri uri, String selection) {
-        String path = null;
-        Cursor cursor = getActivity().getContentResolver().query(uri, null, selection, null, null);
-        if(cursor != null){
-
-            if(cursor.moveToFirst()){
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            }
-            cursor.close();
-        }
-        return path;
-    }
-
-
-    /**展示图片*/
-    private void displayImage(String imagePath) {
-        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-        picture_image.setImageBitmap(bitmap);
-    }
-
-
 }
