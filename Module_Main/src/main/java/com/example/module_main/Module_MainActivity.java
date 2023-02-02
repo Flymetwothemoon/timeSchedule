@@ -61,10 +61,10 @@ public class Module_MainActivity extends AppCompatActivity implements BottomNavi
             fragmentTransaction.replace(R.id.home_fragment, fragment).commit();
             return true;
         }
-        if(item.getItemId()==R.id.directseeding){
-            ARouter.getInstance().build("/direct/direct1").navigation();
-            return true;
-        }
+//        if(item.getItemId()==R.id.directseeding){
+//            ARouter.getInstance().build("/direct/direct1").navigation();
+//            return true;
+//        }
         if(item.getItemId()==R.id.news){
             Fragment fragment = (Fragment) ARouter.getInstance().build("/news/news1").navigation();
             fragmentTransaction.replace(R.id.home_fragment, fragment).commit();

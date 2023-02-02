@@ -15,12 +15,12 @@
         android:checked="true">
 
     </item>
-    <item android:title="直播"
-        android:checked="true"
-        android:icon="@drawable/direct"
-        android:id="@+id/directseeding">
+<!--    <item android:title="直播"-->
+<!--        android:checked="true"-->
+<!--        android:icon="@drawable/direct"-->
+<!--        android:id="@+id/directseeding">-->
 
-    </item>
+<!--    </item>-->
     <item android:title="消息"
         android:checked="true"
         android:icon="@drawable/news"
