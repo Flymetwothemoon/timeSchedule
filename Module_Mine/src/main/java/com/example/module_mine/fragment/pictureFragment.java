@@ -49,6 +49,7 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
     private String mParam2;
     private View view;
     private CircleImageView picture_image;
+    private int cnt = 0 ;
     public pictureFragment() {
         // Required empty public constructor
     }
@@ -112,7 +113,6 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
             //如果没有权限,先打开权限,然后再打开系统相册,进行跳转
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
             openAlbum();
-
             }
         else{
             //如果有权限直接进行跳转
@@ -126,19 +126,27 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
         //后面的操作是把挑选结果返回给activity
         if (requestCode == 2) {
             // 从相册返回的数据
-            Log.e(this.getClass().getName(), "Result:" + data.toString());
+
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
+                cnt = 1;
                 picture_image.setImageURI(uri);
                 Log.e(this.getClass().getName(), "Uri:" + String.valueOf(uri));
+                Log.d("TAG111","111");
             }
+
         }
     }
     private void openAlbum(){
         Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        if(intent.getData()==null){
+            getActivity().finish();
+        }
         startActivityForResult(intent, 2);
         //这一步是为了下一步的回调
+        Log.d("TAG111","1112");
+        Log.d("TAG111",""+intent.getData());
     }
 }
