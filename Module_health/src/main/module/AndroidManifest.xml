@@ -14,8 +14,10 @@
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
     <application
-        android:allowBackup="true">
-        <activity android:name=".Activity.Module_healthActivity"></activity>
+        android:allowBackup="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Activity.Module_healthActivity"
+           ></activity>
     </application>
 
 </manifest>

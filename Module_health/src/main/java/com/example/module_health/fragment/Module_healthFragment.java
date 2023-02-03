@@ -1,5 +1,8 @@
 package com.example.module_health.fragment;
 
+import static Utils.changeTextStyle.change;
+import static Utils.changeTextStyle.change_1;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_health.R;
@@ -34,8 +38,8 @@ import java.util.List;
  * Use the {@link Module_healthFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-@Route(path = "/health/health1")
 
+@Route(path = "/health/health1")
 @SuppressLint("DefaultLocale")
 public class Module_healthFragment extends Fragment implements SensorEventListener {
 
@@ -45,10 +49,12 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private static final String ARG_PARAM2 = "param2";
     private CardView mCardView;
     private StepArcView cc;
+    private TextView mTextView_1;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private View view;
+    private TextView mTextView;
     private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
     private int mStepDetector = -1; // 累加的步行检测次数
@@ -102,8 +108,18 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             }
         }
         init();
+        init_text();
         return view;
     }
+
+    private void init_text() {
+        mTextView = view.findViewById(R.id.text);
+        mTextView_1 = view.findViewById(R.id.text_1);
+        change(mTextView,getActivity());
+        change_1(mTextView_1,getActivity());
+    }
+
+
     private void init(){
 
         cc = (StepArcView) view.findViewById(R.id.cc);

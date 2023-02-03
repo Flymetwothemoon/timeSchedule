@@ -4,11 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="yellow">#fd9c06</color>
-    <color name="red">#FF1493</color>
+    <color name="red">#DC143C</color>
     <color name="grey">#BDBDBD</color>
     <color name="black">#000000</color>
     <color name="color_one">#FDE4BB</color>
     <color name="color_two">#FCD2A1</color>
     <color name="color_three">#EF8273</color>
-    <color name="good_color">#00CED1</color>
+    <color name="good_color">#EF8273</color>
 </resources>
