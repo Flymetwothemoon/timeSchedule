@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="170"
+        android:textColor="@color/red"
+        android:id="@+id/textHeight"/>
+    <com.davistin.widget.RulerView
+        app:alphaEnable="false"
+        app:lineColor="#000000"
+        app:textColor="#000000"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rulerView_height"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:minValue="0"
+        app:selectorValue="170"
+        app:maxValue="230"
+        app:perValue="1"
+        android:background="#ffd900"/>
+</LinearLayout>

@@ -16,51 +16,66 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bmi"
+                android:layout_width="165dp"
+                android:layout_height="140dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:text="健康"
-                android:id="@+id/text"
-                android:textColor="@color/black"
-                android:textSize="30dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+                <include layout="@layout/bmilayout" />
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="165dp"
                 android:layout_height="220dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="20dp"
+                app:cardElevation="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textSize="20dp"
-                android:id="@+id/text_1"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"
-                android:text="步数"/>
+
+                <TextView
+                    android:id="@+id/text_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="步数"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
                 <com.example.module_health.view.StepArcView
                     android:id="@+id/cc"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center" />
+
             </androidx.cardview.widget.CardView>
 
 
             <androidx.cardview.widget.CardView
-                android:layout_width="165dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="220dp"
-                android:layout_marginTop="120dp"
+                android:id="@+id/cardView2"
+                android:layout_width="152dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:cardElevation="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/sleep" />
 
                 <TextView
                     android:id="@+id/text_2"
@@ -69,9 +84,121 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:text="睡眠"
-                    android:textColor="@color/black"
+                    android:textColor="#ffffff"
                     android:textSize="20dp" />
 
+                <Switch
+                    android:id="@+id/switch_0"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="45dp" />
+
+                <TextView
+                    android:id="@+id/text_3"
+                    android:layout_width="119dp"
+                    android:layout_height="62dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="70dp"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="152dp"
+                android:layout_height="195dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/bmi"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff" />
+
+                <TextView
+                    android:id="@+id/music"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:text="时间"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView5"
+                android:layout_width="336dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="15dp"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardview">
+
+                    <TextView
+                        android:id="@+id/text_4"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="18dp"
+                        android:text="每日打卡"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/everyday_0" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="334dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardview">
+
+                    <TextView
+                        android:id="@+id/text_5"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="18dp"
+                        android:text="每日打卡"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/everyday_0" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

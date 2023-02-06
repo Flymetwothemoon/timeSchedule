@@ -10,7 +10,11 @@ public class changeTextStyle {
         mText.setTypeface(customFont);
     }
     public static void change_1(TextView mText, Context context){
-        Typeface customFont = Typeface.createFromAsset(context.getAssets(), "Alimama_ShuHeiTi_Bold.ttf");
+        Typeface customFont = Typeface.createFromAsset(context.getAssets(), "Source_Han_Serif_SC_Light_Light.otf");
+        mText.setTypeface(customFont);
+    }
+    public static void change_2(TextView mText,Context context){
+        Typeface customFont = Typeface.createFromAsset(context.getAssets(),"Alimama_DongFangDaKai_Regular.ttf");
         mText.setTypeface(customFont);
     }
 }
