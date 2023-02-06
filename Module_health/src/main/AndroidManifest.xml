@@ -23,17 +23,24 @@
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
 
-
     <application
         android:allowBackup="true"
         android:appComponentFactory="ss2"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:appComponentFactory">
+        <activity
+            android:name=".Activity.TestActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <service
             android:name=".Service.MusicService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".Activity.Module_healthActivity"

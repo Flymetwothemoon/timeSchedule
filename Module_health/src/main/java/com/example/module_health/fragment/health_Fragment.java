@@ -102,8 +102,8 @@ public class health_Fragment extends Fragment {
     }
     private void addAdapter(){
         mFragments.add(Module_healthFragment.newInstance("好好好","1"));
-        mFragments.add(healthFragment_1.newInstance("好好好","1"));
+        mFragments.add(MentalHealth.newInstance("好好好","1"));
         mList.add("我的健康");
-        mList.add("2");
+        mList.add("心理健康");
     }
 }

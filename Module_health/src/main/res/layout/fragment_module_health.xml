@@ -135,9 +135,9 @@
                 android:id="@+id/cardView5"
                 android:layout_width="336dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="15dp"
+                android:layout_marginTop="30dp"
                 android:clickable="true"
+                app:cardCornerRadius="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView4">
@@ -169,7 +169,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="334dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
