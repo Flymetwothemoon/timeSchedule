@@ -2,6 +2,7 @@ package com.example.module_health.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.WindowManager;
 
 import com.example.module_health.R;
 import com.example.module_health.fragment.MentalManager;
+import com.example.module_health.fragment.Mental_1;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -23,6 +26,6 @@ public class TestActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new MentalManager()).commit();
+
     }
 }

@@ -11,34 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frame"/>
+
     <TextView
+        android:id="@+id/text_0"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:textSize="20dp"
-        android:id="@+id/text_0"
         android:text="是否觉得自己的存在只能给别人添堵,是否想过就此一了百了。"
+        android:textColor="@color/black"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/yes"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="450dp"
+        android:layout_width="120dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/button_1"
+        android:layout_height="50dp"
         android:layout_marginEnd="30dp"
         android:text="是"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/no"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/button_1"
         android:text="不是"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

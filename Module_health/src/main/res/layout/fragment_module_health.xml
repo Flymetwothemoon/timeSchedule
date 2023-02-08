@@ -111,24 +111,28 @@
                 android:layout_marginEnd="20dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="28dp"
+
                 app:layout_constraintBottom_toBottomOf="@+id/bmi"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#ffffff" />
+                    android:layout_height="match_parent" />
 
                 <TextView
                     android:id="@+id/music"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginLeft="55dp"
                     android:layout_marginTop="8dp"
                     android:text="时间"
                     android:textColor="#000000"
                     android:textSize="20dp" />
-
+                <com.yoake.clock.LeonClockView
+                    android:id="@+id/leonClockView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -172,6 +176,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="15dp"
+                android:id="@+id/cardView6"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +193,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="18dp"
-                        android:text="每日打卡"
+                        android:text="健康评估"
                         android:textColor="#000000"
                         android:textSize="20dp" />
 
@@ -197,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="60dp"
                         android:layout_marginTop="5dp"
-                        android:src="@mipmap/everyday_0" />
+                        android:src="@mipmap/health" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,13 +23,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="240dp"
-        android:background="@drawable/attendance"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/button_1"
         android:text="开始测试"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
