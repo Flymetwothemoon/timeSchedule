@@ -2,9 +2,13 @@ package com.example.module_health.fragment;
 
 import static Utils.changeTextStyle.change_2;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,20 +90,29 @@ public class Mental_3 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        SharedPreferences.Editor editor = mView.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
         if(v.getId()==R.id.no){
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame, new Mental_4(), null)
-                    .addToBackStack(null)
-                    .commit();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    editor.putInt("mental_3",0);
+                    editor.apply();
+                }
+            });
+            NavController controller = Navigation.findNavController(v);//找到button归属的controller
+            controller.navigate(R.id.action_mental_3_to_mental_4);
 
         }
         if(v.getId()==R.id.yes){
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.frame, new Mental_4(), null)
-                    .addToBackStack(null)
-                    .commit();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    editor.putInt("mental_3",1);
+                    editor.apply();
+                }
+            });
+            NavController controller = Navigation.findNavController(v);//找到button归属的controller
+            controller.navigate(R.id.action_mental_3_to_mental_4);
         }
     }
 }

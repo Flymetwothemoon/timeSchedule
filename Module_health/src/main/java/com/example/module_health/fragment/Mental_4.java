@@ -2,6 +2,8 @@ package com.example.module_health.fragment;
 
 import static Utils.changeTextStyle.change_2;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -86,11 +88,25 @@ public class Mental_4 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        SharedPreferences.Editor editor = mView.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
         if(v.getId()==R.id.no){
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    editor.putInt("mental_4",-100);
+                    editor.apply();
+                }
+            });
           getActivity().finish();
-
         }
         if(v.getId()==R.id.yes){
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    editor.putInt("mental_4",1);
+                    editor.apply();
+                }
+            });
             getActivity().finish();
         }
     }

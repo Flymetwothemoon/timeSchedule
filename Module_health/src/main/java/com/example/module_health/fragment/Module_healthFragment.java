@@ -6,6 +6,7 @@ import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
 import static Utils.changeTime.changeHour;
 import static Utils.changeTime.changeMinute;
+import static Utils.clockin.advice;
 import static Utils.clockin.clockIn;
 import static Utils.countBMI.showHeight;
 import static Utils.countBMI.showWeight;
@@ -108,7 +109,11 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private TextView TextView_3;
     private TextView mTextView_5;
     private TextView music;
+    private CardView mCardView6;
     private CardView mCardView_5;
+    private TextView today_text;
+    private TextView now_text;
+    private TextView second;
     private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
     private int mStepDetector = -1; // 累加的步行检测次数
@@ -163,6 +168,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         }
         mSwitch = view.findViewById(R.id.switch_0);
         mTextView_3 = view.findViewById(R.id.text_3);
+
         openmusic(mTextView_3,view,getActivity());
         init();
         initswitch();
@@ -205,6 +211,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         mTextView_4 = view.findViewById(R.id.text_4);
         mTextView_5 = view.findViewById(R.id.text_5);
         mCardView_5 = view.findViewById(R.id.cardView5);
+        mCardView6 = view.findViewById(R.id.cardView6);
         bmi_text = view.findViewById(R.id.bmi_text);
         bmi_text1 = view.findViewById(R.id.bmi_text1);
         enter_0 = view.findViewById(R.id.enter_0);
@@ -213,6 +220,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         music = view.findViewById(R.id.music);
         mButton.setOnClickListener(this);
         mCardView_5.setOnClickListener(this);
+        mCardView6.setOnClickListener(this);
         change_2(mTextView_1,getActivity());
         change_2(mTextView_2,getActivity());
         change_1(mTextView_3,getActivity());
@@ -322,7 +330,9 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         }
         else if(v.getId()==R.id.cardView5){
            clockIn(getActivity());
-
+        }
+        else if(v.getId()==R.id.cardView6){
+            advice(getActivity());
         }
     }
 }

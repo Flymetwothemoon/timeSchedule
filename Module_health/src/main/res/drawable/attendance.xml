@@ -3,7 +3,7 @@
 <item android:state_pressed="false">
     <shape>
         <corners
-            android:radius="2000dp"/>
+            android:radius="30dp"/>
         <gradient
             android:endColor="#35C7F6"
             android:startColor="#4A6DF6"
@@ -14,7 +14,7 @@
     <item android:state_pressed="true">
         <shape>
             <corners
-                android:radius="2000dp"/>
+                android:radius="30dp"/>
             <gradient
                 android:endColor="#3F8EF6"
                 android:startColor="#4A6DF6"
