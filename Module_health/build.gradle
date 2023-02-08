@@ -1,0 +1,71 @@
+if(isModule.toBoolean()){
+    apply plugin: 'com.android.application'
+}else{
+    apply plugin: 'com.android.library'
+}
+android {
+    namespace 'com.example.module_health'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 29
+        targetSdk 32
+        if(isModule.toBoolean()){
+            applicationId "com.example.module_health"
+        }
+        javaCompileOptions{
+            annotationProcessorOptions{
+                arguments = [AROUTER_MODULE_NAME:project.getName(),AROUTER_GENERATE_DOC:"enable"]
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-r  sourceSets{\n" +
+                "        main{\n" +
+                "            if(isModule.toBoolean()){\n" +
+                "                manifest.srcFile 'src/main/AndroidManifest.xml'\n" +
+                "            }else{\n" +
+                "                manifest.srcFile 'src/main/module/AndroidManifest.xml'\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }ules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(":Baselibs")
+    annotationProcessor rootProject.ext.annotationLibs
+    def room_version = "2.4.1"
+    //Room数据库的依赖
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // optional - RxJava2 support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+
+    // optional - RxJava3 support for Room
+    implementation "androidx.room:room-rxjava3:$room_version"
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation "androidx.room:room-guava:$room_version"
+
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    // optional - Paging 3 Integration
+    implementation "androidx.room:room-paging:2.4.1"
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

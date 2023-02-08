@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradual_color_bg"
+    tools:context=".fragment.Module_MineFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:ignore="SpeakableTextPresentCheck">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImage"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="60dp"
+                android:clickable="true"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="228dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="87dp"
+                android:typeface="sans"
+                android:textColor="#000000"
+                android:textSize="25dp"
+                android:clickable="true"
+                app:layout_constraintStart_toEndOf="@+id/circleImage"
+                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="340dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/award_card"
+                app:cardCornerRadius="20dp"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleImage">
+         <include layout="@layout/award_layout"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="340dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                app:cardBackgroundColor="#FEEAE3"
+                app:cardCornerRadius="15dp"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/award_card">
+
+                <include layout="@layout/competion_text" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mine_recycler"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

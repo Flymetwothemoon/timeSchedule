@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".LogActivity">
+
+    <FrameLayout
+        android:layout_width="415dp"
+        android:layout_height="663dp"
+        android:id="@+id/logactivity"
+        app:layout_constraintBottom_toTopOf="@+id/text_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_marginStart="10dp"
+        android:clickable="true"
+        android:text="使用短信验证码登录"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/login_text"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="新用户注册"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/forget_text"
+        app:layout_constraintStart_toEndOf="@+id/text_email"
+        app:layout_constraintTop_toTopOf="@+id/text_email" />
+
+    <TextView
+        android:id="@+id/forget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:text="忘记密码"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

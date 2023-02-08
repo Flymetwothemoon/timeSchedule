@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.module_directseeding">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="ss1">
+        <activity
+            android:exported="true"
+            android:name=".Module_DirectActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""
+                />
+        </activity>
+    </application>
+
+</manifest>

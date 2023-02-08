@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.module_mine">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--写入SD卡的权限：如果你希望保存相机拍照后的照片-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--读取SD卡的权限:打开相册选取图片所必须的权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+
+    <application android:allowBackup="true"
+
+        android:requestLegacyExternalStorage="true"	>
+        <activity
+            android:name=".Activity.Rule_0Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.Competition_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.Rule_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.Module_MineActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
+    </application>
+
+</manifest>
