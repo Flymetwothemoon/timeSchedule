@@ -90,6 +90,7 @@ public class Log_Fragment extends Fragment implements View.OnClickListener {
         }
          current = getChildFragmentManager().findFragmentById(R.id.logactivity);
         init();
+
         log.setOnClickListener(this);
 
         return view;

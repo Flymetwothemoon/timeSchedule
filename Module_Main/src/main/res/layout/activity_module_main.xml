@@ -23,7 +23,7 @@
      app:labelVisibilityMode="labeled"
      app:itemIconTint="@color/black"
      android:clipChildren="false"
-    app:itemTextColor="@color/black"
+     app:itemTextColor="@color/black"
      app:menu="@menu/menu">
 
 

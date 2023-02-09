@@ -7,6 +7,10 @@
     tools:context="Fragment.Forget_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -58,4 +62,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
