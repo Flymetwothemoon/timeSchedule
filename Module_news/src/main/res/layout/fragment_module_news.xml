@@ -10,17 +10,14 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:background="@color/slateGray">
-
-
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:text="消息"
             android:textColor="@color/white"
             android:textSize="30dp" />
@@ -29,7 +26,7 @@
             android:id="@+id/search"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="35dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="right"
             app:tint="@color/white"

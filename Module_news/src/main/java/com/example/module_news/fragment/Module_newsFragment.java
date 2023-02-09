@@ -1,5 +1,6 @@
 package com.example.module_news.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -92,14 +93,9 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_module_news,container,false);
-
-
         listView= view.findViewById(R.id.list_view);
-
-
         simpleAdapter=new SimpleAdapter(getActivity(),getData(),R.layout.item_layout,new String[] {"titles","texts"},new int[] {R.id.tile,R.id.text});
         listView.setAdapter(simpleAdapter);
-
         imageView= view.findViewById(R.id.search);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +116,7 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
 
     private List<Map<String,String>> getData() {
         List<Map<String,String>> list=new ArrayList<>();
+
         for (int i = 0; i < 10; i++) {
             Map map=new HashMap();
             map.put("titles",titleArray[i]);

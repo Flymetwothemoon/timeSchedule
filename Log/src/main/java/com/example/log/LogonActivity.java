@@ -34,7 +34,5 @@ public class LogonActivity extends FragmentActivity {
                 finish();
             }
         });
-        ARouter.getInstance().build("/main/main1").navigation();
-        finish();
     }
 }

@@ -168,7 +168,6 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         }
         mSwitch = view.findViewById(R.id.switch_0);
         mTextView_3 = view.findViewById(R.id.text_3);
-
         openmusic(mTextView_3,view,getActivity());
         init();
         initswitch();
@@ -232,27 +231,34 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         count(bmi_text1);
     }
     private void count(TextView bmi_text1){
-                SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi",MODE_PRIVATE);
-                String height = sharedPreferences.getString("height","");
-                String weight = sharedPreferences.getString("weight","");
-                Log.d("TAG222",""+height);
-                Log.d("TAG222",""+weight);
-                if(height.length()>=1&&weight.length()>=1) {
-                    Log.d("TAG222", "weight" + weight);
-                    Log.d("TAG222", "height" + height);
-                    float height_0 = Float.parseFloat(height) / 100;
-                    Log.d("TAG222","qw"+height_0);
-                    if (height_0 < 1) {
-                        height_0 = 1;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi",MODE_PRIVATE);
+                        String height = sharedPreferences.getString("height","");
+                        String weight = sharedPreferences.getString("weight","");
+                        Log.d("TAG222",""+height);
+                        Log.d("TAG222",""+weight);
+                        if(height.length()>=1&&weight.length()>=1) {
+                            Log.d("TAG222", "weight" + weight);
+                            Log.d("TAG222", "height" + height);
+                            float height_0 = Float.parseFloat(height) / 100;
+                            Log.d("TAG222","qw"+height_0);
+                            if (height_0 < 1) {
+                                height_0 = 1;
+                            }
+                            float weight_0 = Float.parseFloat(weight);
+                            if (height == null) {
+                                bmi_text1.setText("未知");
+                            } else {
+                                float a = weight_0 / (height_0 * height_0);
+                                bmi_text1.setText(String.format("%.2f",a));
+                            }
+                        }
                     }
-                    float weight_0 = Float.parseFloat(weight);
-                    if (height == null) {
-                        bmi_text1.setText("未知");
-                    } else {
-                        float a = weight_0 / (height_0 * height_0);
-                        bmi_text1.setText(String.format("%.2f",a));
-                    }
-                }
+                },0,1000);
+
 
     }
     private void init(){
