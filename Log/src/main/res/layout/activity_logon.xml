@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LogonActivity">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -57,4 +58,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/password" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
