@@ -1,6 +1,8 @@
 package Utils;
 
 import static android.content.Context.MODE_PRIVATE;
+import static Utils.changeTextStyle.change;
+import static Utils.changeTextStyle.change_2;
 import static Utils.changeTime.changeHour;
 import static Utils.changeTime.changeMinute;
 import static Utils.music.music_0;

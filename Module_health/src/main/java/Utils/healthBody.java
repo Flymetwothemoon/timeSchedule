@@ -50,6 +50,7 @@ public class healthBody {
         TextView weight_text = inflater.findViewById(R.id.textWeight);
         enter_0 = inflater.findViewById(R.id.enter_0);
         enter_1 = inflater.findViewById(R.id.enter_1);
+        int[] cnt = {0};
         showHeight(height_text,height);
         showWeight(weight_text,weight);
         enter_0.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,8 @@ public class healthBody {
             public void onClick(View v) {
                 String height_0 = height_text.getText().toString();
                 Log.d("TAG222","HEIGHT"+height_0);
+                cnt[0]+=1;
+                Log.d("TAG12","ha"+cnt[0]);
                 SharedPreferences.Editor editor = inflater.getContext().getSharedPreferences("bmi",MODE_PRIVATE).edit();
                 editor.putString("height",height_0);
                 editor.commit();
@@ -67,10 +70,14 @@ public class healthBody {
             public void onClick(View v) {
                 String weight_0 = weight_text.getText().toString();
                 SharedPreferences.Editor editor = inflater.getContext().getSharedPreferences("bmi",MODE_PRIVATE).edit();
+                cnt[0]+=1;
+                Log.d("TAG12","hah"+cnt[0]);
                 editor.putString("weight",weight_0);
                 Log.d("TAG222","WEIGHT"+weight_0);
                 editor.commit();
             }
         });
+        Log.d("TAG12",""+cnt[0]);
+
     }
 }

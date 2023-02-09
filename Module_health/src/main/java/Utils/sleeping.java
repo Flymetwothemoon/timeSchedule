@@ -45,9 +45,6 @@ public class sleeping {
                 editor.putInt("hour",(hourOfDay));
                 editor.putInt("minute",(minute));
                 editor.commit();
-                if(timeEqual(a,b)){
-                   music_0(view,activity);
-                }
                 mTextView_3.setText(String.valueOf(changeHour(a)+":"+changeMinute(b)));
                 Toast.makeText(view.getContext(),"将会于"+String.valueOf(changeHour(a)+":"+changeMinute(b))+"提醒你睡觉",Toast.LENGTH_SHORT).show();
             }
