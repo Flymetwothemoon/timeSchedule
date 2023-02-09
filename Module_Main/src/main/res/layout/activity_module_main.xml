@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:clipChildren="false"
     tools:context=".Module_MainActivity">
  <FrameLayout
      android:id="@+id/home_fragment"
@@ -14,98 +15,17 @@
      android:layout_weight="1"
      android:background="#ffffff" />
 
-<LinearLayout
-    android:layout_width="405dp"
-    android:layout_height="50dp"
-    android:background="#ffffff"
-    android:orientation="horizontal">
- <Button
-     android:id="@+id/app_navigation_schedule_btn"
-     android:layout_width="39dp"
-     android:layout_height="36dp"
-     android:layout_marginStart="30dp"
-
-     app:layout_constraintBottom_toBottomOf="parent"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintHorizontal_bias="0.0"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="parent"
-     app:layout_constraintVertical_bias="0.212" />
-
- <Button
-     android:id="@+id/app_navigation_challenge_btn"
-     android:layout_width="39dp"
-     android:layout_height="36dp"
-     android:layout_marginStart="77dp"
-
-     app:layout_constraintBottom_toBottomOf="@+id/app_navigation_schedule_btn"
-     app:layout_constraintStart_toEndOf="@+id/app_navigation_schedule_btn"
-     app:layout_constraintTop_toTopOf="@+id/app_navigation_schedule_btn"
-     app:layout_constraintVertical_bias="0.0" />
-
- <Button
-     android:id="@+id/app_navigation_social_btn"
-     android:layout_width="39dp"
-     android:layout_height="36dp"
-     android:layout_marginStart="77dp"
-
-     app:layout_constraintBottom_toBottomOf="@+id/app_navigation_challenge_btn"
-     app:layout_constraintStart_toEndOf="@+id/app_navigation_challenge_btn"
-     app:layout_constraintTop_toTopOf="@+id/app_navigation_challenge_btn"
-     app:layout_constraintVertical_bias="0.0" />
-
- <Button
-     android:id="@+id/app_navigation_person_btn"
-     android:layout_width="39dp"
-     android:layout_height="36dp"
-     android:layout_marginStart="77dp"
-
-     app:layout_constraintBottom_toBottomOf="@+id/app_navigation_social_btn"
-     app:layout_constraintStart_toEndOf="@+id/app_navigation_social_btn"
-     app:layout_constraintTop_toTopOf="@+id/app_navigation_social_btn"
-     app:layout_constraintVertical_bias="0.0" />
-
- <TextView
-     android:id="@+id/app_navigation_schedule_text"
-     android:layout_width="wrap_content"
+ <com.google.android.material.bottomnavigation.BottomNavigationView
+     android:background="@color/white"
+     android:id="@+id/navagation"
+     android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:layout_marginTop="4dp"
-     android:text="暂留芳华"
-     app:layout_constraintEnd_toEndOf="@+id/app_navigation_schedule_btn"
-     app:layout_constraintStart_toStartOf="@+id/app_navigation_schedule_btn"
-     app:layout_constraintTop_toBottomOf="@+id/app_navigation_schedule_btn" />
-
- <TextView
-     android:id="@+id/app_navigation_challenge_text"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="4dp"
-     android:text="石以砥焉"
-     app:layout_constraintEnd_toEndOf="@+id/app_navigation_challenge_btn"
-     app:layout_constraintStart_toStartOf="@+id/app_navigation_challenge_btn"
-     app:layout_constraintTop_toBottomOf="@+id/app_navigation_challenge_btn" />
-
- <TextView
-     android:id="@+id/app_navigation_social_text"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="4dp"
-     android:text="一觞一咏"
-     app:layout_constraintEnd_toEndOf="@+id/app_navigation_social_btn"
-     app:layout_constraintStart_toStartOf="@+id/app_navigation_social_btn"
-     app:layout_constraintTop_toBottomOf="@+id/app_navigation_social_btn" />
-
- <TextView
-     android:id="@+id/app_navigation_person_text"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="4dp"
-     android:text="舍间陋室"
-     app:layout_constraintEnd_toEndOf="@+id/app_navigation_person_btn"
-     app:layout_constraintStart_toStartOf="@+id/app_navigation_person_btn"
-     app:layout_constraintTop_toBottomOf="@+id/app_navigation_person_btn" />
-</LinearLayout>
+     app:labelVisibilityMode="labeled"
+     app:itemIconTint="@color/black"
+     android:clipChildren="false"
+     app:itemTextColor="@color/black"
+     app:menu="@menu/menu">
 
 
-
+ </com.google.android.material.bottomnavigation.BottomNavigationView>
 </LinearLayout>
