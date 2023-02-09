@@ -56,6 +56,7 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
         if(v.getId()==R.id.login_text){
             Intent intent = new Intent(LogActivity.this,LogonActivity.class);
             startActivity(intent);
+            finish();
         }
 
         if(v.getId()==R.id.text_email){

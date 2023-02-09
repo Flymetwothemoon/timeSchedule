@@ -13,5 +13,6 @@ public class Module_newsActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_news);
+
     }
 }
