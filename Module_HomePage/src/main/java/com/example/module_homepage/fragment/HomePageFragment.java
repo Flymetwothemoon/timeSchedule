@@ -4,6 +4,7 @@ import static com.example.module_homepage.utils.changeTextStyle.change;
 import static com.example.module_homepage.utils.changeTextStyle.change_1;
 import static com.example.module_homepage.utils.changeTextStyle.change_2;
 
+import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -159,6 +160,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         change_2(lunch_saying,getActivity());
         change_2(dinner_saying,getActivity());
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("text", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("bmi",Context.MODE_PRIVATE);
         Handler handler = new Handler();
         Timer timer = new Timer();
         SharedPreferences sharedPreferences_0= getActivity().getSharedPreferences("text",Context.MODE_PRIVATE);
@@ -177,9 +179,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                                 @Override
                                 public void run() {
                                     Calendar calendar = Calendar.getInstance();
-                                    int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                                    int minute = calendar.get(Calendar.MINUTE);
-                                    if(hour==0&&minute==0){
+                                    int year = calendar.get(Calendar.YEAR);
+                                    int month = calendar.get(Calendar.MONTH);
+                                    int data = calendar.get(Calendar.DATE);
+                                    if(year!=sharedPreferences1.getInt("myYear",0)||month!=sharedPreferences1.getInt("myMonth",0)||data!=sharedPreferences1.getInt("myData",0)){
+                                        Log.d("TAG666",""+sharedPreferences1.getInt("myData",0));
                                         editor.putString("text", "0");
                                         editor.commit();
                                     }
@@ -255,6 +259,14 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
         if (v.getId() == R.id.drink_enter) {
             Intent intent = new Intent(v.getContext(), DrinkActivity.class);
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("bmi",Context.MODE_PRIVATE).edit();
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            editor.putInt("myYear",year);
+            Log.d("TAG666",""+"year"+year);
+            editor.putInt("myMonth",calendar.get(Calendar.MONTH));
+            editor.putInt("myData",calendar.get(Calendar.DATE));
+            editor.commit();
             getActivity().startActivity(intent);
         }
         if(v.getId()==R.id.cardView){

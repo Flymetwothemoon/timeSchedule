@@ -118,6 +118,11 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
     private int mStepDetector ; // 累加的步行检测次数
     private int mStepCounter = 0; // 计步器统计的步伐数目
+    SharedPreferences sharedPreferences_x;
+    SharedPreferences.Editor editor_x;
+    int month_x0=0;
+    int year_x0 = 0;
+    int data_x0 = 0;
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -170,6 +175,11 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         mStepDetector = sharedPreferences.getInt("step_0",-1);
         mSwitch = view.findViewById(R.id.switch_0);
         mTextView_3 = view.findViewById(R.id.text_3);
+         sharedPreferences_x = inflater.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
+         editor_x = inflater.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
+         month_x0 = sharedPreferences.getInt("month_01",0);
+         year_x0   = sharedPreferences.getInt("year_01",0);
+         data_x0 = sharedPreferences.getInt("data_01",0);
         openmusic(mTextView_3,view,getActivity());
         init();
         initswitch();
@@ -247,10 +257,16 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
                         @Override
                         public void run() {
                             Calendar calendar = Calendar.getInstance();
-                            if (calendar.get(Calendar.MINUTE) == 0 && calendar.get(Calendar.HOUR_OF_DAY) == 0) {
-                                editor.putInt("step_0", -1);
-                            }
                             SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
+                            if (calendar.get(Calendar.YEAR) != sharedPreferences_x.getInt("year_01",0) || calendar.get(Calendar.DATE) != sharedPreferences_x.getInt("data_01",0)||calendar.get(Calendar.MONTH)!=sharedPreferences_x.getInt("month_01",0)) {
+                                editor_x.putInt("year_01",calendar.get(Calendar.YEAR));
+                                editor_x.putInt("month_01",calendar.get(Calendar.MONTH));
+                                editor_x.putInt("data_01",calendar.get(Calendar.DATE));
+                                editor.putInt("step_0",-1);
+                                editor.commit();
+                                editor_x.commit();
+                            }
+
                             String height = sharedPreferences.getString("height", "");
                             String weight = sharedPreferences.getString("weight", "");
                             Log.d("TAG222", "" + height);
