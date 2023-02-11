@@ -2,13 +2,18 @@ package com.example.module_health.fragment;
 
 import static Utils.changeTextStyle.change_2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Looper;
 import android.os.TestLooperManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,6 +68,7 @@ public class MentalHealthTest extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("TAG333","ONCreate");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,36 +82,29 @@ public class MentalHealthTest extends Fragment implements View.OnClickListener {
         if(mView==null){
         mView= inflater.inflate(R.layout.fragment_mental_health_test, container, false);
         }
+        mTextView_0 = mView.findViewById(R.id.text_0);
         init();
         return mView;
     }
     private void init(){
-        mTextView_0 = mView.findViewById(R.id.text_0);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE);
-                int mental_0 = sharedPreferences.getInt("mental_0",0);
-                int mental_1 = sharedPreferences.getInt("mental_1",0);
-                int mental_2 = sharedPreferences.getInt("mental_2",0);
-                int mental_3 = sharedPreferences.getInt("mental_3",0);
-                int mental_4 = sharedPreferences.getInt("mental_4",0);
-                sum(mental_0,mental_1,mental_2,mental_3,mental_4);
-            }
-        });
-
+                        SharedPreferences sharedPreferences = mView.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE);
+                        int mental_0 = sharedPreferences.getInt("mental_0",0);
+                        int mental_1 = sharedPreferences.getInt("mental_1",0);
+                        int mental_2 = sharedPreferences.getInt("mental_2",0);
+                        int mental_3 = sharedPreferences.getInt("mental_3",0);
+                        int mental_4 = sharedPreferences.getInt("mental_4",0);
+                        sum(mental_0,mental_1,mental_2,mental_3,mental_4);
         mButton = mView.findViewById(R.id.button);
-        change_2(mTextView_0,getActivity());
         mButton.setOnClickListener(this);
     }
     private void sum( int mental_0, int mental_1, int mental_2, int mental_3, int mental_4){
-        int sum_0 = mental_0+mental_1+mental_2+mental_3+mental_4;
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+
+                int sum_0 = mental_0+mental_1+mental_2+mental_3+mental_4;
+
                 if(sum_0<0){
-                    mTextView_0.setText("每个人都有可能陷入困境之中，如果能够意识到你身边有这么多的人，都和你一样，身处困境之中，想要求一个出路而遍寻不到的时候，你就会发现，原来生活中有这么多的朋友，他们也正努力寻找出口。");
+                    mTextView_0.setText("每个人都有可能陷入困境之中，如果能够意识到你身边有这么多的人，都和你一样，身处困境之中，想要求一个出路而遍寻不到的时候，你就会发现，原来生活中有这么多的朋友，他们也正努力寻找出口.");
                 }
+
                 else if(sum_0==0){
                     mTextView_0.setText("健康不仅仅代表着身体健康,也代表着心理健康,来试着进行下面的测试吧!");
                 }
@@ -116,7 +115,7 @@ public class MentalHealthTest extends Fragment implements View.OnClickListener {
                     mTextView_0.setText("这些人生中的阴霾，有人能够很快抛在脑后，而有人却入了心，从此跌入泥泞的沼泽之中，不管多努力都再也爬不上来。");
                 }
                 else if(sum_0==3){
-                    mTextView_0.setText("　没有完美的人生，曲折之路，风景也照样好看" +
+                    mTextView_0.setText("没有完美的人生，曲折之路，风景也照样好看" +
                             "就算身处困难之中，就算身处逆境的泥沼，就算没有任何一个人帮自己，那就怎样！");
                 }
                 else if(sum_0==4){
@@ -125,13 +124,27 @@ public class MentalHealthTest extends Fragment implements View.OnClickListener {
                 else {
                     mTextView_0.setText("开朗的性格不仅仅能够使自己经常坚持心境的愉快，并且能够感染你周围的人们，使他们也觉得人生充满了和谐与光明。");
                 }
-            }
-        });
+
+                change_2(mTextView_0,getActivity());
+
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), TestActivity.class);
         v.getContext().startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        init();
+        Log.d("TAG333","onstart");
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.d("TAG333","ONATTACH");
     }
 }
