@@ -99,7 +99,7 @@
                     android:layout_width="119dp"
                     android:layout_height="62dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="90dp"
                     android:textColor="#ffffff"
                     android:textSize="25dp" />
             </androidx.cardview.widget.CardView>

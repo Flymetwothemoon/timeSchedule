@@ -116,7 +116,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private TextView second;
     private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
-    private int mStepDetector = -1; // 累加的步行检测次数
+    private int mStepDetector ; // 累加的步行检测次数
     private int mStepCounter = 0; // 计步器统计的步伐数目
     public Module_healthFragment() {
         // Required empty public constructor
@@ -166,12 +166,15 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
                 ActivityCompat.requestPermissions(getActivity(), permissions, 321);
             }
         }
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("bmi",MODE_PRIVATE);
+        mStepDetector = sharedPreferences.getInt("step_0",-1);
         mSwitch = view.findViewById(R.id.switch_0);
         mTextView_3 = view.findViewById(R.id.text_3);
         openmusic(mTextView_3,view,getActivity());
         init();
         initswitch();
         init_text();
+
         return view;
     }
 
@@ -224,42 +227,56 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         change_2(mTextView_2,getActivity());
         change_1(mTextView_3,getActivity());
         change_2(bmi_text,getActivity());
-        change_2(bmi_text1,getActivity());
         change_2(mTextView_4,getActivity());
         change_2(mTextView_5,getActivity());
         change_2(music,getActivity());
+        change(mTextView_3,getActivity());
         count(bmi_text1);
     }
     private void count(TextView bmi_text1){
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi",MODE_PRIVATE);
-                        String height = sharedPreferences.getString("height","");
-                        String weight = sharedPreferences.getString("weight","");
-                        Log.d("TAG222",""+height);
-                        Log.d("TAG222",""+weight);
-                        if(height.length()>=1&&weight.length()>=1) {
-                            Log.d("TAG222", "weight" + weight);
-                            Log.d("TAG222", "height" + height);
-                            float height_0 = Float.parseFloat(height) / 100;
-                            Log.d("TAG222","qw"+height_0);
-                            if (height_0 < 1) {
-                                height_0 = 1;
+        if(getActivity()==null){
+            return;
+        }
+        else {
+            SharedPreferences.Editor editor = getActivity().getSharedPreferences("bmi", MODE_PRIVATE).edit();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Timer timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Calendar calendar = Calendar.getInstance();
+                            if (calendar.get(Calendar.MINUTE) == 0 && calendar.get(Calendar.HOUR_OF_DAY) == 0) {
+                                editor.putInt("step_0", -1);
                             }
-                            float weight_0 = Float.parseFloat(weight);
-                            if (height == null) {
-                                bmi_text1.setText("未知");
-                            } else {
-                                float a = weight_0 / (height_0 * height_0);
-                                bmi_text1.setText(String.format("%.2f",a));
+                            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
+                            String height = sharedPreferences.getString("height", "");
+                            String weight = sharedPreferences.getString("weight", "");
+                            Log.d("TAG222", "" + height);
+                            Log.d("TAG222", "" + weight);
+                            if (height.length() >= 1 && weight.length() >= 1) {
+                                Log.d("TAG222", "weight" + weight);
+                                Log.d("TAG222", "height" + height);
+                                float height_0 = Float.parseFloat(height) / 100;
+                                Log.d("TAG222", "qw" + height_0);
+                                if (height_0 < 1) {
+                                    height_0 = 1;
+                                }
+                                float weight_0 = Float.parseFloat(weight);
+                                if (height == null) {
+                                    bmi_text1.setText("未知");
+                                } else {
+                                    float a = weight_0 / (height_0 * height_0);
+                                    bmi_text1.setText(String.format("%.2f", a));
+                                }
                             }
                         }
-                    }
-                },0,1000);
-
-
+                    }, 0, 1000);
+                    change_2(bmi_text1, getActivity());
+                }
+            });
+        }
     }
     private void init(){
 
@@ -304,6 +321,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         Log.d("TAG1","启动了");
+        SharedPreferences.Editor editor  = getActivity().getSharedPreferences("bmi",MODE_PRIVATE).edit();
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
             Log.d("TAG1","启动1");
             if (event.values[0] == 1.0f) {
@@ -312,6 +330,8 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
             mStepCounter = (int) event.values[0]; // 计步器事件
             mStepDetector++;
+            editor.putInt("step_0",mStepDetector);
+            editor.commit();
         }
         cc.setCurrentCount(10000,mStepDetector);
 

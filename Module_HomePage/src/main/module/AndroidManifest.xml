@@ -2,9 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.module_homepage">
 
-    <application
-        android:allowBackup="true">
-        <activity android:name=".HomePageActivity"></activity>
+    <application android:allowBackup="true">
+        <activity
+            android:name=".activity.foodActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.FitActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.AddActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.TimeSchedule.NoActionBar" />
+        <activity
+            android:name=".activity.DrinkActivity"
+            android:exported="false"
+            android:label="@string/title_activity_drink"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.TimeSchedule.NoActionBar" />
+        <activity android:name=".activity.HomePageActivity" />
     </application>
 
 </manifest>

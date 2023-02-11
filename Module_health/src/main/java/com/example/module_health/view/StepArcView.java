@@ -152,7 +152,7 @@ public class StepArcView extends View {
         vTextPaint.setTextAlign(Paint.Align.CENTER);
         vTextPaint.setAntiAlias(true);//抗锯齿功能
         vTextPaint.setColor(getResources().getColor(R.color.grey));
-        String stepString = "步数";
+        String stepString = "今日步数";
         Rect bounds = new Rect();
         vTextPaint.getTextBounds(stepString, 0, stepString.length(), bounds);
         canvas.drawText(stepString, centerX, getHeight() / 2 + bounds.height() + getFontHeight(numberTextSize), vTextPaint);

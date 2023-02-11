@@ -13,7 +13,19 @@
         android:theme="@style/Theme.AppCompat"
         tools:replace="android:appComponentFactory">
         <activity
-            android:name=".HomePageActivity"
+            android:name=".activity.foodActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.DrinkActivity"
+            android:exported="false"
+            android:label="@string/title_activity_drink"
+            android:theme="@style/Theme.TimeSchedule.NoActionBar" />
+        <activity
+            android:name=".activity.HomePageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
