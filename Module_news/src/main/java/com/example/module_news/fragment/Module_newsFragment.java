@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.SavedStateViewModelFactory;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +19,8 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.module_news.Module_newsActivity;
+
+import com.example.module_news.MyViewModel;
 import com.example.module_news.R;
 import com.example.module_news.Search_newsActivity;
 import com.example.module_news.Text_newsActivity;
@@ -43,6 +47,9 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
     private String mParam1;
     private String mParam2;
     private ImageView imageView;
+    MyViewModel myViewModel;
+    private MyViewModel ViewModelProviders;
+
     public Module_newsFragment() {
         // Required empty public constructor
     }
@@ -65,16 +72,6 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
         return fragment;
     }
 
-    public String[] titleArray = {"官方消息1","官方消息1","官方消息1","官方消息1","官方消息1",
-            "官方消息1","官方消息1","官方消息1","官方消息1","官方消息1",
-            "官方消息1","官方消息1","官方消息1","官方消息1","官方消息1",
-            "官方消息1","官方消息1","官方消息1","官方消息1","官方消息1",
-            "官方消息1","官方消息1","官方消息1","官方消息1","官方消息1",};
-    public String[] textArray = {"内容","内容","内容","内容","内容",
-            "内容","内容","内容","内容","内容",
-            "内容","内容","内容","内容","内容",
-            "内容","内容","内容","内容","内容",
-            "内容","内容","内容","内容","内容"};
     private ListView listView;
     SimpleAdapter simpleAdapter;
 
@@ -98,6 +95,9 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
         listView.setAdapter(simpleAdapter);
         imageView= view.findViewById(R.id.search);
 
+
+
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,10 +117,12 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
     private List<Map<String,String>> getData() {
         List<Map<String,String>> list=new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        myViewModel= new ViewModelProvider(getActivity(),new ViewModelProvider.NewInstanceFactory()).get(MyViewModel.class);
+
+        for (int i = 0; i < 7; i++) {
             Map map=new HashMap();
-            map.put("titles",titleArray[i]);
-            map.put("texts",textArray[i]);
+            map.put("titles",myViewModel.titleArray[i]);
+            map.put("texts",myViewModel.textArray[i].substring(0,10));
             list.add(map);
         }
      return list;
@@ -130,7 +132,15 @@ public class Module_newsFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent= new Intent(getActivity(), Text_newsActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("test",i);
+        intent.putExtras(bundle);
+
+
         startActivity(intent);
+
+
     }
 
 }
