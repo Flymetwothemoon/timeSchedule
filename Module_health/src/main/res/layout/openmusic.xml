@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/back"
     android:background="@drawable/dialog_bk">
 
-    <com.example.module_health.view.musicMediaPlayerView
-        android:id="@+id/album"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
 
-    <ImageView
-        android:id="@+id/needle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:adjustViewBounds="true"
-        android:maxHeight="180dp"
-        android:src="@mipmap/needle"/>
+        tools:ignore="MissingConstraints">
 
-</RelativeLayout>
+        <com.example.module_health.view.musicMediaPlayerView
+            android:id="@+id/album"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/needle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:maxHeight="180dp"
+            android:src="@mipmap/needle" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_shape"
+        android:text="关闭"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>
