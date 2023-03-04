@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-<item >
+<item android:drawable="@mipmap/logo">
     <shape xmlns:android="http://schemas.android.com/apk/res/android"
         android:shape="oval">
-
-    </shape>
+    <corners
+       android:radius="2000dp"
+        /></shape>
 </item>
 </selector>
