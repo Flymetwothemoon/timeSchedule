@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LogonActivity">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@mipmap/logo"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
