@@ -175,11 +175,13 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         mStepDetector = sharedPreferences.getInt("step_0",-1);
         mSwitch = view.findViewById(R.id.switch_0);
         mTextView_3 = view.findViewById(R.id.text_3);
-         sharedPreferences_x = inflater.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
-         editor_x = inflater.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
+         sharedPreferences_x = view.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
+         editor_x = view.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
          month_x0 = sharedPreferences.getInt("month_01",0);
          year_x0   = sharedPreferences.getInt("year_01",0);
          data_x0 = sharedPreferences.getInt("data_01",0);
+         Log.d("TAG000","月"+month_x0+"年"+year_x0+"天"+data_x0);
+
         openmusic(mTextView_3,view,getActivity());
         init();
         initswitch();
@@ -257,12 +259,13 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
                         @Override
                         public void run() {
                             Calendar calendar = Calendar.getInstance();
+                            Log.d("TAG000","月"+calendar.get(Calendar.MONTH));
                             SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
                             if (calendar.get(Calendar.YEAR) != sharedPreferences_x.getInt("year_01",0) || calendar.get(Calendar.DATE) != sharedPreferences_x.getInt("data_01",0)||calendar.get(Calendar.MONTH)!=sharedPreferences_x.getInt("month_01",0)) {
                                 editor_x.putInt("year_01",calendar.get(Calendar.YEAR));
                                 editor_x.putInt("month_01",calendar.get(Calendar.MONTH));
                                 editor_x.putInt("data_01",calendar.get(Calendar.DATE));
-                                editor.putInt("step_0",-1);
+                                editor.remove("step_0");
                                 editor.commit();
                                 editor_x.commit();
                             }
@@ -348,8 +351,8 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
             mStepDetector++;
             editor.putInt("step_0",mStepDetector);
             editor.commit();
+            cc.setCurrentCount(10000,mStepDetector);
         }
-        cc.setCurrentCount(10000,mStepDetector);
 
     }
 
@@ -376,5 +379,17 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         else if(v.getId()==R.id.cardView6){
             advice(getActivity());
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("TAG777","START");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("TAG777","DESTORY");
     }
 }

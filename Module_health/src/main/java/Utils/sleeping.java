@@ -42,8 +42,8 @@ public class sleeping {
                 int a = hour[0];
                 int b = minute1[0];
                 SharedPreferences.Editor editor = view.getContext().getSharedPreferences("bmi",MODE_PRIVATE).edit();
-                editor.putInt("hour",(hourOfDay));
-                editor.putInt("minute",(minute));
+                editor.putInt("hour123",(hourOfDay));
+                editor.putInt("minute123",(minute));
                 editor.commit();
                 mTextView_3.setText(String.valueOf(changeHour(a)+":"+changeMinute(b)));
                 Toast.makeText(view.getContext(),"将会于"+String.valueOf(changeHour(a)+":"+changeMinute(b))+"提醒你睡觉",Toast.LENGTH_SHORT).show();

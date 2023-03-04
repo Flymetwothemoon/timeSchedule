@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import com.example.module_health.R;
 
 public class paintAlbum {
-    public static void paint(View inflater){
+    public static void paint(View inflater,String how){
         //最外部的半透明边线
         OvalShape ovalShape0 = new OvalShape();
         ShapeDrawable drawable0 = new ShapeDrawable(ovalShape0);
@@ -62,13 +63,22 @@ public class paintAlbum {
         discObjectAnimator.setInterpolator(new LinearInterpolator());
         //无限循环旋转
         discObjectAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        discObjectAnimator.start();
+
         ImageView needle = inflater.findViewById(R.id.needle);
         ObjectAnimator needdleObjectAnimator = ObjectAnimator.ofFloat(needle, "rotation", 0, 25);
         needle.setPivotX(0);
         needle.setPivotY(0);
         needdleObjectAnimator.setDuration(800);
         needdleObjectAnimator.setInterpolator(new LinearInterpolator());
-        needdleObjectAnimator.start();
+        if(how.equals("open")) {
+            discObjectAnimator.start();
+            needdleObjectAnimator.start();
+        }
+        else {
+            Log.d("TAG999","暂停");
+            discObjectAnimator.pause();
+            needdleObjectAnimator.pause();
+
+        }
     }
 }

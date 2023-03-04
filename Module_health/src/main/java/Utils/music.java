@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import androidx.core.app.NotificationCompat;
 
@@ -37,7 +38,7 @@ public class music {
                 manager.notify(1,notification);
                 Dialog dialog = new Dialog(view.getContext(),R.style.ActionSheetDialogStyle);
                 View inflater =  LayoutInflater.from(view.getContext()).inflate(R.layout.openmusic, null);
-                paint(inflater);
+                paint(inflater,"open");
                 dialog.setContentView(inflater);
                 Window dialogWindow = dialog.getWindow();
                 //设置Dialog从窗体底部弹出
@@ -52,6 +53,14 @@ public class music {
                 dialog.show();//显示对话框
                 Intent intent = new Intent(inflater.getContext(), MusicService.class);
                 inflater.getContext().startService(intent);
+                Button button = inflater.findViewById(R.id.button_0);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inflater.getContext().stopService(intent);
+                        paint(inflater,"stop");
+                    }
+                });
             }
         });
 
