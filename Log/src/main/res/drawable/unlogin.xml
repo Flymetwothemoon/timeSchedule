@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="MissingDefaultResource">
+    <item android:state_pressed="false">
+<shape >
+
+    <!-- 背景颜色 -->
+    <solid android:color="#918886" />
+
+    <!-- 边框的宽度和颜色颜色 -->
+    <stroke android:width="1dip" android:color="#090808" />
+
+    <!-- android:radius 弧形的半径 -->
+    <corners android:radius="18dp"/>
+
+    <!-- padding：Button里面的文字与Button边界的间隔 -->
+    <padding
+        android:left="30dp"
+        android:top="10dp"
+        android:right="30dp"
+        android:bottom="10dp"
+        />
+
+
+</shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape >
+
+            <!-- 背景颜色 -->
+            <solid android:color="#000000"/>
+
+            <!-- 边框的宽度和颜色颜色 -->
+            <stroke android:width="1dip" android:color="#090808" />
+
+            <!-- android:radius 弧形的半径 -->
+            <corners android:radius="18dp"/>
+
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+            <padding
+                android:left="30dp"
+                android:top="10dp"
+                android:right="30dp"
+                android:bottom="10dp"
+                />
+
+
+        </shape>
+    </item>
+</selector>

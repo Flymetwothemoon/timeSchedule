@@ -1,6 +1,8 @@
 package com.example.timeschedule;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ARouter.getInstance().build("/log/log1").navigation();
+               ARouter.getInstance().build("/log/log1").navigation();
                 finish();
             }
         },500);

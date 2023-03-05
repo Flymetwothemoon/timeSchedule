@@ -4,14 +4,6 @@
 
     <application android:allowBackup="true" >
         <activity
-            android:name=".LogonActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge"
-            android:exported="true" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".LogActivity"
 
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
