@@ -9,14 +9,11 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="ss2">
-        <activity
-            android:name=".LogonActivity"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge"
-            android:exported="true">
+
             <activity
                 android:exported="true"
                 android:name=".LogActivity"
-                android:launchMode="SingleTop"
+                android:launchMode="singleTop"
                 tools:ignore="WrongManifestParent">
 
                 <intent-filter>
@@ -29,8 +26,6 @@
                     android:value="" />
             </activity>
 
-
-        </activity>
     </application>
 
 </manifest>
