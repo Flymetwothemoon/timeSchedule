@@ -11,18 +11,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import Fragment.*;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 @Route(path = "/log/log1")
 public class LogActivity extends FragmentActivity implements View.OnClickListener {
-    private TextView email;
-    private TextView logon;
-    private TextView forget;
+    private Button log;
+    private Button see;
+    public int i = 0;
+    private EditText password_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -34,33 +41,35 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
             getWindow().setStatusBarColor(Color.TRANSPARENT);
             //透明导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            getSupportFragmentManager().beginTransaction().replace(R.id.logactivity, new Log_Fragment()).commit();
             init();
     }
         private void init(){
-            email = findViewById(R.id.text_email);
-            logon = findViewById(R.id.login_text);
-            forget = findViewById(R.id.forget_text);
-            email.setOnClickListener(this);
-            logon.setOnClickListener(this);
-            forget.setOnClickListener(this);
-
+            log = findViewById(R.id.Log_button);
+            see = findViewById(R.id.see_button);
+            password_edit = findViewById(R.id.password_edit);
+            log.setOnClickListener(this);
+            see.setOnClickListener(this);
         }
 
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.forget_text){
-            getSupportFragmentManager().beginTransaction().replace(R.id.logactivity,new Forget_Fragment()).commit();
+        if(v.getId()==R.id.Log_button){
+            ARouter.getInstance().build("/main/main1").navigation();
         }
-        if(v.getId()==R.id.login_text){
-            Intent intent = new Intent(LogActivity.this,LogonActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-        if(v.getId()==R.id.text_email){
-            getSupportFragmentManager().beginTransaction().replace(R.id.logactivity,new Note_Fragment()).commit();
+        if(v.getId()==R.id.see_button) {
+            int selectionStart = password_edit.getSelectionStart();
+            int selectionEnd = password_edit.getSelectionEnd();
+            if (i % 2 == 0) {
+                see.setBackground(getResources().getDrawable(R.drawable.see));
+                i++;
+                password_edit.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            } else if (i % 2 != 0) {
+                see.setBackground(getResources().getDrawable(R.drawable.unsee));
+                i++;
+                password_edit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+            password_edit.setSelection(selectionStart, selectionEnd);
         }
     }
 }

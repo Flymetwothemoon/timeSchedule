@@ -17,7 +17,7 @@
                 android:exported="true"
                 android:name=".LogActivity"
                 android:launchMode="SingleTop"
-                >
+                tools:ignore="WrongManifestParent">
 
                 <intent-filter>
                     <action android:name="android.intent.action.MAIN" />

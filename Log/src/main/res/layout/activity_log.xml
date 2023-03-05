@@ -1,57 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/log"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LogActivity">
-
+    <!-- TODO: Update blank fragment layout -->
     <FrameLayout
-        android:layout_width="415dp"
-        android:layout_height="663dp"
-        android:id="@+id/logactivity"
-        app:layout_constraintBottom_toTopOf="@+id/text_email"
+        android:layout_width="match_parent"
+        android:id="@+id/frame_1"
+
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle"
+        android:layout_width="80dp"
+
+        android:layout_height="80dp"
+        android:layout_marginTop="150dp"
+        android:src="@mipmap/logo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_email"
-        android:layout_width="wrap_content"
-        android:layout_height="67dp"
-        android:layout_marginStart="10dp"
-        android:clickable="true"
-        android:text="使用短信验证码登录"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/id_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:layout_margin="60dp"
+        android:hint="请输入账号"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <EditText
+        android:id="@+id/password_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="35dp"
+        android:inputType="textPassword"
+        android:hint="请输入密码"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_edit"/>
 
-    <TextView
-        android:id="@+id/login_text"
+    <Button
+        android:id="@+id/see_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/unsee"
+        app:layout_constraintBottom_toBottomOf="@id/password_edit"
+        app:layout_constraintEnd_toEndOf="@+id/password_edit"
+        app:layout_constraintTop_toTopOf="@id/password_edit" />
+
+    <Button
+        android:id="@+id/Log_button"
         android:layout_width="wrap_content"
-        android:layout_height="67dp"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="新用户注册"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/forget_text"
-        app:layout_constraintStart_toEndOf="@+id/text_email"
-        app:layout_constraintTop_toTopOf="@+id/text_email" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/unlogin"
+        android:text="登录"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_edit" />
 
     <TextView
         android:id="@+id/forget_text"
         android:layout_width="wrap_content"
-        android:layout_height="67dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:text="忘记密码"
         android:textColor="#000000"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/Log_button"
+        app:layout_constraintTop_toBottomOf="@+id/Log_button" />
+
+    <TextView
+        android:id="@+id/signIn_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="注册账号"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/Log_button"
+        app:layout_constraintTop_toBottomOf="@+id/Log_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
