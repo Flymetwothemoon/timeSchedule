@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.log" >
+    package="com.example.log">
 
-    <application android:allowBackup="true" >
+    <application android:allowBackup="true">
+        <activity
+            android:name=".ForgetActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LogonActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".LogActivity"
-
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
     </application>
 
