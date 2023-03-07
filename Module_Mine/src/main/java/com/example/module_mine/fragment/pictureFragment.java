@@ -132,7 +132,7 @@ public class pictureFragment extends Fragment implements View.OnClickListener {
                 Uri uri = data.getData();
                 cnt = 1;
                 picture_image.setImageURI(uri);
-                Log.e(this.getClass().getName(), "Uri:" + String.valueOf(uri));
+                Log.d("abcd", "Uri:" + String.valueOf(uri));
                 Log.d("TAG111","111");
             }
 

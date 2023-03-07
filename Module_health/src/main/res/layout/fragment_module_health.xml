@@ -14,8 +14,119 @@
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
+            android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/Dynamic"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="30dp"
+            android:id="@+id/off"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/eye_button"
+                    android:layout_marginStart="10dp"
+                    android:background="@mipmap/eye"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/on"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circleImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@mipmap/album"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="I Really Want to Stay At Your House"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                    app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                    app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/istrue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/circleImageView">
+
+                    <Button
+                        android:id="@+id/stop"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@mipmap/stop" />
+
+                    <Button
+                        android:id="@+id/start"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@mipmap/start"
+                        android:visibility="gone" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/rightquick"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@mipmap/quick"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/istrue" />
+
+                <Button
+                    android:id="@+id/leftquick"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="50dp"
+                    android:background="@mipmap/leftquick"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/istrue" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.cardview.widget.CardView
                 android:id="@+id/bmi"
                 android:layout_width="165dp"
@@ -39,7 +150,7 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/Dynamic">
 
                 <TextView
                     android:id="@+id/text_1"
@@ -64,13 +175,13 @@
                 android:id="@+id/cardView2"
                 android:layout_width="152dp"
                 android:layout_height="145dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
                 android:clickable="true"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="28dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/cardView">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -128,23 +239,21 @@
                     android:text="时间"
                     android:textColor="#000000"
                     android:textSize="20dp" />
-                <com.yoake.clock.LeonClockView
-                    android:id="@+id/leonClockView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView5"
                 android:layout_width="336dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
                 app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+                app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -171,16 +280,14 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView6"
                 android:layout_width="334dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="25dp"
                 app:cardCornerRadius="15dp"
-                android:id="@+id/cardView6"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView5">
+                app:layout_constraintTop_toBottomOf="@+id/cardView7">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -203,6 +310,41 @@
                         android:layout_marginLeft="60dp"
                         android:layout_marginTop="5dp"
                         android:src="@mipmap/health" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView7"
+                android:layout_width="334dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="15dp"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bmi">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardview">
+
+                    <TextView
+                        android:id="@+id/text_6"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="18dp"
+                        android:text="拍照识别"
+                        android:textColor="#000000"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/photo" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -74,7 +74,7 @@ public class healthBody {
                 Log.d("TAG12","hah"+cnt[0]);
                 editor.putString("weight",weight_0);
                 Log.d("TAG222","WEIGHT"+weight_0);
-                editor.commit();
+                editor.apply();
             }
         });
         Log.d("TAG12",""+cnt[0]);

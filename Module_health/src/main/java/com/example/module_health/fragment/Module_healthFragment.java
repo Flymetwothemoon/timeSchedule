@@ -1,6 +1,9 @@
 package com.example.module_health.fragment;
 
+import static android.content.Context.BIND_AUTO_CREATE;
 import static android.content.Context.MODE_PRIVATE;
+import static com.example.module_health.Service.AuthService.getAuth;
+import static com.example.module_health.Service.Ingredient.ingredient;
 import static Utils.changeTextStyle.change;
 import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
@@ -22,10 +25,13 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.Service;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
 
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -33,6 +39,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -43,7 +50,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
@@ -61,8 +70,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.davistin.widget.RulerView;
+import com.example.module_health.Activity.PhotoActivity;
 import com.example.module_health.R;
 
+import com.example.module_health.Service.AuthService;
 import com.example.module_health.Service.MusicService;
 import com.example.module_health.view.StepArcView;
 
@@ -72,6 +83,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Utils.callback;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Callback;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Module_healthFragment#newInstance} factory method to
@@ -80,7 +95,7 @@ import java.util.TimerTask;
 
 
 @SuppressLint("DefaultLocale")
-public class Module_healthFragment extends Fragment implements SensorEventListener, View.OnClickListener {
+public class Module_healthFragment extends Fragment implements  View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,6 +112,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     private String mParam1;
     private String mParam2;
     private View view;
+    private CardView mCardView7;
     private Switch mSwitch;
     private TextView bmi_text1;
     private TextView height_0;
@@ -123,6 +139,15 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     int month_x0=0;
     int year_x0 = 0;
     int data_x0 = 0;
+    private Button stop;
+    private Button start;
+    private CardView off;
+    private CardView on;
+    private CircleImageView circleImageView;
+    private Button eye_button;
+    private boolean isBound = false;
+
+
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -158,6 +183,7 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("hao","oncreateview");
         // Inflate the layout for this fragment
         if(view==null){
             view = inflater.inflate(R.layout.fragment_module_health, container, false);
@@ -171,20 +197,27 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
                 ActivityCompat.requestPermissions(getActivity(), permissions, 321);
             }
         }
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("bmi",MODE_PRIVATE);
-        mStepDetector = sharedPreferences.getInt("step_0",-1);
-        mSwitch = view.findViewById(R.id.switch_0);
-        mTextView_3 = view.findViewById(R.id.text_3);
-         sharedPreferences_x = view.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
-         editor_x = view.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
-         month_x0 = sharedPreferences.getInt("month_01",0);
-         year_x0   = sharedPreferences.getInt("year_01",0);
-         data_x0 = sharedPreferences.getInt("data_01",0);
-         Log.d("TAG000","月"+month_x0+"年"+year_x0+"天"+data_x0);
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("bmi",MODE_PRIVATE);
+//        mStepDetector = sharedPreferences.getInt("step_0",-1);
+//        mSwitch = view.findViewById(R.id.switch_0);
+//        mTextView_3 = view.findViewById(R.id.text_3);
+//         sharedPreferences_x = view.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
+//         editor_x = view.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
+//         month_x0 = sharedPreferences.getInt("month_01",0);
+//         year_x0   = sharedPreferences.getInt("year_01",0);
+//         data_x0 = sharedPreferences.getInt("data_01",0);
+//         Log.d("TAG000","月"+month_x0+"年"+year_x0+"天"+data_x0);
 
-        openmusic(mTextView_3,view,getActivity());
-        init();
-        initswitch();
+//        openmusic(mTextView_3,view,getActivity());
+//        init();
+//        initswitch();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getAuth();
+            }
+        });
+//        thread.start();
         init_text();
 
         return view;
@@ -194,29 +227,29 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
 
         final int[] hour = {0};
         final int[] minute1 = {0};
-        getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run () {
-                            mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                @Override
-                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                    if (isChecked) {
-                                        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-                                            @Override
-                                            public void onTimeSet(TimePicker view1, int hourOfDay, int minute) {
-                                                whenSleeping(hour, hourOfDay, minute1, minute, view, mTextView_3, getActivity());
-                                            }
-                                        }, 0, 1, true);
-                                        timePickerDialog.show();
-                                    } else {
-                                        String a = "未设置";
-                                        mTextView_3.setText(a);
-                                    }
-                                }
-                            });
-//                    openmusic(mTextView_3,view,getActivity());
-                }
-        });
+//        getActivity().runOnUiThread(new Runnable() {
+//                @Override
+//                public void run () {
+//                            mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                                @Override
+//                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                                    if (isChecked) {
+//                                        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+//                                            @Override
+//                                            public void onTimeSet(TimePicker view1, int hourOfDay, int minute) {
+//                                                whenSleeping(hour, hourOfDay, minute1, minute, view, mTextView_3, getActivity());
+//                                            }
+//                                        }, 0, 1, true);
+//                                        timePickerDialog.show();
+//                                    } else {
+//                                        String a = "未设置";
+//                                        mTextView_3.setText(a);
+//                                    }
+//                                }
+//                            });
+////                    openmusic(mTextView_3,view,getActivity());
+//                }
+//        });
     }
 
     private void init_text() {
@@ -231,165 +264,188 @@ public class Module_healthFragment extends Fragment implements SensorEventListen
         enter_0 = view.findViewById(R.id.enter_0);
         enter_1 = view.findViewById(R.id.enter_1);
         mButton = view.findViewById(R.id.button);
+        stop = view.findViewById(R.id.stop);
+        circleImageView = view.findViewById(R.id.circleImageView);
+        start = view.findViewById(R.id.start);
+        eye_button = view.findViewById(R.id.eye_button);
         music = view.findViewById(R.id.music);
+        off = view.findViewById(R.id.off);
+        on = view.findViewById(R.id.on);
+        mCardView7 = view.findViewById(R.id.cardView7);
         mButton.setOnClickListener(this);
-        mCardView_5.setOnClickListener(this);
-        mCardView6.setOnClickListener(this);
-        change_2(mTextView_1,getActivity());
-        change_2(mTextView_2,getActivity());
-        change_1(mTextView_3,getActivity());
-        change_2(bmi_text,getActivity());
-        change_2(mTextView_4,getActivity());
-        change_2(mTextView_5,getActivity());
-        change_2(music,getActivity());
-        change(mTextView_3,getActivity());
-        count(bmi_text1);
+        mCardView7.setOnClickListener(this);
+        eye_button.setOnClickListener(this);
+        start.setOnClickListener(this);
+        stop.setOnClickListener(this);
+        circleImageView.setOnClickListener(this);
+
+//        mCardView_5.setOnClickListener(this);
+//        mCardView6.setOnClickListener(this);
+//        change_2(mTextView_1,getActivity());
+//        change_2(mTextView_2,getActivity());
+//        change_1(mTextView_3,getActivity());
+//        change_2(bmi_text,getActivity());
+//        change_2(mTextView_4,getActivity());
+//        change_2(mTextView_5,getActivity());
+//        change_2(music,getActivity());
+//        change(mTextView_3,getActivity());
+//        count(bmi_text1);
     }
-    private void count(TextView bmi_text1){
-        if(getActivity()==null){
-            return;
-        }
-        else {
+    //算bmi的那个
+    private void count(TextView bmi_text1) {
+        if (bmi_text1.getText().toString().equals("")) {
+            bmi_text1.setText("未知");
+        } else {
             SharedPreferences.Editor editor = getActivity().getSharedPreferences("bmi", MODE_PRIVATE).edit();
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Calendar calendar = Calendar.getInstance();
-                            Log.d("TAG000","月"+calendar.get(Calendar.MONTH));
-                            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
-                            if (calendar.get(Calendar.YEAR) != sharedPreferences_x.getInt("year_01",0) || calendar.get(Calendar.DATE) != sharedPreferences_x.getInt("data_01",0)||calendar.get(Calendar.MONTH)!=sharedPreferences_x.getInt("month_01",0)) {
-                                editor_x.putInt("year_01",calendar.get(Calendar.YEAR));
-                                editor_x.putInt("month_01",calendar.get(Calendar.MONTH));
-                                editor_x.putInt("data_01",calendar.get(Calendar.DATE));
-                                editor.remove("step_0");
-                                editor.commit();
-                                editor_x.commit();
-                            }
-
-                            String height = sharedPreferences.getString("height", "");
-                            String weight = sharedPreferences.getString("weight", "");
-                            Log.d("TAG222", "" + height);
-                            Log.d("TAG222", "" + weight);
-                            if (height.length() >= 1 && weight.length() >= 1) {
-                                Log.d("TAG222", "weight" + weight);
-                                Log.d("TAG222", "height" + height);
-                                float height_0 = Float.parseFloat(height) / 100;
-                                Log.d("TAG222", "qw" + height_0);
-                                if (height_0 < 1) {
-                                    height_0 = 1;
-                                }
-                                float weight_0 = Float.parseFloat(weight);
-                                if (height == null) {
-                                    bmi_text1.setText("未知");
-                                } else {
-                                    float a = weight_0 / (height_0 * height_0);
-                                    bmi_text1.setText(String.format("%.2f", a));
-                                }
-                            }
-                        }
-                    }, 0, 1000);
-                    change_2(bmi_text1, getActivity());
+            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
+            String height = sharedPreferences.getString("height", "");
+            String weight = sharedPreferences.getString("weight", "");
+            Log.d("TAG222", "" + height);
+            Log.d("TAG222", "" + weight);
+            if (height.length() >= 1 && weight.length() >= 1) {
+                Log.d("TAG222", "weight" + weight);
+                Log.d("TAG222", "height" + height);
+                float height_0 = Float.parseFloat(height) / 100;
+                Log.d("TAG222", "qw" + height_0);
+                if (height_0 < 1) {
+                    height_0 = 1;
                 }
-            });
-        }
-    }
-    private void init(){
-
-        cc = (StepArcView) view.findViewById(R.id.cc);
-        initData();
-
-    }
-    private void initData(){
-        cc.setCurrentCount(10000,0);
-        initStepSensor();
-//        startSerice();
-    }
-
-    private void initStepSensor() {
-        mSensorMgr = (SensorManager) this.getActivity().getSystemService(Context.SENSOR_SERVICE);
-        int suitable = 0;
-        // 获取当前设备支持的传感器列表
-        List<Sensor> sensorList = mSensorMgr.getSensorList(Sensor.TYPE_ALL);
-        for (Sensor sensor : sensorList) {
-            Log.d("TAG1",String.valueOf(sensor.getType()));
-            if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 找到步行检测传感器
-                suitable += 1;
-                Log.d("TAG1","启动3");
-                // 给步行检测传感器注册传感监听器
-                mSensorMgr.registerListener(this,
-                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
-                        SensorManager.SENSOR_DELAY_NORMAL);
-            } else if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 找到计步器
-                suitable += 10;
-                // 给计步器注册传感监听器
-                Log.d("TAG1","启动4");
-                mSensorMgr.registerListener(this,
-                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
-                        SensorManager.SENSOR_DELAY_NORMAL);
-                mSensorMgr.registerListener(this,
-                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
-                        SensorManager.SENSOR_DELAY_NORMAL);
+                float weight_0 = Float.parseFloat(weight);
+                if (height == null) {
+                    bmi_text1.setText("未知");
+                } else {
+                    float a = weight_0 / (height_0 * height_0);
+                    bmi_text1.setText(String.format("%.2f", a));
+                }
             }
+            change_2(bmi_text1, getActivity());
         }
-        Log.d("TAG1","fangq"+suitable);
     }
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        Log.d("TAG1","启动了");
-        SharedPreferences.Editor editor  = getActivity().getSharedPreferences("bmi",MODE_PRIVATE).edit();
-        if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
-            Log.d("TAG1","启动1");
-            if (event.values[0] == 1.0f) {
-                mStepDetector++; // 步行检测事件
-            }
-        } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
-            mStepCounter = (int) event.values[0]; // 计步器事件
-            mStepDetector++;
-            editor.putInt("step_0",mStepDetector);
-            editor.commit();
-            cc.setCurrentCount(10000,mStepDetector);
-        }
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mSensorMgr.unregisterListener(this);
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
+//    private void init(){
+//
+//        cc = (StepArcView) view.findViewById(R.id.cc);
+//        initData();
+//
+//    }
+//    private void initData(){
+//        cc.setCurrentCount(10000,0);
+//        initStepSensor();
+////        startSerice();
+//    }
+//
+//    private void initStepSensor() {
+//        mSensorMgr = (SensorManager) this.getActivity().getSystemService(Context.SENSOR_SERVICE);
+//        int suitable = 0;
+//        // 获取当前设备支持的传感器列表
+//        List<Sensor> sensorList = mSensorMgr.getSensorList(Sensor.TYPE_ALL);
+//        for (Sensor sensor : sensorList) {
+//            Log.d("TAG1",String.valueOf(sensor.getType()));
+//            if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 找到步行检测传感器
+//                suitable += 1;
+//                Log.d("TAG1","启动3");
+//                // 给步行检测传感器注册传感监听器
+//                mSensorMgr.registerListener(this,
+//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
+//                        SensorManager.SENSOR_DELAY_NORMAL);
+//            } else if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 找到计步器
+//                suitable += 10;
+//                // 给计步器注册传感监听器
+//                Log.d("TAG1","启动4");
+//                mSensorMgr.registerListener(this,
+//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
+//                        SensorManager.SENSOR_DELAY_NORMAL);
+//                mSensorMgr.registerListener(this,
+//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
+//                        SensorManager.SENSOR_DELAY_NORMAL);
+//            }
+//        }
+//        Log.d("TAG1","fangq"+suitable);
+//    }
+//    @Override
+//    public void onSensorChanged(SensorEvent event) {
+//        Log.d("TAG1","启动了");
+//        SharedPreferences.Editor editor  = getActivity().getSharedPreferences("bmi",MODE_PRIVATE).edit();
+//        if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
+//            Log.d("TAG1","启动1");
+//            if (event.values[0] == 1.0f) {
+//                mStepDetector++; // 步行检测事件
+//            }
+//        } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
+//            mStepCounter = (int) event.values[0]; // 计步器事件
+//            mStepDetector++;
+//            editor.putInt("step_0",mStepDetector);
+//            editor.commit();
+//            cc.setCurrentCount(10000,mStepDetector);
+//        }
+//
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        mSensorMgr.unregisterListener(this);
+//    }
+//
+//    @Override
+//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//
+//    }
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.button) {
-            knowYourBmi(getActivity(), height_0, weight_0, height, weight, enter_0, enter_1);
-            count(bmi_text1);
+        Intent MusicIntent = new Intent(getActivity(), MusicService.class);
+        if(v.getId()==R.id.cardView7){
+            Log.d("TAG000","HI");
+            Intent intent = new Intent(getActivity(), PhotoActivity.class);
+            String a = "photo";
+            intent.putExtra("photo",a);
+            startActivity(intent);
         }
-        else if(v.getId()==R.id.cardView5){
-           clockIn(getActivity());
+        //从灵动岛转到放音乐那个
+        else if(v.getId()==R.id.eye_button){
+            String id = "oncreate";
+            off.setVisibility(v.GONE);
+            MusicIntent.putExtra("action",id);
+            getActivity().startService(MusicIntent);
+            on.setVisibility(v.VISIBLE);
         }
-        else if(v.getId()==R.id.cardView6){
-            advice(getActivity());
+        //暂停音乐
+        if(v.getId()==R.id.stop){
+            start.setVisibility(v.VISIBLE);
+            String id = "pause";
+//            musicService.pauseMusic();
+            MusicIntent.putExtra("action",id);
+            getActivity().startService(MusicIntent);
+            stop.setVisibility(v.GONE);
         }
+        //继续播放音乐
+        if(v.getId()==R.id.start){
+            start.setVisibility(v.GONE);
+            String id = "resume";
+            MusicIntent.putExtra("action",id);
+            getActivity().startService(MusicIntent);
+            stop.setVisibility(v.VISIBLE);
+        }
+
+        //回到灵动岛状态
+        if(v.getId()==R.id.circleImageView){
+            on.setVisibility(v.GONE);
+            getActivity().stopService(MusicIntent);
+            off.setVisibility(v.VISIBLE);
+            start.setVisibility(v.GONE);
+            stop.setVisibility(v.VISIBLE);
+        }
+
+//        if(v.getId()==R.id.button) {
+////            knowYourBmi(getActivity(), height_0, weight_0, height, weight, enter_0, enter_1);
+////            Log.d("hao","");
+//
+//        }
+//        else if(v.getId()==R.id.cardView5){
+//           clockIn(getActivity());
+//        }
+//        else if(v.getId()==R.id.cardView6){
+//            advice(getActivity());
+//        }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d("TAG777","START");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("TAG777","DESTORY");
-    }
 }
