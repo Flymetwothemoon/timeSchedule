@@ -1,91 +1,40 @@
 package com.example.module_health.fragment;
 
-import static android.content.Context.BIND_AUTO_CREATE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.module_health.Service.AuthService.getAuth;
-import static com.example.module_health.Service.Ingredient.ingredient;
-import static Utils.changeTextStyle.change;
-import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
-import static Utils.changeTime.changeHour;
-import static Utils.changeTime.changeMinute;
-import static Utils.clockin.advice;
-import static Utils.clockin.clockIn;
-import static Utils.countBMI.showHeight;
-import static Utils.countBMI.showWeight;
-import static Utils.equalTime.timeEqual;
-import static Utils.healthBody.knowYourBmi;
-import static Utils.music.music_0;
-import static Utils.openMusic.openmusic;
-import static Utils.sleeping.whenSleeping;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.Service;
-import android.app.TimePickerDialog;
-import android.content.ComponentName;
-import android.content.Context;
 
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.davistin.widget.RulerView;
 import com.example.module_health.Activity.PhotoActivity;
 import com.example.module_health.R;
 
-import com.example.module_health.Service.AuthService;
 import com.example.module_health.Service.MusicService;
 import com.example.module_health.view.StepArcView;
 
-import java.sql.Time;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import Utils.callback;
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.Callback;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -145,7 +94,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private CardView on;
     private CircleImageView circleImageView;
     private Button eye_button;
-    private boolean isBound = false;
+
 
 
     public Module_healthFragment() {
@@ -272,6 +221,8 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         off = view.findViewById(R.id.off);
         on = view.findViewById(R.id.on);
         mCardView7 = view.findViewById(R.id.cardView7);
+
+
         mButton.setOnClickListener(this);
         mCardView7.setOnClickListener(this);
         eye_button.setOnClickListener(this);

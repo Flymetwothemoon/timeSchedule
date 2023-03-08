@@ -2,29 +2,19 @@ package com.example.module_health.Service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 
 import com.example.module_health.R;
 
-import Utils.callback;
-
-public class MusicService extends Service implements callback {
+public class MusicService extends Service {
     private MediaPlayer mMediaPlayer;
-    private callback mCallback;
     private final IBinder binder = (IBinder) new MusicBinder();
-    private static int a = 0;
-    @Override
-    public int musicpause() {
-        if(a==1){
-            return 0;
-        }
-        return 1;
-    }
+
+
 
     public class MusicBinder extends Binder {
         public MusicService getService() {
@@ -85,7 +75,7 @@ public class MusicService extends Service implements callback {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        a = 1;
+
         mMediaPlayer.stop();
         mMediaPlayer.reset();
         mMediaPlayer.release();
