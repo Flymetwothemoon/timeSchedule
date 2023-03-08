@@ -80,6 +80,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private ImageView heartPicture;
     private ImageView stepPicture;
     private ImageView bmiPicture;
+    ObjectAnimator circleAnimator;
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -145,24 +146,27 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     //播放动画
     private void makeAnimator(){
         ObjectAnimator animator = ObjectAnimator.ofFloat(heartPicture, "alpha", 1f, 0.4f, 1f);
-        animator.setDuration(8000);
+        animator.setDuration(5000);
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"translationX",250,0);
         animator1.setDuration(20000);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bmiPicture,"translationY",15,0,15);
-        animator2.setDuration(5000);
+        animator2.setDuration(4000);
         ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"alpha",1f,0.5f,1f);
         animator3.setDuration(2000);
-
+        circleAnimator = ObjectAnimator.ofFloat(circleImageView,"rotation",0,360);
+        circleAnimator.setDuration(50000);
         //循环播放
         animator.setRepeatCount(-1);
         animator1.setRepeatCount(-1);
         animator2.setRepeatCount(-1);
         animator3.setRepeatCount(-1);
+        circleAnimator.setRepeatCount(-1);
         //开始
         animator.start();
         animator1.start();
         animator2.start();
         animator3.start();
+
     }
 
     private void init_cardText() {
@@ -182,6 +186,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         heartPicture = view.findViewById(R.id.heartpicture);
         stepPicture = view.findViewById(R.id.step_picture);
         bmiPicture = view.findViewById(R.id.bmi_picture);
+        circleImageView = view.findViewById(R.id.circleImageView);
     }
 
 
@@ -235,12 +240,14 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             MusicIntent.putExtra("action",id);
             getActivity().startService(MusicIntent);
             on.setVisibility(v.VISIBLE);
+            circleAnimator.start();
         }
         //暂停音乐
         if(v.getId()==R.id.stop){
             start.setVisibility(v.VISIBLE);
             String id = "pause";
 //            musicService.pauseMusic();
+            circleAnimator.pause();
             MusicIntent.putExtra("action",id);
             getActivity().startService(MusicIntent);
             stop.setVisibility(v.GONE);
@@ -249,6 +256,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         if(v.getId()==R.id.start){
             start.setVisibility(v.GONE);
             String id = "resume";
+            circleAnimator.resume();
             MusicIntent.putExtra("action",id);
             getActivity().startService(MusicIntent);
             stop.setVisibility(v.VISIBLE);
@@ -260,6 +268,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             getActivity().stopService(MusicIntent);
             off.setVisibility(v.VISIBLE);
             start.setVisibility(v.GONE);
+            circleAnimator.pause();
             stop.setVisibility(v.VISIBLE);
         }
         //点击bmiCard,进入界面输入身高体重
