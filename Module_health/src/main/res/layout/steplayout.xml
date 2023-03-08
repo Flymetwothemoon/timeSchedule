@@ -6,37 +6,37 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/bmi_text"
+        android:id="@+id/step_text"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="BMI"
-        android:textColor="#ff9100"
+        android:text="Step"
+        android:textColor="#58c5cc"
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/bmi_text1"
+        android:id="@+id/step_text1"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
-        android:text="Get"
+        android:text="0"
         android:textColor="#ffffff"
-        android:textSize="35dp"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="23dp"
-        android:background="@mipmap/bmi"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="35dp"
+        android:background="@mipmap/step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bmi_text" />
+        app:layout_constraintTop_toBottomOf="@+id/step_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

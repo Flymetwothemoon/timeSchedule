@@ -2,6 +2,8 @@ package com.example.module_health.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.module_health.Service.AuthService.getAuth;
+import static Utils.changeTextStyle.change;
+import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
 
 import android.Manifest;
@@ -50,53 +52,29 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private CardView mCardView;
-    private StepArcView cc;
-    private TextView mTextView_1;
-    private TextView mTextView_2;
-    private TextView mTextView_3;
-    private TextView mTextView_4;
-    private TextView bmi_text;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private View view;
-    private CardView mCardView7;
-    private Switch mSwitch;
-    private TextView bmi_text1;
-    private TextView height_0;
-    private TextView weight_0;
-    private Button mButton;
-    private RulerView height;
-    private RulerView weight;
-    private Button enter_0;
-    private Button enter_1;
-    private TextView TextView_3;
-    private TextView mTextView_5;
-    private TextView music;
-    private CardView mCardView6;
-    private CardView mCardView_5;
-    private TextView today_text;
-    private TextView now_text;
-    private TextView second;
+
     private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
     private int mStepDetector ; // 累加的步行检测次数
     private int mStepCounter = 0; // 计步器统计的步伐数目
-    SharedPreferences sharedPreferences_x;
-    SharedPreferences.Editor editor_x;
-    int month_x0=0;
-    int year_x0 = 0;
-    int data_x0 = 0;
     private Button stop;
     private Button start;
     private CardView off;
     private CardView on;
+    private CardView bmiCard;
     private CircleImageView circleImageView;
     private Button eye_button;
-
-
-
+    private TextView irealy;
+    private TextView BMI_text0;
+    private TextView BMI_text_1;
+    private TextView Heart_text_0;
+    private TextView Heart_text_1;
+    private TextView Step_text_0;
+    private TextView Step_text_1;
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -146,20 +124,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
                 ActivityCompat.requestPermissions(getActivity(), permissions, 321);
             }
         }
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("bmi",MODE_PRIVATE);
-//        mStepDetector = sharedPreferences.getInt("step_0",-1);
-//        mSwitch = view.findViewById(R.id.switch_0);
-//        mTextView_3 = view.findViewById(R.id.text_3);
-//         sharedPreferences_x = view.getContext().getSharedPreferences("bmi",Context.MODE_PRIVATE);
-//         editor_x = view.getContext().getSharedPreferences("bmi", Context.MODE_PRIVATE).edit();
-//         month_x0 = sharedPreferences.getInt("month_01",0);
-//         year_x0   = sharedPreferences.getInt("year_01",0);
-//         data_x0 = sharedPreferences.getInt("data_01",0);
-//         Log.d("TAG000","月"+month_x0+"年"+year_x0+"天"+data_x0);
 
-//        openmusic(mTextView_3,view,getActivity());
-//        init();
-//        initswitch();
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -168,67 +133,43 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         });
 //        thread.start();
         init_text();
-
+        init_cardText();
         return view;
     }
 
-    private void initswitch() {
-
-        final int[] hour = {0};
-        final int[] minute1 = {0};
-//        getActivity().runOnUiThread(new Runnable() {
-//                @Override
-//                public void run () {
-//                            mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                                @Override
-//                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                                    if (isChecked) {
-//                                        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-//                                            @Override
-//                                            public void onTimeSet(TimePicker view1, int hourOfDay, int minute) {
-//                                                whenSleeping(hour, hourOfDay, minute1, minute, view, mTextView_3, getActivity());
-//                                            }
-//                                        }, 0, 1, true);
-//                                        timePickerDialog.show();
-//                                    } else {
-//                                        String a = "未设置";
-//                                        mTextView_3.setText(a);
-//                                    }
-//                                }
-//                            });
-////                    openmusic(mTextView_3,view,getActivity());
-//                }
-//        });
+    private void init_cardText() {
+        BMI_text0 = view.findViewById(R.id.bmi_text);
+        BMI_text_1 = view.findViewById(R.id.bmi_text1);
+        bmiCard.setOnClickListener(this);
+        change(BMI_text0,getActivity());
+        change(BMI_text_1,getActivity());
+        Heart_text_0 = view.findViewById(R.id.heart_text);
+        Heart_text_1 = view.findViewById(R.id.heart_text1);
+        change(Heart_text_0,getActivity());
+        change(Heart_text_1,getActivity());
+        Step_text_0 = view.findViewById(R.id.step_text);
+        Step_text_1 = view.findViewById(R.id.step_text1);
+        change(Step_text_0,getActivity());
+        change(Step_text_1,getActivity());
     }
 
+
     private void init_text() {
-        mTextView_1 = view.findViewById(R.id.text_1);
-        mTextView_2 = view.findViewById(R.id.text_2);
-        mTextView_4 = view.findViewById(R.id.text_4);
-        mTextView_5 = view.findViewById(R.id.text_5);
-        mCardView_5 = view.findViewById(R.id.cardView5);
-        mCardView6 = view.findViewById(R.id.cardView6);
-        bmi_text = view.findViewById(R.id.bmi_text);
-        bmi_text1 = view.findViewById(R.id.bmi_text1);
-        enter_0 = view.findViewById(R.id.enter_0);
-        enter_1 = view.findViewById(R.id.enter_1);
-        mButton = view.findViewById(R.id.button);
+        bmiCard = view.findViewById(R.id.bmicard);
         stop = view.findViewById(R.id.stop);
         circleImageView = view.findViewById(R.id.circleImageView);
         start = view.findViewById(R.id.start);
+        irealy = view.findViewById(R.id.ireally);
         eye_button = view.findViewById(R.id.eye_button);
-        music = view.findViewById(R.id.music);
         off = view.findViewById(R.id.off);
         on = view.findViewById(R.id.on);
-        mCardView7 = view.findViewById(R.id.cardView7);
 
-
-        mButton.setOnClickListener(this);
-        mCardView7.setOnClickListener(this);
         eye_button.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
+
         circleImageView.setOnClickListener(this);
+        change(irealy,getActivity());
 
 //        mCardView_5.setOnClickListener(this);
 //        mCardView6.setOnClickListener(this);
@@ -247,112 +188,17 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         if (bmi_text1.getText().toString().equals("")) {
             bmi_text1.setText("未知");
         } else {
-            SharedPreferences.Editor editor = getActivity().getSharedPreferences("bmi", MODE_PRIVATE).edit();
-            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("bmi", MODE_PRIVATE);
-            String height = sharedPreferences.getString("height", "");
-            String weight = sharedPreferences.getString("weight", "");
-            Log.d("TAG222", "" + height);
-            Log.d("TAG222", "" + weight);
-            if (height.length() >= 1 && weight.length() >= 1) {
-                Log.d("TAG222", "weight" + weight);
-                Log.d("TAG222", "height" + height);
-                float height_0 = Float.parseFloat(height) / 100;
-                Log.d("TAG222", "qw" + height_0);
-                if (height_0 < 1) {
-                    height_0 = 1;
-                }
-                float weight_0 = Float.parseFloat(weight);
-                if (height == null) {
-                    bmi_text1.setText("未知");
-                } else {
-                    float a = weight_0 / (height_0 * height_0);
-                    bmi_text1.setText(String.format("%.2f", a));
-                }
-            }
-            change_2(bmi_text1, getActivity());
+
+
         }
     }
-//    private void init(){
-//
-//        cc = (StepArcView) view.findViewById(R.id.cc);
-//        initData();
-//
-//    }
-//    private void initData(){
-//        cc.setCurrentCount(10000,0);
-//        initStepSensor();
-////        startSerice();
-//    }
-//
-//    private void initStepSensor() {
-//        mSensorMgr = (SensorManager) this.getActivity().getSystemService(Context.SENSOR_SERVICE);
-//        int suitable = 0;
-//        // 获取当前设备支持的传感器列表
-//        List<Sensor> sensorList = mSensorMgr.getSensorList(Sensor.TYPE_ALL);
-//        for (Sensor sensor : sensorList) {
-//            Log.d("TAG1",String.valueOf(sensor.getType()));
-//            if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 找到步行检测传感器
-//                suitable += 1;
-//                Log.d("TAG1","启动3");
-//                // 给步行检测传感器注册传感监听器
-//                mSensorMgr.registerListener(this,
-//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
-//                        SensorManager.SENSOR_DELAY_NORMAL);
-//            } else if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 找到计步器
-//                suitable += 10;
-//                // 给计步器注册传感监听器
-//                Log.d("TAG1","启动4");
-//                mSensorMgr.registerListener(this,
-//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_COUNTER),
-//                        SensorManager.SENSOR_DELAY_NORMAL);
-//                mSensorMgr.registerListener(this,
-//                        mSensorMgr.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR),
-//                        SensorManager.SENSOR_DELAY_NORMAL);
-//            }
-//        }
-//        Log.d("TAG1","fangq"+suitable);
-//    }
-//    @Override
-//    public void onSensorChanged(SensorEvent event) {
-//        Log.d("TAG1","启动了");
-//        SharedPreferences.Editor editor  = getActivity().getSharedPreferences("bmi",MODE_PRIVATE).edit();
-//        if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) { // 步行检测事件
-//            Log.d("TAG1","启动1");
-//            if (event.values[0] == 1.0f) {
-//                mStepDetector++; // 步行检测事件
-//            }
-//        } else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) { // 计步器事件
-//            mStepCounter = (int) event.values[0]; // 计步器事件
-//            mStepDetector++;
-//            editor.putInt("step_0",mStepDetector);
-//            editor.commit();
-//            cc.setCurrentCount(10000,mStepDetector);
-//        }
-//
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        mSensorMgr.unregisterListener(this);
-//    }
-//
-//    @Override
-//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-//
-//    }
+
     @Override
     public void onClick(View v) {
         Intent MusicIntent = new Intent(getActivity(), MusicService.class);
-        if(v.getId()==R.id.cardView7){
-            Log.d("TAG000","HI");
-            Intent intent = new Intent(getActivity(), PhotoActivity.class);
-            String a = "photo";
-            intent.putExtra("photo",a);
-            startActivity(intent);
-        }
+
         //从灵动岛转到放音乐那个
-        else if(v.getId()==R.id.eye_button){
+       if(v.getId()==R.id.eye_button){
             String id = "oncreate";
             off.setVisibility(v.GONE);
             MusicIntent.putExtra("action",id);
@@ -384,6 +230,10 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             off.setVisibility(v.VISIBLE);
             start.setVisibility(v.GONE);
             stop.setVisibility(v.VISIBLE);
+        }
+        //点击bmiCard,进入界面输入身高体重
+        if(v.getId()==R.id.bmicard){
+
         }
 
 //        if(v.getId()==R.id.button) {

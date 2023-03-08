@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#ffffff"
     tools:context=".fragment.Module_healthFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -82,6 +82,7 @@
                             android:layout_height="60dp"
                             android:layout_marginStart="10dp"
                             android:gravity="center"
+                            android:id="@+id/ireally"
                             android:text="I Really Want to Stay At Your House"
                             android:textColor="#ffffff"
                             android:textSize="18dp"
@@ -136,226 +137,96 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/bmi"
-                android:layout_width="165dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView">
-                <include layout="@layout/bmilayout" />
-            </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="165dp"
-                android:layout_height="220dp"
+                android:id="@+id/bmicard"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="16dp"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Dynamic">
 
-                <TextView
-                    android:id="@+id/text_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="步数"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
-
-                <com.example.module_health.view.StepArcView
-                    android:id="@+id/cc"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center" />
-
+                <include layout="@layout/bmilayout" />
             </androidx.cardview.widget.CardView>
 
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="152dp"
-                android:layout_height="145dp"
-                android:layout_marginTop="40dp"
+                android:id="@+id/heart"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
                 android:layout_marginEnd="20dp"
-                android:clickable="true"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="28dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardView">
+                app:layout_constraintTop_toTopOf="@+id/bmicard">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/sleep" />
-
-                <TextView
-                    android:id="@+id/text_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="睡眠"
-                    android:textColor="#ffffff"
-                    android:textSize="20dp" />
-
-                <Switch
-                    android:id="@+id/switch_0"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="45dp" />
-
-                <TextView
-                    android:id="@+id/text_3"
-                    android:layout_width="119dp"
-                    android:layout_height="62dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="90dp"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp" />
+                <include layout="@layout/heartlayout" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
-                android:layout_width="152dp"
-                android:layout_height="195dp"
-                android:layout_marginEnd="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="28dp"
-
-                app:layout_constraintBottom_toBottomOf="@+id/bmi"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:id="@+id/music"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginTop="8dp"
-                    android:text="时间"
-                    android:textColor="#000000"
-                    android:textSize="20dp" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView5"
-                android:layout_width="336dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="20dp"
-                android:clickable="true"
-                app:cardCornerRadius="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView6">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/cardview">
-
-                    <TextView
-                        android:id="@+id/text_4"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="18dp"
-                        android:text="每日打卡"
-                        android:textColor="#000000"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@mipmap/everyday_0" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView6"
-                android:layout_width="334dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="25dp"
-                app:cardCornerRadius="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView7">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/cardview">
-
-                    <TextView
-                        android:id="@+id/text_5"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="18dp"
-                        android:text="健康评估"
-                        android:textColor="#000000"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@mipmap/health" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView7"
-                android:layout_width="334dp"
-                android:layout_height="60dp"
+                android:id="@+id/step"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                app:cardCornerRadius="15dp"
-                android:clickable="true"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bmi">
+                app:layout_constraintTop_toBottomOf="@+id/bmicard">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/cardview">
-
-                    <TextView
-                        android:id="@+id/text_6"
-                        android:layout_width="200dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="18dp"
-                        android:text="拍照识别"
-                        android:textColor="#000000"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@mipmap/photo" />
-                </LinearLayout>
+                <include layout="@layout/steplayout" />
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bmicard">
+
+            </androidx.cardview.widget.CardView>
+
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/takephoto"-->
+<!--                android:layout_width="334dp"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                app:cardCornerRadius="15dp"-->
+<!--                android:clickable="true"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--               >-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@drawable/cardview">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_6"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginLeft="15dp"-->
+<!--                        android:layout_marginTop="18dp"-->
+<!--                        android:text="拍照识别"-->
+<!--                        android:textColor="#000000"-->
+<!--                        android:textSize="20dp" />-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="60dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:src="@mipmap/photo" />-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 </FrameLayout>
