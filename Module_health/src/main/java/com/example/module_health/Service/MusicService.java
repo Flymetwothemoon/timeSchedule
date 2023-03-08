@@ -10,20 +10,30 @@ import android.util.Log;
 
 import com.example.module_health.R;
 
+import Utils.ICallback;
+
 public class MusicService extends Service {
     private MediaPlayer mMediaPlayer;
-    private final IBinder binder = (IBinder) new MusicBinder();
-
-
-
+    private IBinder binder = (IBinder) new MusicBinder();
     public class MusicBinder extends Binder {
+        ICallback mCallback;
+
         public MusicService getService() {
             return MusicService.this;
+        }
+
+        void setFinishCallback(ICallback callback) {
+            mCallback = callback;
+        }
+
+        void finish() {
+            mCallback.onStop();
         }
     }
 
     public MusicService() {
-
+        /*// 当播完时
+        ((MusicBinder)binder).finish();*/
     }
 
     @Override
@@ -61,6 +71,7 @@ public class MusicService extends Service {
             //当它播放的时候
             mMediaPlayer.pause();
         }
+
         Log.d("SERVICE1","PAUSEMUSIC");
     }
     //继续播放音乐

@@ -10,7 +10,9 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
@@ -22,10 +24,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -77,10 +82,29 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private TextView Heart_text_1;
     private TextView Step_text_0;
     private TextView Step_text_1;
+    private TextView photo_text1;
+    private TextView photo_text;
+    private ImageView photoPicture;
     private ImageView heartPicture;
     private ImageView stepPicture;
     private ImageView bmiPicture;
+    private ImageView photoImage_1;
     ObjectAnimator circleAnimator;
+    private ServiceConnection connection = new ServiceConnection() {
+        //绑定service
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+
+        }
+        //解除绑定
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+
+
+
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -117,6 +141,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("hao","oncreateview");
+
         // Inflate the layout for this fragment
         if(view==null){
             view = inflater.inflate(R.layout.fragment_module_health, container, false);
@@ -146,27 +171,34 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     //播放动画
     private void makeAnimator(){
         ObjectAnimator animator = ObjectAnimator.ofFloat(heartPicture, "alpha", 1f, 0.4f, 1f);
-        animator.setDuration(5000);
+        animator.setDuration(12000);
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"translationX",250,0);
-        animator1.setDuration(20000);
+        animator1.setDuration(25000);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bmiPicture,"translationY",15,0,15);
-        animator2.setDuration(4000);
+        animator2.setDuration(7000);
         ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"alpha",1f,0.5f,1f);
-        animator3.setDuration(2000);
+        animator3.setDuration(1000);
         circleAnimator = ObjectAnimator.ofFloat(circleImageView,"rotation",0,360);
         circleAnimator.setDuration(50000);
+        ObjectAnimator animator4 = ObjectAnimator.ofFloat(photoPicture,"rotationY",0,360);
+        animator4.setDuration(13000);
+        ObjectAnimator animator5 = ObjectAnimator.ofFloat(photoImage_1,"rotationX",0,360);
+        animator5.setDuration(11000);
         //循环播放
         animator.setRepeatCount(-1);
         animator1.setRepeatCount(-1);
         animator2.setRepeatCount(-1);
         animator3.setRepeatCount(-1);
+        animator4.setRepeatCount(-1);
+        animator5.setRepeatCount(-1);
         circleAnimator.setRepeatCount(-1);
         //开始
         animator.start();
         animator1.start();
         animator2.start();
         animator3.start();
-
+        animator4.start();
+        animator5.start();
     }
 
     private void init_cardText() {
@@ -183,10 +215,16 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         Step_text_1 = view.findViewById(R.id.step_text1);
         change(Step_text_0,getActivity());
         change(Step_text_1,getActivity());
+        photo_text = view.findViewById(R.id.photo_text);
+        photo_text1 = view.findViewById(R.id.photo_text1);
+        change(photo_text,getActivity());
+        change(photo_text1,getActivity());
         heartPicture = view.findViewById(R.id.heartpicture);
         stepPicture = view.findViewById(R.id.step_picture);
         bmiPicture = view.findViewById(R.id.bmi_picture);
         circleImageView = view.findViewById(R.id.circleImageView);
+        photoPicture = view.findViewById(R.id.photoImage);
+        photoImage_1 = view.findViewById(R.id.photoImage_1);
     }
 
 
