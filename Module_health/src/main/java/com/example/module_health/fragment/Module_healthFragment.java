@@ -7,6 +7,7 @@ import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -75,6 +77,9 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private TextView Heart_text_1;
     private TextView Step_text_0;
     private TextView Step_text_1;
+    private ImageView heartPicture;
+    private ImageView stepPicture;
+    private ImageView bmiPicture;
     public Module_healthFragment() {
         // Required empty public constructor
     }
@@ -134,7 +139,30 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
 //        thread.start();
         init_text();
         init_cardText();
+        makeAnimator();
         return view;
+    }
+    //播放动画
+    private void makeAnimator(){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(heartPicture, "alpha", 1f, 0.4f, 1f);
+        animator.setDuration(8000);
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"translationX",250,0);
+        animator1.setDuration(20000);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(bmiPicture,"translationY",15,0,15);
+        animator2.setDuration(5000);
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"alpha",1f,0.5f,1f);
+        animator3.setDuration(2000);
+
+        //循环播放
+        animator.setRepeatCount(-1);
+        animator1.setRepeatCount(-1);
+        animator2.setRepeatCount(-1);
+        animator3.setRepeatCount(-1);
+        //开始
+        animator.start();
+        animator1.start();
+        animator2.start();
+        animator3.start();
     }
 
     private void init_cardText() {
@@ -151,6 +179,9 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         Step_text_1 = view.findViewById(R.id.step_text1);
         change(Step_text_0,getActivity());
         change(Step_text_1,getActivity());
+        heartPicture = view.findViewById(R.id.heartpicture);
+        stepPicture = view.findViewById(R.id.step_picture);
+        bmiPicture = view.findViewById(R.id.bmi_picture);
     }
 
 
