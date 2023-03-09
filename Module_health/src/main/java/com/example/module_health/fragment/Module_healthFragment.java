@@ -2,6 +2,13 @@ package com.example.module_health.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.module_health.Service.AuthService.getAuth;
+import static Utils.animator.makeAlpha;
+import static Utils.animator.makeAlpha1;
+import static Utils.animator.makeRotationX;
+import static Utils.animator.makeRotationY;
+import static Utils.animator.makeScaleX;
+import static Utils.animator.makeTranslationX;
+import static Utils.animator.makeTranslationY;
 import static Utils.changeTextStyle.change;
 import static Utils.changeTextStyle.change_1;
 import static Utils.changeTextStyle.change_2;
@@ -106,6 +113,11 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private ImageView stepPicture;
     private ImageView bmiPicture;
     private ImageView photoImage_1;
+    private ImageView photoImage_2;
+    private ImageView photoImage_3;
+    private ImageView stepPicture_1;
+    private ImageView heartPicture_1;
+
     ObjectAnimator circleAnimator;
     private ServiceConnection connection = new ServiceConnection() {
         //绑定service
@@ -187,46 +199,30 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     }
     //播放动画
     private void makeAnimator(){
-        ObjectAnimator animator = ObjectAnimator.ofFloat(heartPicture, "alpha", 1f, 0.4f, 1f);
-        animator.setDuration(12000);
 
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"scaleX",1,2,1);
-        animator1.setDuration(35000);
+        makeAlpha((heartPicture));
+        makeAlpha(heartPicture_1);
+        makeScaleX(stepPicture);
+        makeScaleX(stepPicture_1);
+        makeTranslationY(bmiPicture);
 
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(bmiPicture,"translationY",15,0,15);
-        animator2.setDuration(7000);
+        makeTranslationX(eye_button);
 
-        ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"translationX",-15,480,-15);
-        animator3.setDuration(100000);
 
         circleAnimator = ObjectAnimator.ofFloat(circleImageView,"rotation",0,360);
         circleAnimator.setDuration(50000);
 
-        ObjectAnimator animator4 = ObjectAnimator.ofFloat(photoPicture,"rotationY",0,360);
-        animator4.setDuration(13000);
+        makeRotationY(photoPicture);
+        makeRotationY(photoImage_2);
 
-        ObjectAnimator animator5 = ObjectAnimator.ofFloat(photoImage_1,"rotationX",0,360);
-        animator5.setDuration(11000);
-
-        ObjectAnimator animator6 = ObjectAnimator.ofFloat(eye_button,"alpha",1f, 0.6f, 1f);
-        animator6.setDuration(2000);
+        makeRotationX(photoImage_1);
+        makeRotationX(photoImage_3);
+        makeAlpha1(eye_button);
         //循环播放
-        animator.setRepeatCount(-1);
-        animator1.setRepeatCount(-1);
-        animator2.setRepeatCount(-1);
-        animator3.setRepeatCount(-1);
-        animator4.setRepeatCount(-1);
-        animator5.setRepeatCount(-1);
+
+
         circleAnimator.setRepeatCount(-1);
-        animator6.setRepeatCount(-1);
-        //开始
-        animator.start();
-        animator1.start();
-        animator2.start();
-        animator3.start();
-        animator4.start();
-        animator5.start();
-        animator6.start();
+
     }
 
     private void init_cardText() {
@@ -272,6 +268,11 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         circleImageView = view.findViewById(R.id.circleImageView);
         photoPicture = view.findViewById(R.id.photoImage);
         photoImage_1 = view.findViewById(R.id.photoImage_1);
+
+        heartPicture_1 = view.findViewById(R.id.heartpicture1);
+        stepPicture_1 = view.findViewById(R.id.step_picture1);
+        photoImage_2 = view.findViewById(R.id.photoImage2);
+        photoImage_3 = view.findViewById(R.id.photoImage_3);
     }
 
 

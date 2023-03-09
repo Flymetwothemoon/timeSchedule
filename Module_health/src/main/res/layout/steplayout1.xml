@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/step_picture"
+        android:id="@+id/step_picture1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="38dp"
