@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/step_text"
+        android:id="@+id/step_text2"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/step_text1"
+        android:id="@+id/step_text3"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginStart="20dp"
@@ -39,5 +39,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/step_text" />
+        app:layout_constraintTop_toBottomOf="@+id/step_text2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

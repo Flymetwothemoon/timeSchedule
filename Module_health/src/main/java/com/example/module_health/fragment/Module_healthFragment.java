@@ -8,6 +8,7 @@ import static Utils.changeTextStyle.change_2;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
 
 import android.content.ComponentName;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -33,6 +35,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -63,7 +66,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private String mParam1;
     private String mParam2;
     private View view;
-
+    private ConstraintLayout mConstraintLayout;
     private String[] permissions={Manifest.permission.ACTIVITY_RECOGNITION};
     private SensorManager mSensorMgr; // 声明一个传感管理器对象
     private int mStepDetector ; // 累加的步行检测次数
@@ -72,7 +75,15 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private Button start;
     private CardView off;
     private CardView on;
+    private CardView photoCardView;
+    private CardView photoCardView1;
     private CardView bmiCard;
+    private CardView heartCard;
+    private CardView touchbmi;
+    private CardView heartCard1;
+    private CardView stepCard;
+    private CardView stepCard1;
+
     private CircleImageView circleImageView;
     private Button eye_button;
     private TextView irealy;
@@ -84,6 +95,12 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private TextView Step_text_1;
     private TextView photo_text1;
     private TextView photo_text;
+    private TextView Heart_text_2;
+    private TextView Heart_text_3;
+    private TextView Step_text_2;
+    private TextView Step_text_3;
+    private TextView photo_text2;
+    private TextView photo_text3;
     private ImageView photoPicture;
     private ImageView heartPicture;
     private ImageView stepPicture;
@@ -172,18 +189,27 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private void makeAnimator(){
         ObjectAnimator animator = ObjectAnimator.ofFloat(heartPicture, "alpha", 1f, 0.4f, 1f);
         animator.setDuration(12000);
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"translationX",250,0);
-        animator1.setDuration(25000);
+
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(stepPicture,"scaleX",1,2,1);
+        animator1.setDuration(35000);
+
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(bmiPicture,"translationY",15,0,15);
         animator2.setDuration(7000);
-        ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"alpha",1f,0.5f,1f);
-        animator3.setDuration(1000);
+
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(eye_button,"translationX",-15,480,-15);
+        animator3.setDuration(100000);
+
         circleAnimator = ObjectAnimator.ofFloat(circleImageView,"rotation",0,360);
         circleAnimator.setDuration(50000);
+
         ObjectAnimator animator4 = ObjectAnimator.ofFloat(photoPicture,"rotationY",0,360);
         animator4.setDuration(13000);
+
         ObjectAnimator animator5 = ObjectAnimator.ofFloat(photoImage_1,"rotationX",0,360);
         animator5.setDuration(11000);
+
+        ObjectAnimator animator6 = ObjectAnimator.ofFloat(eye_button,"alpha",1f, 0.6f, 1f);
+        animator6.setDuration(2000);
         //循环播放
         animator.setRepeatCount(-1);
         animator1.setRepeatCount(-1);
@@ -192,6 +218,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         animator4.setRepeatCount(-1);
         animator5.setRepeatCount(-1);
         circleAnimator.setRepeatCount(-1);
+        animator6.setRepeatCount(-1);
         //开始
         animator.start();
         animator1.start();
@@ -199,6 +226,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         animator3.start();
         animator4.start();
         animator5.start();
+        animator6.start();
     }
 
     private void init_cardText() {
@@ -209,16 +237,35 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         change(BMI_text_1,getActivity());
         Heart_text_0 = view.findViewById(R.id.heart_text);
         Heart_text_1 = view.findViewById(R.id.heart_text1);
+        Heart_text_2 = view.findViewById(R.id.heart_text2);
+        Heart_text_3 = view.findViewById(R.id.heart_text3);
+
         change(Heart_text_0,getActivity());
         change(Heart_text_1,getActivity());
+        change(Heart_text_2,getActivity());
+        change(Heart_text_3,getActivity());
+
         Step_text_0 = view.findViewById(R.id.step_text);
         Step_text_1 = view.findViewById(R.id.step_text1);
+        Step_text_2 = view.findViewById(R.id.step_text2);
+        Step_text_3 = view.findViewById(R.id.step_text3);
+
         change(Step_text_0,getActivity());
         change(Step_text_1,getActivity());
+        change(Step_text_2,getActivity());
+        change(Step_text_3,getActivity());
+
         photo_text = view.findViewById(R.id.photo_text);
         photo_text1 = view.findViewById(R.id.photo_text1);
+        photo_text2 = view.findViewById(R.id.photo_text2);
+        photo_text3 = view.findViewById(R.id.photo_text3);
+
+
         change(photo_text,getActivity());
         change(photo_text1,getActivity());
+        change(photo_text2,getActivity());
+        change(photo_text3,getActivity());
+
         heartPicture = view.findViewById(R.id.heartpicture);
         stepPicture = view.findViewById(R.id.step_picture);
         bmiPicture = view.findViewById(R.id.bmi_picture);
@@ -237,10 +284,23 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         eye_button = view.findViewById(R.id.eye_button);
         off = view.findViewById(R.id.off);
         on = view.findViewById(R.id.on);
+        heartCard = view.findViewById(R.id.heart);
+        photoCardView = view.findViewById(R.id.photoCardView);
+        mConstraintLayout = view.findViewById(R.id.constraint);
+        touchbmi = view.findViewById(R.id.touchbmi);
+        photoCardView1 = view.findViewById(R.id.photoCardView1);
+        stepCard = view.findViewById(R.id.step);
+        stepCard1 = view.findViewById(R.id.step1);
+        heartCard = view.findViewById(R.id.heart);
+        heartCard1 = view.findViewById(R.id.heart1);
 
         eye_button.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
+        photoCardView.setOnClickListener(this);
+        bmiCard.setOnClickListener(this);
+        photoCardView1.setOnClickListener(this);
+        touchbmi.setOnClickListener(this);
 
         circleImageView.setOnClickListener(this);
         change(irealy,getActivity());
@@ -313,6 +373,40 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         if(v.getId()==R.id.bmicard){
 
         }
+        if(v.getId()==R.id.photoCardView||v.getId()==R.id.photoCardView1){
+            Intent intent = new Intent(getActivity(),PhotoActivity.class);
+            String a = "photo";
+            intent.putExtra("photo",a);
+            startActivity(intent);
+        }
+
+        if(v.getId()==R.id.bmicard){
+            bmiCard.setVisibility(v.GONE);
+            stepCard.setVisibility(v.GONE);
+            heartCard.setVisibility(v.GONE);
+            photoCardView.setVisibility(v.GONE);
+
+
+            touchbmi.setVisibility(v.VISIBLE);
+            stepCard1.setVisibility(v.VISIBLE);
+            heartCard1.setVisibility(v.VISIBLE);
+            photoCardView1.setVisibility(v.VISIBLE);
+
+
+
+        }
+        if(v.getId()==R.id.touchbmi){
+            bmiCard.setVisibility(v.VISIBLE);
+            stepCard.setVisibility(v.VISIBLE);
+            heartCard.setVisibility(v.VISIBLE);
+            photoCardView.setVisibility(v.VISIBLE);
+
+
+            touchbmi.setVisibility(v.GONE);
+            stepCard1.setVisibility(v.GONE);
+            heartCard1.setVisibility(v.GONE);
+            photoCardView1.setVisibility(v.GONE);
+        }
 
 //        if(v.getId()==R.id.button) {
 ////            knowYourBmi(getActivity(), height_0, weight_0, height, weight, enter_0, enter_1);
@@ -326,5 +420,6 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
 //            advice(getActivity());
 //        }
     }
+
 
 }

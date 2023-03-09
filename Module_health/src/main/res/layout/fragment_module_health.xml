@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-
+            android:id="@+id/constraint"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -166,68 +166,89 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/touchbmi"
+                android:layout_width="330dp"
+                android:layout_height="240dp"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Dynamic">
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/heart1"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/touchbmi">
+
+                <include layout="@layout/heartlayout1" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/step"
                 android:layout_width="160dp"
                 android:layout_height="175dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
                 app:cardBackgroundColor="@color/black"
                 app:cardCornerRadius="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bmicard">
+                app:layout_constraintTop_toTopOf="@+id/photoCardView">
 
                 <include layout="@layout/steplayout" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/photoCardView"
                 android:layout_width="160dp"
                 android:layout_height="175dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
-                android:id="@+id/photoCardView"
                 app:cardBackgroundColor="@color/black"
                 app:cardCornerRadius="25dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bmicard">
-                <include
-                    layout="@layout/photolayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/heart">
+
+                <include layout="@layout/photolayout" />
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/step1"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="20dp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/photoCardView1">
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/takephoto"-->
-<!--                android:layout_width="334dp"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                app:cardCornerRadius="15dp"-->
-<!--                android:clickable="true"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--               >-->
+                <include layout="@layout/steplayout1" />
+            </androidx.cardview.widget.CardView>
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@drawable/cardview">-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/photoCardView1"
+                android:layout_width="160dp"
+                android:layout_height="175dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heart1">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/text_6"-->
-<!--                        android:layout_width="200dp"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_marginLeft="15dp"-->
-<!--                        android:layout_marginTop="18dp"-->
-<!--                        android:text="拍照识别"-->
-<!--                        android:textColor="#000000"-->
-<!--                        android:textSize="20dp" />-->
+                <include layout="@layout/photolayout1" />
+            </androidx.cardview.widget.CardView>
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="60dp"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:src="@mipmap/photo" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
