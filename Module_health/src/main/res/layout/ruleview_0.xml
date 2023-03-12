@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <TextView
+        android:id="@+id/textHeight"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textSize="20dp"
         android:gravity="center"
         android:text="170"
-        android:textColor="@color/red"
-        android:id="@+id/textHeight"/>
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/rulerView_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.davistin.widget.RulerView
-        app:alphaEnable="false"
-        app:lineColor="#000000"
-        app:textColor="#000000"
-        android:layout_marginTop="10dp"
         android:id="@+id/rulerView_height"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:minValue="0"
-        app:selectorValue="170"
+        android:background="#000000"
+        app:alphaEnable="false"
+        app:layout_constraintTop_toBottomOf="@+id/textHeight"
+        app:lineColor="#ffffff"
         app:maxValue="230"
+        app:minValue="0"
         app:perValue="1"
-        android:background="#ffd900"/>
-</LinearLayout>
+        app:selectorValue="170"
+        app:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textWeight"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="50"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rulerView_height" />
+
+    <com.davistin.widget.RulerView
+        android:id="@+id/rulerView_weight"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#000000"
+        app:alphaEnable="false"
+        app:layout_constraintTop_toBottomOf="@+id/textWeight"
+        app:lineColor="#ffffff"
+        app:maxValue="150"
+        app:minValue="0"
+        app:perValue="1"
+        app:selectorValue="50"
+        app:textColor="#ffffff"
+        tools:layout_editor_absoluteX="-16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

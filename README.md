@@ -35,3 +35,5 @@ day n:
 健康界面重写,控件全加入动画效果,但service与activity的交互没弄好,还存在一些bug
 day n+1:
 BMI加入点击效果,其他控件跟着移动
+day n+2:
+step界面调用高德地图sdk,打开了地图,并实现了定位功能

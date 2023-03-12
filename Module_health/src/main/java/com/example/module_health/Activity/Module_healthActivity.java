@@ -8,14 +8,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
-
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_health.R;
 import com.example.module_health.fragment.health_Fragment;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 
 public class Module_healthActivity extends AppCompatActivity {
     @Override

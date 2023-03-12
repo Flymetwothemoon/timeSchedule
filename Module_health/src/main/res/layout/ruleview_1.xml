@@ -25,5 +25,5 @@
         app:selectorValue="50"
         app:maxValue="150"
         app:perValue="1"
-        android:background="#ffd900"/>
+        android:background="#ffffff"/>
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.module_health.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.example.module_health.Service.AuthService.getAuth;
 import static Utils.animator.makeAlpha;
 import static Utils.animator.makeAlpha1;
@@ -9,19 +8,19 @@ import static Utils.animator.makeRotationY;
 import static Utils.animator.makeScaleX;
 import static Utils.animator.makeTranslationX;
 import static Utils.animator.makeTranslationY;
+
 import static Utils.changeTextStyle.change;
-import static Utils.changeTextStyle.change_1;
-import static Utils.changeTextStyle.change_2;
+
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
+
 import android.annotation.SuppressLint;
 
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
+
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.os.Build;
@@ -32,26 +31,27 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Switch;
+
 import android.widget.TextView;
 
-import com.davistin.widget.RulerView;
+
+import com.example.module_health.Activity.HeartActivity;
 import com.example.module_health.Activity.PhotoActivity;
+import com.example.module_health.Activity.WalkActivity;
 import com.example.module_health.R;
 
 import com.example.module_health.Service.MusicService;
-import com.example.module_health.view.StepArcView;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -117,7 +117,9 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private ImageView photoImage_3;
     private ImageView stepPicture_1;
     private ImageView heartPicture_1;
+    private boolean isViewPagerScrollEnabled = false;
 
+    private ViewPager2 mViewPager2;
     ObjectAnimator circleAnimator;
     private ServiceConnection connection = new ServiceConnection() {
         //绑定service
@@ -184,7 +186,8 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
                 ActivityCompat.requestPermissions(getActivity(), permissions, 321);
             }
         }
-
+        String packageName = getContext().getPackageName();
+        Log.d("BAG",packageName);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -294,6 +297,8 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         stepCard1 = view.findViewById(R.id.step1);
         heartCard = view.findViewById(R.id.heart);
         heartCard1 = view.findViewById(R.id.heart1);
+        mViewPager2 = requireActivity().findViewById(R.id.viewpager2);
+        isIcallback(mViewPager2);
 
         eye_button.setOnClickListener(this);
         start.setOnClickListener(this);
@@ -302,6 +307,10 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         bmiCard.setOnClickListener(this);
         photoCardView1.setOnClickListener(this);
         touchbmi.setOnClickListener(this);
+        stepCard1.setOnClickListener(this);
+        stepCard.setOnClickListener(this);
+        heartCard.setOnClickListener(this);
+        heartCard1.setOnClickListener(this);
 
         circleImageView.setOnClickListener(this);
         change(irealy,getActivity());
@@ -318,6 +327,17 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
 //        change(mTextView_3,getActivity());
 //        count(bmi_text1);
     }
+
+    private void isIcallback(ViewPager2 viewPager2) {
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                // 在此处设置 ViewPager2 是否可滑动
+                viewPager2.setUserInputEnabled(isViewPagerScrollEnabled);
+            }
+        });
+    }
+
     //算bmi的那个
     private void count(TextView bmi_text1) {
         if (bmi_text1.getText().toString().equals("")) {
@@ -370,23 +390,20 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             circleAnimator.pause();
             stop.setVisibility(v.VISIBLE);
         }
-        //点击bmiCard,进入界面输入身高体重
-        if(v.getId()==R.id.bmicard){
 
-        }
+
         if(v.getId()==R.id.photoCardView||v.getId()==R.id.photoCardView1){
             Intent intent = new Intent(getActivity(),PhotoActivity.class);
             String a = "photo";
             intent.putExtra("photo",a);
             startActivity(intent);
         }
-
+        //点击bmiCard,进入界面输入身高体重
         if(v.getId()==R.id.bmicard){
             bmiCard.setVisibility(v.GONE);
             stepCard.setVisibility(v.GONE);
             heartCard.setVisibility(v.GONE);
             photoCardView.setVisibility(v.GONE);
-
 
             touchbmi.setVisibility(v.VISIBLE);
             stepCard1.setVisibility(v.VISIBLE);
@@ -402,13 +419,19 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             heartCard.setVisibility(v.VISIBLE);
             photoCardView.setVisibility(v.VISIBLE);
 
-
             touchbmi.setVisibility(v.GONE);
             stepCard1.setVisibility(v.GONE);
             heartCard1.setVisibility(v.GONE);
             photoCardView1.setVisibility(v.GONE);
         }
-
+        if(v.getId()==R.id.step||v.getId()==R.id.step1){
+            Intent intent = new Intent(getActivity(), WalkActivity.class);
+            startActivity(intent);
+        }
+        if(v.getId()==R.id.heart||v.getId()==R.id.heart1){
+            Intent intent = new Intent(getActivity(), HeartActivity.class);
+            startActivity(intent);
+        }
 //        if(v.getId()==R.id.button) {
 ////            knowYourBmi(getActivity(), height_0, weight_0, height, weight, enter_0, enter_1);
 ////            Log.d("hao","");

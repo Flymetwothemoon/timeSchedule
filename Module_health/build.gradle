@@ -10,7 +10,10 @@ android {
     defaultConfig {
         minSdk 29
         targetSdk 32
-
+        ndk {
+            // 设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+        }
         if(isModule.toBoolean()){
             applicationId "com.example.module_health"
         }
@@ -41,7 +44,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 }
+
 
 dependencies {
     implementation project(":Baselibs")
@@ -50,6 +56,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.4.1'
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'androidx.camera:camera-view:1.1.0-beta02'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.4.+'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     annotationProcessor rootProject.ext.annotationLibs
     def room_version = "2.4.1"
     //Room数据库的依赖
@@ -87,5 +96,10 @@ dependencies {
     implementation 'com.github.davistsin:RulerView:v1.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation'com.github.yoakerin:LeonClock:v1.0.1'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation files('libs/AMap2DMap_6.0.0_AMapSearch_9.4.5_AMapLocation_6.2.0_20221026.jar')
+
+
+
+
 }
