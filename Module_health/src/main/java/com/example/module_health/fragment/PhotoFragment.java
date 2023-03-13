@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
@@ -173,7 +174,7 @@ public class PhotoFragment extends Fragment {
                         public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                             getActivity().
                             runOnUiThread(() -> Toast.makeText(getContext(), "Image saved successfully"+getContext().getExternalMediaDirs()[0], Toast.LENGTH_SHORT).show());
-
+                            Log.d("picture",String.valueOf(getContext().getExternalMediaDirs()[0]));
                         }
 
                         @Override

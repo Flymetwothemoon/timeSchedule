@@ -1,6 +1,8 @@
 package com.example.module_health.Service;
 
 
+import android.util.Log;
+
 import java.net.URLEncoder;
 
 public class Ingredient {
@@ -18,7 +20,7 @@ public class Ingredient {
         String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/classify/ingredient";
         try {
             // 本地文件路径
-            String filePath = "content://media/external/images/media/84184";
+            String filePath = "/storage/emulated/0/Android/media/com.example.timeschedule";
             byte[] imgData = FileUtil.readFileByBytes(filePath);
             String imgStr = Base64Util.encode(imgData);
             String imgParam = URLEncoder.encode(imgStr, "UTF-8");
@@ -30,6 +32,7 @@ public class Ingredient {
 
             String result = HttpUtil.post(url, accessToken, param);
             System.out.println(result);
+
             return result;
         } catch (Exception e) {
             e.printStackTrace();

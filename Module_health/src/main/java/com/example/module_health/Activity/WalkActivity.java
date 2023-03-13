@@ -150,7 +150,7 @@ public class WalkActivity extends AppCompatActivity implements ServiceConnection
                     }
                 };
                 Timer timer = new Timer();
-                timer.schedule(timerTask, 2000, 1000);
+                timer.schedule(timerTask, 5000, 1000);
             }
         });
         thread.start();
