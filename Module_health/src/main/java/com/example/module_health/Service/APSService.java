@@ -9,15 +9,26 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Utils.AMapHolder;
+import Utils.AMapMyLocationStyleHolder;
+
 public class APSService extends Service implements AMapLocationListener {
     //AMapLocationClient是高德地图Android SDK中的一个定位客户端类，用于获取设备的地理位置信息。
     // 通过AMapLocationClient，你可以获取设备的经度、纬度、精度、速度、方向等位置信息，并且可以设置定位的模式、间隔时间等参数。
     public AMapLocationClient mlocationClient;
+    public AMapLocationListener mAMapLocationListener;
+    private AMapLocation amapLocation;
+    private AMap amap;
+    private MyLocationStyle mMyLocationStyle;
     ///声明mLocationOption对象
 //    AMapLocationClientOption是高德地图Android SDK中的一个定位参数类，用于设置定位的各种参数。使用AMapLocationClientOption，
 //    你可以设置定位的模式、定位间隔时间、是否需要地址信息、是否单次定位等参数。
@@ -29,22 +40,37 @@ public class APSService extends Service implements AMapLocationListener {
 //    setInterval：设置定位间隔时间，单位为毫秒。
 //    setGpsFirst：设置是否优先使用GPS进行定位，true表示优先使用GPS，false表示不优先使用。
 //    setMockEnable：设置是否允许模拟位置，true表示允许，false表示不允许。
+
+
+    //初始化定位蓝点样式类
+    // myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
+    // 连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。
+    // （1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
     public AMapLocationClientOption mLocationOption = null;
     @Override
     public void onCreate() {
         super.onCreate();
-        startLocation();
+
     }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        startLocation();
+        return super.onStartCommand(intent, flags, startId);
+
+    }
+
     private void startLocation() {
         //这块是蓝标
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         //初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
-        myLocationStyle.interval(100); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        myLocationStyle.interval(1000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
 
         try {
             mlocationClient = new AMapLocationClient(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d("service1","go1");
         }
         //设置定位监听
         mlocationClient.setLocationListener(this);
@@ -55,7 +81,7 @@ public class APSService extends Service implements AMapLocationListener {
 //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setOnceLocation(false);
 //设置是否为单次定位
-        mLocationOption.setInterval(100);
+        mLocationOption.setInterval(1000);
 //设置定位参数
         mlocationClient.setLocationOption(mLocationOption);
 // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
@@ -64,6 +90,8 @@ public class APSService extends Service implements AMapLocationListener {
 // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
 //启动定位
         mlocationClient.startLocation();
+
+        Log.d("service1","go2");
     }
     @Override
     public IBinder onBind(Intent intent) {
@@ -75,14 +103,27 @@ public class APSService extends Service implements AMapLocationListener {
     public void onLocationChanged(AMapLocation amapLocation) {
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
+                amap = AMapHolder.getAMap();
                 //定位成功回调信息，设置相关消息
+                mMyLocationStyle = AMapMyLocationStyleHolder.getaMapMyLocationStyleHolder();
                 amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
                 amapLocation.getLatitude();//获取纬度
                 amapLocation.getLongitude();//获取经度
                 amapLocation.getAccuracy();//获取精度信息
+                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
+                amap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 21));
+
+                // 创建一个 MarkerOptions 对象
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                // 添加光标到地图视图上
+                amap.addMarker(markerOptions);
+
+
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(amapLocation.getTime());
                 df.format(date);//定位时间
+                Log.d("service1",String.valueOf( "定位"+amapLocation.getLocationType()));
 
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
@@ -92,4 +133,5 @@ public class APSService extends Service implements AMapLocationListener {
             }
         }
     }
+
 }
