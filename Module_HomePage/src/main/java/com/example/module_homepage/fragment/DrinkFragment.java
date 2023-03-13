@@ -132,6 +132,7 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
                             }
                             if (Integer.parseInt(water) >= 1500) {
                                 water = 1500+"";
+
                             }
                             histogram.setData(tempWater_0, Integer.parseInt(water), MAX_WATER);
                         }
