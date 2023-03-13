@@ -141,7 +141,6 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
             }
         },0,100);
         return view;
-
     }
 
     @Override
