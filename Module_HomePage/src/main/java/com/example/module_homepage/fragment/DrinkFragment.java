@@ -69,6 +69,7 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
 
     private final int MAX_WATER = 1800;
 
+
     private String water; // 饮水量
 
     private ImageView iv_fit; // 设置
