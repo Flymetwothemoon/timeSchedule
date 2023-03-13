@@ -4,6 +4,9 @@
 
     <application android:allowBackup="true">
         <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.foodActivity"
             android:exported="false">
             <meta-data

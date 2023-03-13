@@ -7,7 +7,7 @@
     <string name="share">分享</string>
 
     <string name="author">gao</string>
-
+    <string name="cheese_hunt_hint">请输入要查询的内容</string>
     <string name="settings">设置</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
