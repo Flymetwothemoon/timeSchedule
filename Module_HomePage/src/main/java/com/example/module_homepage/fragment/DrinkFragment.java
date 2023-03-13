@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -69,13 +70,12 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
 
     private final int MAX_WATER = 1800;
 
-
     private String water; // 饮水量
 
     private ImageView iv_fit; // 设置
     private ImageView back;
 
-    private ImageView btn_add; // 添加
+    private Button btn_add; // 添加
 
     private Histogram histogram;
 
@@ -110,21 +110,20 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
         iv_fit.setOnClickListener(this);
         btn_add.setOnClickListener(this);
         back.setOnClickListener(this);
-        SharedPreferences sharedPreferences= getActivity().getSharedPreferences("text",Context.MODE_PRIVATE);
-        Timer timer=new Timer();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("text", Context.MODE_PRIVATE);
+        Timer timer = new Timer();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(getActivity()==null){
+                if (getActivity() == null) {
                     return;
-                }
-                else{
+                } else {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            water=sharedPreferences.getString("text","0");
+                            water = sharedPreferences.getString("text", "0");
 //                        Log.d("2222", "onCreateView: " + water);
                             tempWater = Integer.parseInt(water);
                             int tempWater_0 = tempWater;
@@ -132,16 +131,15 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
                                 tempWater_0 = 1500;
                             }
                             if (Integer.parseInt(water) >= 1500) {
-                                water = 1500+"";
+                                water = 1500 + "";
 
                             }
                             histogram.setData(tempWater_0, Integer.parseInt(water), MAX_WATER);
                         }
                     });
-
                 }
             }
-        },0,100);
+        }, 0, 100);
         return view;
     }
 
@@ -151,17 +149,14 @@ public class DrinkFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getActivity(), FitActivity.class);
             startActivity(intent);
 
-        }
-        else if(v.getId()==R.id.btn_add&&tempWater>=1500){
-            Toast.makeText(getContext(),"今天你喝的水已经超标",Toast.LENGTH_SHORT).show();
-        }
-        else if (v.getId() == R.id.btn_add&&tempWater<1500) {
+        } else if (v.getId() == R.id.btn_add && tempWater >= 1500) {
+            Toast.makeText(getContext(), "今天你喝的水已经超标", Toast.LENGTH_SHORT).show();
+        } else if (v.getId() == R.id.btn_add && tempWater < 1500) {
 
             Intent intent = new Intent(getActivity(), AddActivity.class);
 
             startActivity(intent);
-        }
-         else if(v.getId()==R.id.back){
+        } else if (v.getId() == R.id.back) {
             getActivity().finish();
         }
     }

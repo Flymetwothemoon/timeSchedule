@@ -13,25 +13,38 @@
         android:layout_height="match_parent">
 
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
+        <EditText
+            android:id="@+id/et_search"
             android:layout_width="365dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/layout_bf"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="请输入要查询的内容"
+            android:textColor="#686565"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/searchView"-->
+<!--            android:layout_width="365dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:background="@drawable/layout_bf"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <com.youth.banner.Banner
             android:id="@+id/banner"
             android:layout_width="365dp"
             android:layout_height="200dp"
-
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/et_search"
             tools:ignore="MissingConstraints">
 
 
