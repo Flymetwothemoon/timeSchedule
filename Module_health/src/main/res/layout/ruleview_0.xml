@@ -22,7 +22,7 @@
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:gravity="center"
-        android:text="17.3"
+        android:text="0"
         android:textSize="25dp"
         android:textColor="#FFFFE0"
         android:id="@+id/bmi_num"
@@ -47,7 +47,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="170"
+        android:text="0.0CM"
         android:textColor="#ffffff"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
         app:maxValue="230"
         app:minValue="0"
         app:perValue="1"
-        app:selectorValue="170"
+        app:selectorValue="0"
         app:textColor="#ffffff"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -75,7 +75,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="50"
+        android:text="0.0KG"
         android:textColor="#ffffff"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         app:maxValue="150"
         app:minValue="0"
         app:perValue="1"
-        app:selectorValue="50"
+        app:selectorValue="0"
         app:textColor="#ffffff"
         tools:layout_editor_absoluteX="-16dp" />
 

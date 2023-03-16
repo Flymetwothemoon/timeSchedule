@@ -456,7 +456,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    bmi_height.setText("" + value);
+                                    bmi_height.setText("" + value+"CM");
                                     height_button.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -478,7 +478,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    textWeight.setText("" + value);
+                                    textWeight.setText("" + value+"KG");
                                     weight_button.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
