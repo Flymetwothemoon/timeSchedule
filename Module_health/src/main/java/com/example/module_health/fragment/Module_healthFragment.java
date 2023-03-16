@@ -18,9 +18,11 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.os.Build;
@@ -31,6 +33,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.IBinder;
@@ -45,13 +50,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.davistin.widget.RulerView;
 import com.example.module_health.Activity.HeartActivity;
 import com.example.module_health.Activity.PhotoActivity;
 import com.example.module_health.Activity.WalkActivity;
+import com.example.module_health.MVVM.bmiViewModel;
 import com.example.module_health.R;
 
 import com.example.module_health.Service.MusicService;
 
+
+import java.text.DecimalFormat;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -90,7 +99,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private CardView heartCard1;
     private CardView stepCard;
     private CardView stepCard1;
-
+    private TextView Text_BMI;
     private CircleImageView circleImageView;
     private Button eye_button;
     private TextView irealy;
@@ -108,6 +117,14 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private TextView Step_text_3;
     private TextView photo_text2;
     private TextView photo_text3;
+    private TextView bmi_Text;
+    private TextView bmi_num;
+    private TextView bmi_height;
+    private TextView textWeight;
+
+    private RulerView rulerView_height;
+    private RulerView rulerView_weight;
+
     private ImageView photoPicture;
     private ImageView heartPicture;
     private ImageView stepPicture;
@@ -118,6 +135,8 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
     private ImageView stepPicture_1;
     private ImageView heartPicture_1;
     private boolean isViewPagerScrollEnabled = false;
+
+    private bmiViewModel mBmiViewModel;
 
     private ViewPager2 mViewPager2;
     ObjectAnimator circleAnimator;
@@ -177,6 +196,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         if(view==null){
             view = inflater.inflate(R.layout.fragment_module_health, container, false);
         }
+        mBmiViewModel = new ViewModelProvider(this).get(bmiViewModel.class);;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // 检查该权限是否已经获取
             int get = ContextCompat.checkSelfPermission(getActivity(), permissions[0]);
@@ -234,15 +254,17 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         bmiCard.setOnClickListener(this);
         change(BMI_text0,getActivity());
         change(BMI_text_1,getActivity());
+
         Heart_text_0 = view.findViewById(R.id.heart_text);
         Heart_text_1 = view.findViewById(R.id.heart_text1);
         Heart_text_2 = view.findViewById(R.id.heart_text2);
         Heart_text_3 = view.findViewById(R.id.heart_text3);
-
+        Text_BMI = view.findViewById(R.id.text_bmi);
         change(Heart_text_0,getActivity());
         change(Heart_text_1,getActivity());
         change(Heart_text_2,getActivity());
         change(Heart_text_3,getActivity());
+        change(Text_BMI,getActivity());
 
         Step_text_0 = view.findViewById(R.id.step_text);
         Step_text_1 = view.findViewById(R.id.step_text1);
@@ -315,17 +337,6 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         circleImageView.setOnClickListener(this);
         change(irealy,getActivity());
 
-//        mCardView_5.setOnClickListener(this);
-//        mCardView6.setOnClickListener(this);
-//        change_2(mTextView_1,getActivity());
-//        change_2(mTextView_2,getActivity());
-//        change_1(mTextView_3,getActivity());
-//        change_2(bmi_text,getActivity());
-//        change_2(mTextView_4,getActivity());
-//        change_2(mTextView_5,getActivity());
-//        change_2(music,getActivity());
-//        change(mTextView_3,getActivity());
-//        count(bmi_text1);
     }
 
     private void isIcallback(ViewPager2 viewPager2) {
@@ -338,15 +349,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
         });
     }
 
-    //算bmi的那个
-    private void count(TextView bmi_text1) {
-        if (bmi_text1.getText().toString().equals("")) {
-            bmi_text1.setText("未知");
-        } else {
 
-
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -394,8 +397,6 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
 
         if(v.getId()==R.id.photoCardView||v.getId()==R.id.photoCardView1){
             Intent intent = new Intent(getActivity(),PhotoActivity.class);
-            String a = "photo";
-            intent.putExtra("photo",a);
             startActivity(intent);
         }
         //点击bmiCard,进入界面输入身高体重
@@ -409,7 +410,7 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             stepCard1.setVisibility(v.VISIBLE);
             heartCard1.setVisibility(v.VISIBLE);
             photoCardView1.setVisibility(v.VISIBLE);
-
+            initbmiCard();
 
 
         }
@@ -432,18 +433,85 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
             Intent intent = new Intent(getActivity(), HeartActivity.class);
             startActivity(intent);
         }
-//        if(v.getId()==R.id.button) {
-////            knowYourBmi(getActivity(), height_0, weight_0, height, weight, enter_0, enter_1);
-////            Log.d("hao","");
-//
-//        }
-//        else if(v.getId()==R.id.cardView5){
-//           clockIn(getActivity());
-//        }
-//        else if(v.getId()==R.id.cardView6){
-//            advice(getActivity());
-//        }
+
     }
+    @SuppressLint("SetTextI18n")
+    private void initbmiCard(){
+        int cnt1 = 0;
+        int cnt2 = 0;
+        bmi_num = view.findViewById(R.id.bmi_num);
+        bmi_height = view.findViewById(R.id.textHeight);
+        textWeight = view.findViewById(R.id.textWeight);
+        bmi_num = view.findViewById(R.id.bmi_num);
 
+        rulerView_height = view.findViewById(R.id.rulerView_height);
+        rulerView_weight = view.findViewById(R.id.rulerView_weight);
 
+        Button weight_button = view.findViewById(R.id.weight_button);
+        Button height_button = view.findViewById(R.id.height_button);
+
+        rulerView_height.setOnValueChangeListener(new RulerView.OnValueChangeListener() {
+                        @Override
+                        public void onValueChange(float value) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    bmi_height.setText("" + value);
+                                    height_button.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            mBmiViewModel.setHeight_num(value);
+                                            Log.d("num1","value height"+value);
+                                            Log.d("num1","value1 height"+mBmiViewModel.height_num.getValue());
+                                            countBMI();
+                                        }
+                                    });
+
+                                }
+                            });
+
+                        }
+                    });
+                    rulerView_weight.setOnValueChangeListener(new RulerView.OnValueChangeListener() {
+                        @Override
+                        public void onValueChange(float value) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    textWeight.setText("" + value);
+                                    weight_button.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                          mBmiViewModel.setWeight_num(value);
+                                          Log.d("num1","value weight"+value);
+                                          Log.d("num1","value1 weight"+mBmiViewModel.weight_num.getValue());
+                                          countBMI();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+             countBMI();
+                }
+             private void countBMI(){
+
+             if(mBmiViewModel.height_num!=null&&mBmiViewModel.weight_num!=null) {
+              mBmiViewModel.numBMI(mBmiViewModel.height_num, mBmiViewModel.weight_num);
+
+              mBmiViewModel.bmi.observe(this, new Observer<Float>() {
+              @Override
+               public void onChanged(Float aFloat) {
+                  bmi_num.setText(new DecimalFormat( ".0" ).format(aFloat));
+                  Log.d("num1 bmi",""+bmi_num.getText().toString());
+                            }
+                        });
+                    }
+                }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("num1","pause");
+    }
 }

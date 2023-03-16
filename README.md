@@ -39,3 +39,5 @@ day n+2:
 step界面调用高德地图sdk,打开了地图,并实现了定位功能
 day n+3:
 health界面的step完成
+day n+4:
+bmi界面写完

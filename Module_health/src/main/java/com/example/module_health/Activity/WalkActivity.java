@@ -1,5 +1,5 @@
 package com.example.module_health.Activity;
-;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -95,7 +95,7 @@ public class WalkActivity extends AppCompatActivity implements ServiceConnection
                        startService(intent);
                        Log.d("service1","gogogo");
                    }
-               },1000);
+               },100);
 
                     }
 
@@ -132,7 +132,7 @@ public class WalkActivity extends AppCompatActivity implements ServiceConnection
     private void getStep(){
         stepcount_text = findViewById(R.id.stepcount_text);
         Intent intent = new Intent(WalkActivity.this,StepService.class);
-        startService(intent);
+
         bindService(intent,this,Context.BIND_AUTO_CREATE);
     }
 

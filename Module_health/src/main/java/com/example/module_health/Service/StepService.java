@@ -39,7 +39,10 @@ public class StepService extends Service {
         mSensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                mCount++;
+                if(sensorEvent.sensor.getType()==Sensor.TYPE_STEP_COUNTER)
+                {
+                    mCount++;
+                }
             }
 
             @Override

@@ -2,7 +2,9 @@ package com.example.module_health.fragment;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
@@ -109,17 +112,12 @@ public class PhotoFragment extends Fragment {
         return mView;
     }
     private void init() {
-        if (ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE},
-                    1);
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 如果没有这两个权限，请请求用户授权
+            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 2);
         }
-        startCamera();
-
+            startCamera();
     }
     public void startCamera(){
         mButton = mView.findViewById(R.id.button_1);
@@ -162,27 +160,36 @@ public class PhotoFragment extends Fragment {
                 // 设置拍照按钮的点击事件
                  mButton.setOnClickListener(view -> {
                     // 创建文件以保存图像
-                    File file = new File(getContext().getExternalMediaDirs()[0], "image.jpg");
-                    //File file = new File(Environment.DIRECTORY_PICTURES, "image.jpg");
-                    // 创建图像保存选项
-                    ImageCapture.OutputFileOptions outputFileOptions =
-                            new ImageCapture.OutputFileOptions.Builder(file).build();
+                     File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                     // 创建一个子目录
+                     File outputDirectory = new File(storageDir, "MyApp");
+                     // 如果目录不存在，则创建它
+                     if (!outputDirectory.exists()) {
+                         outputDirectory.mkdirs();
+                     }
+                     File photoFile = new File(outputDirectory, "photo.jpg");
 
-                    // 拍照并保存图像
-                    imageCapture.takePicture(outputFileOptions, executor, new ImageCapture.OnImageSavedCallback() {
-                        @Override
-                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                            getActivity().
-                            runOnUiThread(() -> Toast.makeText(getContext(), "Image saved successfully"+getContext().getExternalMediaDirs()[0], Toast.LENGTH_SHORT).show());
-                            Log.d("picture",String.valueOf(getContext().getExternalMediaDirs()[0]));
-                        }
+// 创建一个保存照片的输出配置
+                     ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
 
-                        @Override
-                        public void onError(@NonNull ImageCaptureException exception) {
-                            getActivity().
-                            runOnUiThread(() -> Toast.makeText(getContext(), "Error saving image", Toast.LENGTH_SHORT).show());
-                        }
-                    });
+// 拍照
+                     imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(getContext()), new ImageCapture.OnImageSavedCallback() {
+                         @Override
+                         public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
+                             // 照片已保存到本地相册
+                             Uri savedUri = output.getSavedUri() != null ? output.getSavedUri() : Uri.fromFile(photoFile);
+                             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                             mediaScanIntent.setData(savedUri);
+                             getContext().sendBroadcast(mediaScanIntent);
+                             Toast.makeText(getContext(),"拍照成功",Toast.LENGTH_SHORT).show();
+                         }
+
+                         @Override
+                         public void onError(@NonNull ImageCaptureException exception) {
+                             // 处理错误
+                             Toast.makeText(getContext(),"失败",Toast.LENGTH_SHORT).show();
+                         }
+                     });
                 });
 
             } catch (ExecutionException | InterruptedException e) {
