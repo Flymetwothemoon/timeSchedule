@@ -17,8 +17,8 @@ public class bmiViewModel extends ViewModel {
     public void numBMI(MutableLiveData<Float>height_num,MutableLiveData<Float>weight_num){
         Float num;
         if(height_num.getValue()!=null&&weight_num.getValue()!=null) {
-            if (height_num.getValue() == 0.0F) {
-                bmi.setValue(0.0F);
+            if (height_num.getValue() == 0.0) {
+                bmi.setValue(0.00F);
             } else {
                 num = weight_num.getValue() / ((height_num.getValue()/100) * (height_num.getValue()/100));
                 bmi.setValue(num);

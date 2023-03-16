@@ -494,20 +494,28 @@ public class Module_healthFragment extends Fragment implements  View.OnClickList
                     });
              countBMI();
                 }
-             private void countBMI(){
+             private void countBMI() {
 
-             if(mBmiViewModel.height_num!=null&&mBmiViewModel.weight_num!=null) {
-              mBmiViewModel.numBMI(mBmiViewModel.height_num, mBmiViewModel.weight_num);
+                     if (mBmiViewModel.height_num != null && mBmiViewModel.weight_num != null) {
+                         mBmiViewModel.numBMI(mBmiViewModel.height_num, mBmiViewModel.weight_num);
 
-              mBmiViewModel.bmi.observe(this, new Observer<Float>() {
-              @Override
-               public void onChanged(Float aFloat) {
-                  bmi_num.setText(new DecimalFormat( ".0" ).format(aFloat));
-                  Log.d("num1 bmi",""+bmi_num.getText().toString());
-                            }
-                        });
-                    }
-                }
+                             mBmiViewModel.bmi.observe(this, new Observer<Float>() {
+                                 @Override
+                                 public void onChanged(Float aFloat) {
+                                     if(new DecimalFormat(".0").format(aFloat).equals(".0")){
+                                         bmi_num.setText("0");
+                                     }
+                                     else {
+                                         bmi_num.setText(new DecimalFormat(".0").format(aFloat));
+
+                                         Log.d("num1 bmi", "" + bmi_num.getText().toString());
+                                     }
+                                 }
+                             });
+
+                     }
+                 }
+
 
     @Override
     public void onPause() {
