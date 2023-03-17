@@ -16,11 +16,14 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,12 +34,15 @@ import com.example.module_health.R;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class PhotoActivity extends AppCompatActivity {
     private Button mButton;
     private PreviewView mPreviewView;
-
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,42 +120,46 @@ public class PhotoActivity extends AppCompatActivity {
                 // 绑定用例到相机
                 cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview, imageCapture);
 
-                // 设置拍照按钮的点击事件
                 mButton.setOnClickListener(view -> {
                     // 创建文件以保存图像
-                    File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                    // 创建一个子目录
-                    File outputDirectory = new File(storageDir, "MyApp");
-                    // 如果目录不存在，则创建它
-                    if (!outputDirectory.exists()) {
-                        outputDirectory.mkdirs();
-                    }
-                    File photoFile = new File(outputDirectory, "photo.jpg");
+                    // 创建一个输出文件选项对象
+                    File outputDirectory = getExternalFilesDir(Environment.DIRECTORY_DCIM);
+                    String filename = "IMG_" + System.currentTimeMillis() + ".jpg";
+                    File file = new File(outputDirectory, filename);
+                    ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
 
-// 创建一个保存照片的输出配置
-                    ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
-
-// 拍照
-                    imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
+// 拍照并保存图像
+                    imageCapture.takePicture(outputFileOptions, executor, new ImageCapture.OnImageSavedCallback() {
                         @Override
-                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
-                            // 照片已保存到本地相册
-                            Uri savedUri = output.getSavedUri() != null ? output.getSavedUri() : Uri.fromFile(photoFile);
-                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            mediaScanIntent.setData(savedUri);
-                            sendBroadcast(mediaScanIntent);
-                            Toast.makeText(PhotoActivity.this, "拍照成功", Toast.LENGTH_SHORT).show();
+                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                            // 将照片添加到相册
+                            ContentResolver contentResolver = getContentResolver();
+                            String mimeType = "image/jpeg";
+                            String title = filename;
+                            String description = null;
+                            long dateAdded = System.currentTimeMillis();
+                            String directory = outputDirectory.getAbsolutePath();
+                            String filePath = file.getAbsolutePath();
+                            try {
+                                MediaStore.Images.Media.insertImage(contentResolver, filePath, title, description);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                                Log.d("photo1","这部没成功");
+                            }
+                            MediaScannerConnection.scanFile(PhotoActivity.this, new String[] { filePath }, new String[] { mimeType }, null);
+
+                            Log.d("photo1","成功");
                         }
 
                         @Override
                         public void onError(@NonNull ImageCaptureException exception) {
-                            Log.d("service4545", String.valueOf(exception));
+                            // 处理错误
+
+                            Log.d("photo1","失败");
                         }
-
-
                     });
-                });
 
+                });
             } catch (ExecutionException | InterruptedException e) {
                 // 处理异常
                 e.printStackTrace();

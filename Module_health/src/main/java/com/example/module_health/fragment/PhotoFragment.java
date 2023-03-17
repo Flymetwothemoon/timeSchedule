@@ -117,7 +117,9 @@ public class PhotoFragment extends Fragment {
             // 如果没有这两个权限，请请求用户授权
             ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 2);
         }
+        else 
             startCamera();
+        
     }
     public void startCamera(){
         mButton = mView.findViewById(R.id.button_1);
@@ -125,6 +127,7 @@ public class PhotoFragment extends Fragment {
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture
                 = ProcessCameraProvider.getInstance(getContext());
         cameraProviderFuture.addListener(() -> {
+
             try {
                 // 获取CameraProvider
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
@@ -150,51 +153,44 @@ public class PhotoFragment extends Fragment {
                         .setTargetAspectRatio(AspectRatio.RATIO_16_9)
                         // setTargetRotation(mPreviewView.getDisplay().getRotation()),弄方向的
                         .build();
-
-
-
-
                 // 绑定用例到相机
                 cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, preview, imageCapture);
-
+                Log.d("photo1","绑定结束");
                 // 设置拍照按钮的点击事件
                  mButton.setOnClickListener(view -> {
                     // 创建文件以保存图像
-                     File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                     // 创建一个子目录
-                     File outputDirectory = new File(storageDir, "MyApp");
-                     // 如果目录不存在，则创建它
-                     if (!outputDirectory.exists()) {
-                         outputDirectory.mkdirs();
-                     }
-                     File photoFile = new File(outputDirectory, "photo.jpg");
-
-// 创建一个保存照片的输出配置
-                     ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(photoFile).build();
-
-// 拍照
-                     imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(getContext()), new ImageCapture.OnImageSavedCallback() {
+                     // 创建一个输出文件选项对象
+                     File outputDirectory = getActivity().getExternalFilesDir(Environment.DIRECTORY_DCIM);
+                     String filename = "IMG_" + System.currentTimeMillis() + ".jpg";
+                     File file = new File(outputDirectory, filename);
+                     ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
+                     Log.d("photo1","进行到这部");
+// 拍照并保存图像
+                     imageCapture.takePicture(outputFileOptions, executor, new ImageCapture.OnImageSavedCallback() {
                          @Override
-                         public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
-                             // 照片已保存到本地相册
-                             Uri savedUri = output.getSavedUri() != null ? output.getSavedUri() : Uri.fromFile(photoFile);
+                         public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                             // 将照片添加到相册
                              Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                             mediaScanIntent.setData(savedUri);
-                             getContext().sendBroadcast(mediaScanIntent);
-                             Toast.makeText(getContext(),"拍照成功",Toast.LENGTH_SHORT).show();
+                             Uri contentUri = Uri.fromFile(file);
+                             mediaScanIntent.setData(contentUri);
+                             getActivity().sendBroadcast(mediaScanIntent);
+                             Toast.makeText(getContext(),"成功",Toast.LENGTH_SHORT).show();
                          }
 
                          @Override
                          public void onError(@NonNull ImageCaptureException exception) {
                              // 处理错误
                              Toast.makeText(getContext(),"失败",Toast.LENGTH_SHORT).show();
+                             Log.d("photo1","失败");
                          }
                      });
-                });
+
+                 });
 
             } catch (ExecutionException | InterruptedException e) {
                 // 处理异常
                 e.printStackTrace();
+                Log.d("photo1","直接没进去");
             }
         }, ContextCompat.getMainExecutor(getContext()));
     }
