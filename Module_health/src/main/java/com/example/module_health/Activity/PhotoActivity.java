@@ -19,6 +19,7 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -103,7 +104,7 @@ public class PhotoActivity extends AppCompatActivity {
 
                 // 配置预览
                 Preview preview = new Preview.Builder()
-                        .setTargetAspectRatio(AspectRatio.RATIO_4_3).
+                        .setTargetAspectRatio(AspectRatio.RATIO_16_9).
 //                        setTargetRotation(mPreviewView.getDisplay().getRotation())
         build();
                 // 绑定预览到PreviewView
@@ -147,7 +148,9 @@ public class PhotoActivity extends AppCompatActivity {
                                 Log.d("photo1","这部没成功");
                             }
                             MediaScannerConnection.scanFile(PhotoActivity.this, new String[] { filePath }, new String[] { mimeType }, null);
-
+                            Intent intent = new Intent(PhotoActivity.this,IdentifyActivity.class);
+                            startActivity(intent);
+                            finish();
                             Log.d("photo1","成功");
                         }
 

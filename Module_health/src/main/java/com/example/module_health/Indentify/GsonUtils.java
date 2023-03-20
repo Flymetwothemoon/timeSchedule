@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
  */
-package com.example.module_health.Service;
+package com.example.module_health.Indentify;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -41,3 +41,5 @@ day n+3:
 health界面的step完成
 day n+4:
 bmi界面写完
+day n+5:
+拍照识别的界面写完
