@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -23,6 +24,15 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import Json.LoginToken;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 @Route(path = "/log/log1")
 public class LogActivity extends FragmentActivity implements View.OnClickListener {
@@ -48,6 +58,13 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+//
+//     if(){
+//
+//     }
+//        else{
+//        init();
+//        }
         init();
     }
 
@@ -68,9 +85,39 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.Log_button&&(!(password_edit.getText().toString().equals(""))&&(!id_edit.getText().toString().equals("")))){
-            ARouter.getInstance().build("/main/main1").navigation();
-            finish();
+        if (v.getId() == R.id.Log_button&&((password_edit.getText().toString().length()!=0&&(id_edit.getText().toString().length()!=0)))){
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String id_text = id_edit.getText().toString();
+                    String password_tex = password_edit.getText().toString();
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    FormBody formBody = new FormBody.Builder().add("email",id_text).add("password",password_tex).
+                            build();
+                    Request request = new Request.Builder().url("http://史国华是帅哥.com:1234/login").post(formBody).build();
+                    Response response = null;
+                    try {
+                        response = okHttpClient.newCall(request).execute();
+                        if(response.isSuccessful()){
+                          SharedPreferences.Editor editor = getSharedPreferences("token",MODE_PRIVATE).edit();
+                          Gson gson = new Gson();
+                          LoginToken loginToken = gson.fromJson(response.body().string(),LoginToken.class);
+                          if(loginToken.getCode().equals("OK_200")){
+                             ARouter.getInstance().build("/main/main1").navigation();
+                             editor.putString("token",loginToken.getMsgMap().toString());
+                             editor.apply();
+                          }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
+
+            thread.start();
+
         }
         else if(v.getId() == R.id.Log_button&&(password_edit.getText().toString().equals("")||id_edit.getText().toString().equals(""))){
             Toast.makeText(this,"你的账号或密码为空,请填写",Toast.LENGTH_SHORT).show();
