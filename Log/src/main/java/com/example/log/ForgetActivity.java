@@ -64,8 +64,7 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if(view.getId()==R.id.button){
             forget();
-            Toast.makeText(this,"修改密码成功",Toast.LENGTH_SHORT).show();
-            finish();
+
         }
         else if(view.getId()==R.id.time){
             changeTime();
@@ -98,6 +97,14 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                         response = okHttpClient.newCall(request).execute();
                         if(response.isSuccessful()){
                             Log.d("response2323","密码成功修改");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(ForgetActivity.this,"修改密码成功",Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            });
+
                         }
                         else{
                             Log.d("response2323","密码修改失败");
@@ -133,7 +140,11 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                         OkHttpClient okHttpClient = new OkHttpClient();
                         RequestBody requestBody = new FormBody.Builder().add( "email",email_num).build();
                         Log.d("response2323","email"+email_num);
-                        Request request = new Request.Builder().url("http://史国华是帅哥.com:1234/PutUserMsg/rePassSendVerify").put(requestBody).build();
+
+                        Request request = new Request.Builder().
+                                url("http://史国华是帅哥.com:1234/PutUserMsg/rePassSendVerify").
+                                put(requestBody).addHeader("Content-Type", "application/x-www-form-urlencoded").
+                                build();
                         Response response = null;
                         try {
                             response = okHttpClient.newCall(request).execute();

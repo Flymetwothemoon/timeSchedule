@@ -102,6 +102,7 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
                           SharedPreferences.Editor editor = getSharedPreferences("token",MODE_PRIVATE).edit();
                           Gson gson = new Gson();
                           LoginToken loginToken = gson.fromJson(response.body().string(),LoginToken.class);
+
                           if(loginToken.getCode().equals("OK_200")){
                              ARouter.getInstance().build("/main/main1").navigation();
                              editor.putString("token",loginToken.getMsgMap().toString());
