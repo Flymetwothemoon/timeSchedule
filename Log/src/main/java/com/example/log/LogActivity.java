@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.icu.util.TimeUnit;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.text.InputType;
@@ -107,6 +108,8 @@ public class LogActivity extends FragmentActivity implements View.OnClickListene
                              ARouter.getInstance().build("/main/main1").navigation();
                              editor.putString("token",loginToken.getMsgMap().toString());
                              editor.apply();
+                              
+                             
                           }
                         }
                     } catch (IOException e) {
