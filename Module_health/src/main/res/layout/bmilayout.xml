@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/bmi_text"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/bmi_text"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:text="身体质量指数"
-        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:text="BMI"
+        android:textColor="#ff9100"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,23 +21,23 @@
         android:id="@+id/bmi_text1"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="未知"
-        android:textSize="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="Get"
+        android:textColor="#ffffff"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/button_shape"
-        android:text="开始测试"
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="23dp"
+        android:background="@mipmap/bmi"
+        android:id="@+id/bmi_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bmi_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

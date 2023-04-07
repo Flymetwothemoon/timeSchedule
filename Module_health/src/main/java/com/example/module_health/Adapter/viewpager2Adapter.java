@@ -11,7 +11,9 @@ import java.util.List;
 
 public class viewpager2Adapter extends FragmentStateAdapter {
     private List<Fragment>mFragments;
-    public viewpager2Adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Fragment>fragments) {
+
+
+    public viewpager2Adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,List<Fragment>fragments) {
         super(fragmentManager, lifecycle);
         mFragments = fragments;
     }

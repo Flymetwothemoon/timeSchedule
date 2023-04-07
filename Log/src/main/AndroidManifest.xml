@@ -8,6 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar.Bridge"
         tools:replace="android:appComponentFactory"
+        android:usesCleartextTraffic="true"
         android:appComponentFactory="ss2">
 
             <activity

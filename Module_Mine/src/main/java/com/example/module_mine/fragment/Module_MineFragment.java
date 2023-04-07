@@ -1,9 +1,11 @@
 package com.example.module_mine.fragment;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -164,6 +166,8 @@ public class Module_MineFragment extends Fragment implements View.OnClickListene
                     String a = "manage";
                     ARouter.getInstance().build("/log/log1").navigation();
                     getActivity().finish();
+                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("token",MODE_PRIVATE).edit();
+                    editor.remove("token_0");
 //                    intent.putExtra("TAG",a);
 //                    startActivity(intent);
                 }

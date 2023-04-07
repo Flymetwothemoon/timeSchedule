@@ -28,7 +28,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 @Route(path = "/health/health1")
-public class health_Fragment extends Fragment {
+public class health_Fragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,6 +99,9 @@ public class health_Fragment extends Fragment {
                 tab.setText(mList.get(position));
             }
         }).attach();
+
+
+
     }
     private void addAdapter(){
         mFragments.add(Module_healthFragment.newInstance("好好好","1"));

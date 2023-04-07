@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timeschedule" >
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".application.MainApplication"
         android:allowBackup="true"
@@ -11,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:replace="android:theme"
-
         >
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="18393fb60b04933a0b93867f5b5f33da" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >
