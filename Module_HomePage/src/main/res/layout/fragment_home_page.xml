@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HomePageFragment"
+    android:background="@drawable/bk_0"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,40 +13,41 @@
         android:id="@+id/home_page"
         android:layout_height="match_parent">
 
-
-        <com.youth.banner.Banner
-            android:id="@+id/banner"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-
-            android:layout_marginTop="16dp"
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-        </com.youth.banner.Banner>
-
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/drink_water_on_time"
-            android:layout_width="365dp"
-            android:layout_height="177dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner" />
-
-        <include
-            android:id="@+id/include_0"
-            layout="@layout/foodplan"
-            android:layout_width="365dp"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:background="@mipmap/search"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="@+id/editText" />
+
+        <include
+            layout="@layout/banneradapterlayout"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/diet_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="My Healthy Diet"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
-
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

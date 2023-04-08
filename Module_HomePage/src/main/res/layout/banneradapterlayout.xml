@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="150dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/fruit_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:layout_marginStart="40dp"
+            android:background="@mipmap/fruit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/drink_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            android:layout_marginEnd="40dp"
+            android:background="@mipmap/drink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@mipmap/food"
+            app:layout_constraintEnd_toStartOf="@+id/drink_image"
+            app:layout_constraintStart_toEndOf="@+id/fruit_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fruit_text"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="水果"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/fruit_image"
+            app:layout_constraintStart_toStartOf="@+id/fruit_image"
+            app:layout_constraintTop_toBottomOf="@+id/fruit_image" />
+
+
+        <TextView
+            android:id="@+id/drink_text"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="饮品"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/drink_image"
+            app:layout_constraintStart_toStartOf="@+id/drink_image"
+            app:layout_constraintTop_toBottomOf="@+id/drink_image" />
+
+        <TextView
+            android:id="@+id/food_text"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="食品"
+            app:layout_constraintEnd_toStartOf="@+id/drink_text"
+            app:layout_constraintStart_toEndOf="@+id/fruit_text"
+            app:layout_constraintTop_toBottomOf="@+id/food_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<item android:title="首页"
+<item android:title="饮食"
     android:checked="true"
     app:showAsAction="always"
     android:icon="@drawable/first_homepage"

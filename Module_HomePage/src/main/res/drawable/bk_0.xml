@@ -8,17 +8,5 @@
         android:endColor="#BEDFD2"
         android:angle="90"
         />
-<!--    <solid android:color="#E3F8F3" />-->
-    <corners android:radius="15dip"/>
-    <stroke android:width="1sp"
-        android:color="#000000"/>
-    <!--定位-->
-    <padding
-        android:bottom="2dp"
-        android:left="8dp"
-        android:right="8dp"
-        android:top="2dp" />
-    <corners
-    android:topLeftRadius="30dp"
-        android:topRightRadius="30dp"/>
+
 </shape>

@@ -83,6 +83,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Activity.HeartHealthActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activity.IdentifyActivity"
             android:exported="false">
             <meta-data
@@ -115,13 +122,6 @@
         </activity>
         <activity
             android:name=".Activity.PhotoActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Activity.TestActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
