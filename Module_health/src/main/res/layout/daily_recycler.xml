@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/daily_card"
-        android:layout_width="110dp"
+        android:layout_width="140dp"
 
         android:layout_height="180dp"
 
@@ -23,24 +23,24 @@
 
             <TextView
                 android:id="@+id/daily_ima"
-                android:layout_width="110dp"
+                android:layout_width="130dp"
                 android:layout_height="115dp"
-                android:background="@drawable/cardbackground"
                 android:layout_marginTop="2dp"
+                android:background="@drawable/cardbackground"
                 android:gravity="center"
-                android:textSize="50dp"
-                android:textColor="@color/black"
                 android:text="1"
+                android:textColor="@color/black"
+                android:textSize="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/daily_text"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/daily_ima" />

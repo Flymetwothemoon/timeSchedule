@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/power"
+    app:startDestination="@id/powerOneFragment">
+
+    <fragment
+        android:id="@+id/powerOneFragment"
+        android:name="com.example.module_health.fragment.powerOneFragment"
+        android:label="fragment_power_one"
+        tools:layout="@layout/fragment_power_one" >
+        <action
+            android:id="@+id/action_powerOneFragment_to_powerTwoFragment"
+            app:destination="@id/powerTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/powerTwoFragment"
+        android:name="com.example.module_health.fragment.powerTwoFragment"
+        android:label="fragment_power_two"
+        tools:layout="@layout/fragment_power_two" >
+        <action
+            android:id="@+id/action_powerTwoFragment_to_powerThreeFragment"
+            app:destination="@id/powerThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/powerThreeFragment"
+        android:name="com.example.module_health.fragment.powerThreeFragment"
+        android:label="fragment_power_three"
+        tools:layout="@layout/fragment_power_three" >
+        <action
+            android:id="@+id/action_powerThreeFragment_to_powerFinalFragment"
+            app:destination="@id/powerFinalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/powerFinalFragment"
+        android:name="com.example.module_health.fragment.powerFinalFragment"
+        android:label="fragment_power_final"
+        tools:layout="@layout/fragment_power_final" />
+</navigation>

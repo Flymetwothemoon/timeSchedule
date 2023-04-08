@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/health"
+    app:startDestination="@id/heartOneFragment">
+
+    <fragment
+        android:id="@+id/heartOneFragment"
+        android:name="com.example.module_health.fragment.heartOneFragment"
+        android:label="fragment_heart_one"
+        tools:layout="@layout/fragment_heart_one" >
+        <action
+            android:id="@+id/action_heartOneFragment_to_heartTwoFragment"
+            app:destination="@id/heartTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heartTwoFragment"
+        android:name="com.example.module_health.fragment.HeartTwoFragment"
+        android:label="fragment_heart_two"
+        tools:layout="@layout/fragment_heart_two" >
+        <action
+            android:id="@+id/action_heartTwoFragment_to_heartThreeFragment"
+            app:destination="@id/heartThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heartThreeFragment"
+        android:name="com.example.module_health.fragment.HeartThreeFragment"
+        android:label="fragment_heart_three"
+        tools:layout="@layout/fragment_heart_three" >
+        <action
+            android:id="@+id/action_heartThreeFragment_to_heartFinalFragment"
+            app:destination="@id/heartFinalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heartFinalFragment"
+        android:name="com.example.module_health.fragment.HeartFinalFragment"
+        android:label="fragment_heart_final"
+        tools:layout="@layout/fragment_heart_final" />
+</navigation>

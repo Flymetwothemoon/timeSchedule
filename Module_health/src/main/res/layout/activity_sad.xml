@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.HeartHealthActivity">
+    tools:context=".Activity.sadActivity">
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="250dp"
@@ -12,7 +13,7 @@
         android:layout_marginTop="100dp"
         android:background="@drawable/mycard"
         android:gravity="center"
-        android:text="心理健康评估"
+        android:text="专业抑郁风险测评"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView3"
+        android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -28,5 +29,5 @@
         app:defaultNavHost="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:navGraph="@navigation/health" />
+        app:navGraph="@navigation/sad" />
 </androidx.constraintlayout.widget.ConstraintLayout>

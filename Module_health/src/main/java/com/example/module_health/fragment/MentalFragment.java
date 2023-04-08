@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.module_health.Activity.HeartHealthActivity;
+import com.example.module_health.Activity.powerActivity;
+import com.example.module_health.Activity.sadActivity;
 import com.example.module_health.Adapter.daily;
 import com.example.module_health.Adapter.dailyAdapter;
 import com.example.module_health.Adapter.hot;
@@ -40,7 +42,7 @@ public class MentalFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private View view;
-    private RecyclerView mRecyclerView;
+
     private TextView daily_choose;
     private TextView hot;
     private RecyclerView test_recycler;
@@ -94,9 +96,9 @@ public class MentalFragment extends Fragment {
 
         change(daily_choose,getActivity());
         change(hot,getContext());
-        mRecyclerView = view.findViewById(R.id.daily_recycler);
+
         test_recycler = view.findViewById(R.id.test_recycler);
-        init_daily();
+
         init_test();
         dailyAdapter adapter = new dailyAdapter(mList);
         LinearLayoutManager m=new LinearLayoutManager(getContext());
@@ -106,13 +108,24 @@ public class MentalFragment extends Fragment {
         test_recycler.setAdapter(hotAdapter);
         test_recycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mRecyclerView.setLayoutManager(m);
-        mRecyclerView.setAdapter(adapter);
+
         hotAdapter.setOnItemClickListener(new hotAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getContext(), HeartHealthActivity.class);
-                startActivity(intent);
+                Intent intent;
+                if(position==2) {
+                    intent = new Intent(getContext(), HeartHealthActivity.class);
+                    startActivity(intent);
+                }
+                else if(position==1){
+                    intent = new Intent(getContext(), powerActivity.class);
+                    startActivity(intent);
+                }
+                else if(position==0){
+                    intent = new Intent(getContext(), sadActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -139,18 +152,5 @@ public class MentalFragment extends Fragment {
         mList1.add(hot2);
     }
 
-    private void init_daily(){
-        daily daily = new daily();
-        daily.setDaily_ima("1");
-        daily.setDaily_text("心理健康测评");
-        mList.add(daily);
-        daily daily1 = new daily();
-        daily1.setDaily_ima("2");
-        daily1.setDaily_text("吸引力综合测评");
-        mList.add(daily1);
-        daily daily2 = new daily();
-        daily2.setDaily_ima("3");
-        daily2.setDaily_text("专业抑郁风险测评");
-        mList.add(daily2);
-    }
+
 }

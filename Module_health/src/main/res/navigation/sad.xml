@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sad"
+    app:startDestination="@id/sadOneFragment">
+
+    <fragment
+        android:id="@+id/sadOneFragment"
+        android:name="com.example.module_health.fragment.sadOneFragment"
+        android:label="fragment_sad_one"
+        tools:layout="@layout/fragment_sad_one" >
+        <action
+            android:id="@+id/action_sadOneFragment_to_sadTwoFragment"
+            app:destination="@id/sadTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sadTwoFragment"
+        android:name="com.example.module_health.fragment.sadTwoFragment"
+        android:label="fragment_sad_two"
+        tools:layout="@layout/fragment_sad_two" >
+        <action
+            android:id="@+id/action_sadTwoFragment_to_sadThreeFragment"
+            app:destination="@id/sadThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sadThreeFragment"
+        android:name="com.example.module_health.fragment.sadThreeFragment"
+        android:label="fragment_sad_three"
+        tools:layout="@layout/fragment_sad_three" >
+        <action
+            android:id="@+id/action_sadThreeFragment_to_sadFinallyFragment"
+            app:destination="@id/sadFinallyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sadFinallyFragment"
+        android:name="com.example.module_health.fragment.sadFinallyFragment"
+        android:label="fragment_sad_finally"
+        tools:layout="@layout/fragment_sad_finally" />
+</navigation>

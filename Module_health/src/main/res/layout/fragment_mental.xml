@@ -23,22 +23,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:id="@+id/daily_recycler"
-        app:layout_constraintTop_toBottomOf="@+id/daily_choose" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/daily_choose">
+        <include layout="@layout/card"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/hot"
-        android:layout_width="330dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:text="热门"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daily_recycler" />
+        <TextView
+            android:id="@+id/hot"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:text="热门"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/test_recycler"
