@@ -1,4 +1,4 @@
-package com.example.module_homepage.gson;
+package com.example.module_homepage.gson.search;
 
 public class ListDTO {
     @com.google.gson.annotations.SerializedName("foodId")

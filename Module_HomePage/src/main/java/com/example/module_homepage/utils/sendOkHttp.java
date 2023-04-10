@@ -1,24 +1,20 @@
 package com.example.module_homepage.utils;
 
-import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
 
 import com.example.module_homepage.activity.EnterActivity;
 import com.example.module_homepage.adapter.name;
 import com.example.module_homepage.adapter.nameAdapter;
-import com.example.module_homepage.gson.DataDTO;
-import com.example.module_homepage.gson.ListDTO;
-import com.example.module_homepage.gson.gsonname;
+import com.example.module_homepage.gson.search.DataDTO;
+import com.example.module_homepage.gson.search.ListDTO;
+import com.example.module_homepage.gson.search.gsonname;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.LogRecord;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class sendOkHttp {

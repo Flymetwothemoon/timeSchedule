@@ -10,6 +10,8 @@ import android.view.WindowManager;
 
 import com.example.module_homepage.R;
 import com.example.module_homepage.fragment.FruitFragment;
+import com.example.module_homepage.fragment.MainFragment_0;
+import com.example.module_homepage.fragment.drink_0Fragment;
 
 public class DietActivity extends AppCompatActivity {
 
@@ -22,8 +24,16 @@ public class DietActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diet);
         Intent intent = getIntent();
         String fruit = intent.getStringExtra("fruit");
+
         if(fruit.equals("fruit")){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, FruitFragment.newInstance("1","2")).commit();
         }
+        else if(fruit.equals("drink")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new drink_0Fragment()).commit();
+        }
+        else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame,new MainFragment_0()).commit();
+        }
+
     }
 }

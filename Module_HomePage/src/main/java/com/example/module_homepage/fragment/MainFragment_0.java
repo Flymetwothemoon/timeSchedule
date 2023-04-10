@@ -20,10 +20,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FruitFragment#newInstance} factory method to
+ * Use the {@link MainFragment_0#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FruitFragment extends Fragment {
+public class MainFragment_0 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,10 +33,10 @@ public class FruitFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private List<diet>mList = new ArrayList<>();
+    private List<diet> mList = new ArrayList<>();
     private View mView;
     private RecyclerView fruitRecycler;
-    public FruitFragment() {
+    public MainFragment_0() {
         // Required empty public constructor
     }
 
@@ -46,11 +46,11 @@ public class FruitFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FruitFragment.
+     * @return A new instance of fragment MainFragment_0.
      */
     // TODO: Rename and change types and number of parameters
-    public static FruitFragment newInstance(String param1, String param2) {
-        FruitFragment fragment = new FruitFragment();
+    public static MainFragment_0 newInstance(String param1, String param2) {
+        MainFragment_0 fragment = new MainFragment_0();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,7 +72,7 @@ public class FruitFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if(mView==null){
-            mView = inflater.inflate(R.layout.fragment_fruit, container, false);
+            mView = inflater.inflate(R.layout.fragment_main_0, container, false);
         }
         init();
         return mView;
@@ -80,7 +80,7 @@ public class FruitFragment extends Fragment {
     private void init(){
         fruitRecycler = mView.findViewById(R.id.fruit_recycler);
         dietAdapter adapter = new dietAdapter(getContext(),mList);
-        new sendOkHttp1().send(mList,adapter,getActivity(),"5");
+        new sendOkHttp1().send(mList,adapter,getActivity(),"1");
         fruitRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         fruitRecycler.setAdapter(adapter);
     }

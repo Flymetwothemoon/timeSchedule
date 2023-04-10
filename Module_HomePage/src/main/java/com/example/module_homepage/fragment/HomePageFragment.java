@@ -62,7 +62,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private TextView menu_1;
     private TextView cooktime_1;
     private TextView hard_1;
-
+    private ImageView drink_image;
+    private ImageView food_image;
     View view;
     public HomePageFragment() {
         // Required empty public constructor
@@ -137,7 +138,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         whathard_0 = view.findViewById(R.id.hard_0);
         menu_1 = view.findViewById(R.id.menu_1);
         hard_1 = view.findViewById(R.id.hard_1);
-
+        food_image = view.findViewById(R.id.food_image);
+        drink_image = view.findViewById(R.id.drink_image);
                         change(heathyDiet,drink_text,fruit_text,
                                 food_text,todayrecipe,introduce,
                                 getContext());
@@ -170,6 +172,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         fruit_text.setOnClickListener(this);
         editText.setOnClickListener(this);
         more.setOnClickListener(this);
+        drink_image.setOnClickListener(this);
+        drink_text.setOnClickListener(this);
+        food_image.setOnClickListener(this);
+        food_text.setOnClickListener(this);
     }
 
 
@@ -186,6 +192,16 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
         else if(view.getId()==R.id.more){
             Intent intent = new Intent(getActivity(), MenuActivity.class);
+            startActivity(intent);
+        }
+        else if(view.getId()==R.id.drink_text||view.getId()==R.id.drink_image){
+            Intent intent = new Intent(getActivity(), DietActivity.class);
+            intent.putExtra("fruit","drink");
+            startActivity(intent);
+        }
+        else if(view.getId()==R.id.food_image||view.getId()==R.id.food_text){
+            Intent intent = new Intent(getActivity(),DietActivity.class);
+            intent.putExtra("fruit","main");
             startActivity(intent);
         }
     }
