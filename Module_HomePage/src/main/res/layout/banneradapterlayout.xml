@@ -15,7 +15,7 @@
             android:id="@+id/fruit_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
-
+            android:clickable="true"
             android:layout_marginStart="40dp"
             android:background="@mipmap/fruit"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/fruit_text"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="水果"
             android:textColor="@color/black"
@@ -55,7 +55,7 @@
         <TextView
             android:id="@+id/drink_text"
             android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="饮品"
             android:textColor="@color/black"
@@ -66,10 +66,10 @@
         <TextView
             android:id="@+id/food_text"
             android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:textColor="@color/black"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="食品"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/drink_text"
             app:layout_constraintStart_toEndOf="@+id/fruit_text"
             app:layout_constraintTop_toBottomOf="@+id/food_image" />

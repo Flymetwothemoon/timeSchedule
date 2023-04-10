@@ -3,6 +3,27 @@
     package="com.example.module_homepage">
 
     <application android:allowBackup="true">
+        <activity
+            android:name=".activity.MenuActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.DietActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.EnterActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity android:name=".activity.HomePageActivity" />
     </application>
 

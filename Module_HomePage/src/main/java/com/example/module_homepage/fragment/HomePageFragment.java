@@ -4,21 +4,23 @@ import static com.example.module_homepage.utils.changeTextStyle.change;
 import static com.example.module_homepage.utils.changeTextStyle.change_1;
 import static com.example.module_homepage.utils.changeTextStyle.change_2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.module_homepage.R;
-
+import com.example.module_homepage.activity.DietActivity;
+import com.example.module_homepage.activity.EnterActivity;
+import com.example.module_homepage.activity.MenuActivity;
 
 
 /**
@@ -27,7 +29,7 @@ import com.example.module_homepage.R;
  * create an instance of this fragment.
  */
 @Route(path = "/homepage/homepage1")
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,11 +41,28 @@ public class HomePageFragment extends Fragment {
     private String mParam2;
     private TextView intake_title7;
     private TextView intake_title;
-    private EditText editText;
+    private TextView editText;
     private TextView heathyDiet;
     private TextView fruit_text;
+    private ImageView fruit_imag;
     private TextView drink_text;
     private TextView food_text;
+    private TextView recipe_0;
+    private TextView recipe_0name;
+    private TextView todayrecipe;
+    private TextView recipe_1;
+    private TextView recipe_1name;
+    private TextView more;
+    private TextView introduce;
+    private TextView yellowfishtext;
+    private TextView menu_0;
+    private TextView cooktime_0;
+    private TextView whathard_0;
+    private TextView zhajiangnoodleText;
+    private TextView menu_1;
+    private TextView cooktime_1;
+    private TextView hard_1;
+
     View view;
     public HomePageFragment() {
         // Required empty public constructor
@@ -102,14 +121,72 @@ public class HomePageFragment extends Fragment {
         fruit_text = view.findViewById(R.id.fruit_text);
         drink_text = view.findViewById(R.id.drink_text);
         food_text = view.findViewById(R.id.food_text);
-        change(heathyDiet,getContext());
-        change(drink_text,getActivity());
-        change(fruit_text,getActivity());
-        change(food_text,getActivity());
+        fruit_imag = view.findViewById(R.id.fruit_image);
+        cooktime_1 = view.findViewById(R.id.cooktime_1);
+        recipe_0 = view.findViewById(R.id.recipe_0);
+        zhajiangnoodleText = view.findViewById(R.id.zhajiangnoodleText);
+        recipe_0name = view.findViewById(R.id.recipe_0name);
+        todayrecipe = view.findViewById(R.id.todayrecipe);
+        recipe_1 = view.findViewById(R.id.recipe_1);
+        recipe_1name = view.findViewById(R.id.recipe_1name);
+        introduce = view.findViewById(R.id.introduce);
+        yellowfishtext = view.findViewById(R.id.yellowfishtext);
+        more = view.findViewById(R.id.more);
+        menu_0 = view.findViewById(R.id.menu_0);
+        cooktime_0 = view.findViewById(R.id.cooktime_0);
+        whathard_0 = view.findViewById(R.id.hard_0);
+        menu_1 = view.findViewById(R.id.menu_1);
+        hard_1 = view.findViewById(R.id.hard_1);
+
+                        change(heathyDiet,drink_text,fruit_text,
+                                food_text,todayrecipe,introduce,
+                                getContext());
+//                        change(drink_text,getActivity());
+//                        change(fruit_text,getActivity());
+//                        change(food_text,getActivity());
+//                        change(todayrecipe,getActivity());
+                        change_2(recipe_0,recipe_1,recipe_1name
+                                ,recipe_0name,more,cooktime_1,
+                                yellowfishtext,cooktime_0,
+                                whathard_0,menu_0,menu_1,hard_1,
+                                zhajiangnoodleText,getActivity());
+//                        change_2(recipe_1,getActivity());
+//                        change_2(recipe_1name,getActivity());
+//                        change_2(recipe_0name,getActivity());
+//                        change_2(more,getActivity());
+//                        change_2(cooktime_1,getActivity());
+//                        change_2(yellowfishtext,getActivity());
+//                        change_2(cooktime_0,getActivity());
+//                        change_2(whathard_0,getActivity());
+//                        change_2(menu_0,getActivity());
+////                        change(introduce,getActivity());
+//                        change_2(menu_1,getActivity());
+//                        change_2(hard_1,getActivity());
+//                        change_2(zhajiangnoodleText,getActivity());
+
+
+
+        fruit_imag.setOnClickListener(this);
+        fruit_text.setOnClickListener(this);
+        editText.setOnClickListener(this);
+        more.setOnClickListener(this);
     }
 
 
-
-
-
+    @Override
+    public void onClick(View view) {
+        if(view.getId()==R.id.editText) {
+            Intent intent = new Intent(getActivity(), EnterActivity.class);
+            startActivity(intent);
+        }
+        else if(view.getId()==R.id.fruit_text||view.getId()==R.id.fruit_image){
+            Intent intent = new Intent(getActivity(), DietActivity.class);
+            intent.putExtra("fruit","fruit");
+            startActivity(intent);
+        }
+        else if(view.getId()==R.id.more){
+            Intent intent = new Intent(getActivity(), MenuActivity.class);
+            startActivity(intent);
+        }
+    }
 }

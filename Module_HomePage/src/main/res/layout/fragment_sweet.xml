@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.drinkFragment">
+    tools:context=".fragment.sweetFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/drink_0" />
+            android:background="@mipmap/sweet_0" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -35,7 +35,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/drink_1" />
+            android:background="@mipmap/sweet_1" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -51,7 +51,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/drink_2" />
+            android:background="@mipmap/sweet_2" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

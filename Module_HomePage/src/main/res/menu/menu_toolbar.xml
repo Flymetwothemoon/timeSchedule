@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--
       item的icon和title属性顾名思义
@@ -9,18 +10,19 @@
       3.ifRoom 如果有空间放置，则放置在操作栏上，否则放置到溢出菜单中。
   -->
     <item
-        android:id="@+id/menu_author"
-        android:title="@string/author"
-        app:showAsAction="always" />
+        android:id="@+id/three_food"
+        android:title="三餐"
+        android:icon="@mipmap/threefood"
+      />
     <item
-        android:id="@+id/menu_share"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/share"
-        app:showAsAction="never" />
+        android:id="@+id/mainfood"
+        android:icon="@mipmap/mainfood"
+        android:title="主食"
+        />
     <item
-        android:id="@+id/menu_settings"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/settings"
-        app:showAsAction="never" />
+        android:id="@+id/bread"
+        android:icon="@mipmap/bread"
+        android:title="烘培"
+       />
 
 </menu>
