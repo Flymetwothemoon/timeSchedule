@@ -143,28 +143,28 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                         change(heathyDiet,drink_text,fruit_text,
                                 food_text,todayrecipe,introduce,
                                 getContext());
-//                        change(drink_text,getActivity());
-//                        change(fruit_text,getActivity());
-//                        change(food_text,getActivity());
-//                        change(todayrecipe,getActivity());
+//                        change(drink_text,GetActivity());
+//                        change(fruit_text,GetActivity());
+//                        change(food_text,GetActivity());
+//                        change(todayrecipe,GetActivity());
                         change_2(recipe_0,recipe_1,recipe_1name
                                 ,recipe_0name,more,cooktime_1,
                                 yellowfishtext,cooktime_0,
                                 whathard_0,menu_0,menu_1,hard_1,
                                 zhajiangnoodleText,getActivity());
-//                        change_2(recipe_1,getActivity());
-//                        change_2(recipe_1name,getActivity());
-//                        change_2(recipe_0name,getActivity());
-//                        change_2(more,getActivity());
-//                        change_2(cooktime_1,getActivity());
-//                        change_2(yellowfishtext,getActivity());
-//                        change_2(cooktime_0,getActivity());
-//                        change_2(whathard_0,getActivity());
-//                        change_2(menu_0,getActivity());
-////                        change(introduce,getActivity());
-//                        change_2(menu_1,getActivity());
-//                        change_2(hard_1,getActivity());
-//                        change_2(zhajiangnoodleText,getActivity());
+//                        change_2(recipe_1,GetActivity());
+//                        change_2(recipe_1name,GetActivity());
+//                        change_2(recipe_0name,GetActivity());
+//                        change_2(more,GetActivity());
+//                        change_2(cooktime_1,GetActivity());
+//                        change_2(yellowfishtext,GetActivity());
+//                        change_2(cooktime_0,GetActivity());
+//                        change_2(whathard_0,GetActivity());
+//                        change_2(menu_0,GetActivity());
+////                        change(introduce,GetActivity());
+//                        change_2(menu_1,GetActivity());
+//                        change_2(hard_1,GetActivity());
+//                        change_2(zhajiangnoodleText,GetActivity());
 
 
 

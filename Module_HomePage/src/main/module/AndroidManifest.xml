@@ -4,7 +4,14 @@
 
     <application android:allowBackup="true">
         <activity
-            android:name=".activity.getActivity"
+            android:name=".activity.openDrinkActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.GetActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

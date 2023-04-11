@@ -2,23 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.module_news">
 
-    <application android:allowBackup="true">
-        <activity
-            android:name=".Search_newsActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Text_newsActivity"
-            android:exported="false"
-            android:label="">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".Module_newsActivity" />
-    </application>
+    <application android:allowBackup="true"></application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.module_homepage.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.module_homepage.R;
+import com.example.module_homepage.activity.GetActivity;
 import com.example.module_homepage.adapter.diet;
 import com.example.module_homepage.adapter.dietAdapter;
 import com.example.module_homepage.utils.sendOkHttp1;
@@ -83,5 +85,14 @@ public class MainFragment_0 extends Fragment {
         new sendOkHttp1().send(mList,adapter,getActivity(),"1");
         fruitRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         fruitRecycler.setAdapter(adapter);
+        adapter.setOnItemClickListener(new dietAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(), GetActivity.class);
+                String id = mList.get(position).foodId;
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
     }
 }

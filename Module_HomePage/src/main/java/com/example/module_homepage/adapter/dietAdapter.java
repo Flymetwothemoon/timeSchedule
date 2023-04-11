@@ -18,7 +18,13 @@ public class dietAdapter extends RecyclerView.Adapter<dietAdapter.viewmodel> {
         mContext = context;
         this.mList = mList;
     }
-
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+    private dietAdapter.OnItemClickListener mOnItemClickListener;
+    public void setOnItemClickListener(dietAdapter.OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
     Context mContext;
     List<diet>mList;
     @NonNull
@@ -32,6 +38,13 @@ public class dietAdapter extends RecyclerView.Adapter<dietAdapter.viewmodel> {
         holder.calory.setText(mList.get(position).calory);
         holder.name.setText(mList.get(position).name);
         holder.level.setText(mList.get(position).healthLevel);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getLayoutPosition();
+                mOnItemClickListener.onItemClick(view,position);
+            }
+        });
     }
 
     @Override

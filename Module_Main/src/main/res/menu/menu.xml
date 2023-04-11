@@ -21,7 +21,7 @@
 <!--        android:id="@+id/directseeding">-->
 
 <!--    </item>-->
-    <item android:title="消息"
+    <item android:title="分享"
         android:checked="true"
         android:icon="@drawable/news"
         android:id="@+id/news">

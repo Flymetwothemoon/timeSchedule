@@ -19,6 +19,13 @@ public class nameAdapter extends RecyclerView.Adapter<nameAdapter.viewmodel> {
         mList = list;
         this.mContext = mContext;
     }
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+    private nameAdapter.OnItemClickListener mOnItemClickListener;
+    public void setOnItemClickListener(nameAdapter.OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
     Context mContext;
     List<name>mList;
     @NonNull
@@ -30,6 +37,13 @@ public class nameAdapter extends RecyclerView.Adapter<nameAdapter.viewmodel> {
     @Override
     public void onBindViewHolder(@NonNull nameAdapter.viewmodel holder, int position) {
         holder.nameText.setText(mList.get(position).name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = holder.getLayoutPosition();
+                mOnItemClickListener.onItemClick(view,position);
+            }
+        });
     }
 
     @Override

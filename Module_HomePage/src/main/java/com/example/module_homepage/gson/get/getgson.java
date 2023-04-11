@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-@lombok.Data
+
 public class getgson implements Serializable {
 
     @SerializedName("code")

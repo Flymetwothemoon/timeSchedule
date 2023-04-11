@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/itsname"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itscalory"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itsname"
+        app:layout_constraintStart_toEndOf="@+id/itsname"
+        app:layout_constraintTop_toTopOf="@+id/itsname" />
+
+    <TextView
+        android:id="@+id/healthTips"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="绿灯食物"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itsname" />
+
+    <TextView
+        android:id="@+id/healthSuggest"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="推荐食用"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthTips" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="推荐等级"
+        android:id="@+id/grade"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/healthSuggest"
+        app:layout_constraintTop_toBottomOf="@+id/healthTips" />
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:text="菜谱"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthSuggest" />
+
+    <TextView
+        android:id="@+id/GiDTO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <TextView
+        android:id="@+id/GIDTO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GiDTO" />
+</androidx.constraintlayout.widget.ConstraintLayout>

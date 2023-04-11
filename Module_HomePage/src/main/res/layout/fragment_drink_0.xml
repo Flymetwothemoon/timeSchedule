@@ -8,11 +8,21 @@
     tools:context=".fragment.drink_0Fragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/add"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/Level"
+        app:layout_constraintEnd_toEndOf="@+id/Level"
+        app:layout_constraintStart_toStartOf="@+id/Level" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fruit_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="140dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,5 +1,6 @@
 package com.example.module_homepage.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.module_homepage.R;
+import com.example.module_homepage.activity.GetActivity;
+import com.example.module_homepage.activity.openDrinkActivity;
 import com.example.module_homepage.adapter.diet;
 import com.example.module_homepage.adapter.dietAdapter;
 import com.example.module_homepage.utils.sendOkHttp1;
@@ -35,6 +39,7 @@ public class drink_0Fragment extends Fragment {
     private String mParam2;
     private List<diet> mList = new ArrayList<>();
     private View mView;
+    private ImageView add;
     private RecyclerView fruitRecycler;
     public drink_0Fragment() {
         // Required empty public constructor
@@ -79,9 +84,26 @@ public class drink_0Fragment extends Fragment {
     }
     private void init(){
         fruitRecycler = mView.findViewById(R.id.fruit_recycler);
+        add = mView.findViewById(R.id.open);
         dietAdapter adapter = new dietAdapter(getContext(),mList);
         new sendOkHttp1().send(mList,adapter,getActivity(),"10");
         fruitRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         fruitRecycler.setAdapter(adapter);
+        adapter.setOnItemClickListener(new dietAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(), GetActivity.class);
+                String id = mList.get(position).foodId;
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), openDrinkActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
